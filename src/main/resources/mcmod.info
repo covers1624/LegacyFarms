@@ -1,0 +1,16 @@
+[
+{
+  "modid": "legacyfarms",
+  "name": "Legacy Farms",
+  "description": "Brings back the old farms from forestry.",
+  "version": "1.0",
+  "mcversion": "1.7.10",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["covers1624", "All the forestry guys."],
+  "credits": "The Forestry guys.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
