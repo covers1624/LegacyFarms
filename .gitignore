@@ -13,6 +13,7 @@
 
 # Other Files.
 !README.md
+!Roadmap.txt
 
 # Include git important files
 !.gitmodules
