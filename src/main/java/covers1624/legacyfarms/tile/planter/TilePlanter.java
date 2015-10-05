@@ -420,15 +420,18 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 
                 worldObj.setBlockToAir(curPos.x, curPos.y, curPos.z);
                 blocksChanged++;
-                if (items != null) {
-                    for (int i = 0; i < items.size(); i++) {
-                        if (items.get(i) == null || items.get(i).getItem() == null) {
-                            continue;
-                        }
+                // Only drop the blocks if the config is on.
+                if (ConfigurationHandler.planterDropBlocks) {
+                    if (items != null) {
+                        for (int i = 0; i < items.size(); i++) {
+                            if (items.get(i) == null || items.get(i).getItem() == null) {
+                                continue;
+                            }
 
-                        if (items.get(i).stackSize > 0) {
-                            EntityItem entityItem = new EntityItem(worldObj, curPos.x, curPos.y, curPos.z, items.get(i));
-                            worldObj.spawnEntityInWorld(entityItem);
+                            if (items.get(i).stackSize > 0) {
+                                EntityItem entityItem = new EntityItem(worldObj, curPos.x, curPos.y, curPos.z, items.get(i));
+                                worldObj.spawnEntityInWorld(entityItem);
+                            }
                         }
                     }
                 }
@@ -870,7 +873,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 
             // Empty slot. Add
             if (getStackInSlot(i) == null) {
-				/* if (doAdd) { setInventorySlotContents(i, stack.copy()); }
+                /* if (doAdd) { setInventorySlotContents(i, stack.copy()); }
 				 * return stack.stackSize; */
                 continue;
             }
