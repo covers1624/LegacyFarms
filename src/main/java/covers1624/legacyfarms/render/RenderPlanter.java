@@ -1,15 +1,15 @@
 package covers1624.legacyfarms.render;
 
-import org.lwjgl.opengl.GL11;
-
 import covers1624.legacyfarms.tile.planter.TilePlanter;
 import net.minecraft.client.Minecraft;
-//import forestry.cultivation.gadgets.TilePlanter;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.ForgeDirection;
+import org.lwjgl.opengl.GL11;
+
+//import forestry.cultivation.gadgets.TilePlanter;
 
 public class RenderPlanter implements IBlockRenderer {
 	private ModelBase model = new ModelBase() {

@@ -4,7 +4,7 @@
  * are made available under the terms of the GNU Lesser Public License v3
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/gpl-3.0.txt
- * 
+ * <p/>
  * Various Contributors including, but not limited to:
  * SirSengir (original work), CovertJaguar, Player, Binnie, MysteriousAges
  ******************************************************************************/
@@ -27,19 +27,12 @@ public class StructureConstruction {
 	}
 
 	/**
-	 * 
-	 * @param bp
-	 *            Blueprint to use
-	 * @param d
-	 *            Direction block is facing
-	 * @param xP
-	 *            X-Coordinate for starting block
-	 * @param yP
-	 *            Y-Coordinate for starting block
-	 * @param zP
-	 *            Z-Coordinate for starting block
-	 * @param xS
-	 *            Shift on xCoordinate from starting block
+	 * @param bp Blueprint to use
+	 * @param d  Direction block is facing
+	 * @param xP X-Coordinate for starting block
+	 * @param yP Y-Coordinate for starting block
+	 * @param zP Z-Coordinate for starting block
+	 * @param xS Shift on xCoordinate from starting block
 	 */
 	public StructureConstruction(StructureBlueprint bp, Vect p, Vect s) {
 		this.blueprint = bp;
@@ -54,7 +47,7 @@ public class StructureConstruction {
 
 	/**
 	 * Y-Coordinate to place current planned block on. Independent of direction originating machine block is facing.
-	 * 
+	 *
 	 * @return
 	 */
 	public int getCurrentY() {
@@ -72,7 +65,6 @@ public class StructureConstruction {
 	}
 
 	/**
-	 * 
 	 * @return Current block to build/check as vector position.
 	 */
 	public Vect getCurrentPos() {

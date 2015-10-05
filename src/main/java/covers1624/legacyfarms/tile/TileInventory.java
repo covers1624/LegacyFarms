@@ -26,8 +26,9 @@ public abstract class TileInventory extends TileBase implements ISidedInventory 
 
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player) {
-		if (worldObj.getTileEntity(xCoord, yCoord, zCoord) != this)
+		if (worldObj.getTileEntity(xCoord, yCoord, zCoord) != this) {
 			return false;
+		}
 
 		return player.getDistanceSq(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D) <= 64.0D;
 	}

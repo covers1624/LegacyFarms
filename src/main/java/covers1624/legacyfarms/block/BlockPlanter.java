@@ -1,9 +1,9 @@
 package covers1624.legacyfarms.block;
 
 import covers1624.legacyfarms.proxy.ClientProxy;
-import covers1624.legacyfarms.tile.planter.TilePlanterSapling;
 import covers1624.legacyfarms.tile.planter.TilePlanter;
 import covers1624.legacyfarms.tile.planter.TilePlanterNetherwarts;
+import covers1624.legacyfarms.tile.planter.TilePlanterSapling;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -65,8 +65,9 @@ public class BlockPlanter extends BlockBase {
 
 	private void setDefaultDirection(World world, int x, int y, int z) {
 		// Don't execute in multiplayer world
-		if (!world.isRemote)
+		if (!world.isRemote) {
 			return;
+		}
 
 		TilePlanter tile = (TilePlanter) world.getTileEntity(x, y, z);
 		Block l = world.getBlock(x, y, z - 1);

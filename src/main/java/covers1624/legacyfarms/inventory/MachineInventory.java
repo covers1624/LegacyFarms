@@ -175,7 +175,7 @@ public class MachineInventory<T extends TileEntity> implements ISidedInventory, 
 
 			// Empty slot. Add
 			if (getStackInSlot(i) == null) {
-				/* if (doAdd) { setInventorySlotContents(i, stack.copy()); } return stack.stackSize; */
+		        /* if (doAdd) { setInventorySlotContents(i, stack.copy()); } return stack.stackSize; */
 				continue;
 			}
 
@@ -211,12 +211,14 @@ public class MachineInventory<T extends TileEntity> implements ISidedInventory, 
 			added += space;
 		}
 
-		if (added >= stack.stackSize)
+		if (added >= stack.stackSize) {
 			return added;
+		}
 
 		for (int i = startSlot; i < startSlot + slots; i++) {
-			if (getStackInSlot(i) != null)
+			if (getStackInSlot(i) != null) {
 				continue;
+			}
 
 			if (doAdd) {
 				setInventorySlotContents(i, stack.copy());

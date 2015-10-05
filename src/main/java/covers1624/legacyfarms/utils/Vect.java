@@ -6,8 +6,9 @@ public class Vect {
 	public int z;
 
 	public Vect(int[] dim) {
-		if (dim.length != 3)
+		if (dim.length != 3) {
 			throw new RuntimeException("Cannot instantiate a vector with less or more than 3 points.");
+		}
 
 		this.x = dim[0];
 		this.y = dim[1];
@@ -53,19 +54,25 @@ public class Vect {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		Vect other = (Vect) obj;
-		if (x != other.x)
+		if (x != other.x) {
 			return false;
-		if (y != other.y)
+		}
+		if (y != other.y) {
 			return false;
-		if (z != other.z)
+		}
+		if (z != other.z) {
 			return false;
+		}
 		return true;
 	}
 }

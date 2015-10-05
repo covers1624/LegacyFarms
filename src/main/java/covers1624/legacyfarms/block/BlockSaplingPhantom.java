@@ -1,9 +1,5 @@
 package covers1624.legacyfarms.block;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import covers1624.legacyfarms.LegacyFarms;
 import covers1624.legacyfarms.worldgen.WorldGenTree;
 import net.minecraft.block.BlockSapling;
@@ -14,6 +10,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class BlockSaplingPhantom extends BlockSapling {
 
@@ -70,7 +70,7 @@ public class BlockSaplingPhantom extends BlockSapling {
 
 		int growchance = 15;
 
-		if (lightvalue >= 9 && random.nextInt(growchance) == 0)
+		if (lightvalue >= 9 && random.nextInt(growchance) == 0) {
 			if (maturity != 3) {
 				maturity = 3;
 				int matX = maturity << 2;
@@ -80,6 +80,7 @@ public class BlockSaplingPhantom extends BlockSapling {
 			} else {
 				growTree(world, x, y, z, random);
 			}
+		}
 	}
 
 	private void growTree(World world, int x, int y, int z, Random random) {

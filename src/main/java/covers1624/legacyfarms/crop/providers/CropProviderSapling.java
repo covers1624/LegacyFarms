@@ -1,7 +1,5 @@
 package covers1624.legacyfarms.crop.providers;
 
-import java.util.ArrayList;
-
 import covers1624.legacyfarms.crop.ICropEntity;
 import covers1624.legacyfarms.crop.ICropProvider;
 import covers1624.legacyfarms.init.ModBlocks;
@@ -10,6 +8,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
 
 public class CropProviderSapling implements ICropProvider {
 
@@ -48,14 +48,16 @@ public class CropProviderSapling implements ICropProvider {
 		Block block = world.getBlock(x, y, z);
 
 		// Target block needs to be empty
-		if (block != Blocks.air)
+		if (block != Blocks.air) {
 			return false;
+		}
 
 		// Can only plant on soulsand
 		Block below = world.getBlock(x, y - 1, z);
 		int meta = world.getBlockMetadata(x, y - 1, z);
-		if (below != ModBlocks.forestrySoil || meta != 0)
+		if (below != ModBlocks.forestrySoil || meta != 0) {
 			return false;
+		}
 
 		world.setBlock(x, y, z, ModBlocks.blockSapling, germling.getItemDamage(), 3);
 		return true;

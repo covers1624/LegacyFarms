@@ -4,7 +4,7 @@
  * are made available under the terms of the GNU Lesser Public License v3
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/gpl-3.0.txt
- * 
+ * <p/>
  * Various Contributors including, but not limited to:
  * SirSengir (original work), CovertJaguar, Player, Binnie, MysteriousAges
  ******************************************************************************/
@@ -41,13 +41,15 @@ public class CropProviderNetherwart implements ICropProvider {
 		Block block = world.getBlock(x, y, z);
 
 		// Target block needs to be empty
-		if (block != Blocks.air)
+		if (block != Blocks.air) {
 			return false;
+		}
 
 		// Can only plant on soulsand
 		Block below = world.getBlock(x, y - 1, z);
-		if (below != Blocks.soul_sand)
+		if (below != Blocks.soul_sand) {
 			return false;
+		}
 
 		world.setBlock(x, y, z, Blocks.nether_wart);
 		return true;

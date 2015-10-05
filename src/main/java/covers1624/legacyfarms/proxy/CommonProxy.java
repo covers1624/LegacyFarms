@@ -9,7 +9,8 @@ public class CommonProxy implements ILFProxy {
 		// NOOP
 	}
 
-	@Override public RenderPlanter getPlanterRenderer(int meta) {
+	@Override
+	public RenderPlanter getPlanterRenderer(int meta) {
 		return null;
 	}
 

@@ -1,12 +1,12 @@
 package covers1624.legacyfarms.worldgen;
 
-import java.util.Random;
-
 import forestry.core.config.ForestryBlock;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenTrees;
+
+import java.util.Random;
 
 public class WorldGenTree extends WorldGenTrees {
 
@@ -25,7 +25,8 @@ public class WorldGenTree extends WorldGenTrees {
 	public boolean generate(World world, Random random, int i, int j, int k) {
 		int l;
 		boolean flag;
-		label0: {
+		label0:
+		{
 			l = random.nextInt(3) + 4;
 			flag = true;
 			if (j >= 1) {
@@ -36,7 +37,8 @@ public class WorldGenTree extends WorldGenTrees {
 			}
 			return false;
 		}
-		label1: {
+		label1:
+		{
 			for (int i1 = j; i1 <= j + 1 + l; i1++) {
 				byte byte0 = 1;
 				if (i1 == j) {
@@ -63,8 +65,9 @@ public class WorldGenTree extends WorldGenTrees {
 
 			}
 
-			if (!flag)
+			if (!flag) {
 				return false;
+			}
 			Block j1 = world.getBlock(i, j - 1, k);
 			if (j1 == ForestryBlock.soil.block()) {
 				world.getClass();

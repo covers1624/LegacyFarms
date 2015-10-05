@@ -1,9 +1,9 @@
 package covers1624.legacyfarms.blueprint;
 
-import java.util.HashMap;
-
 import covers1624.legacyfarms.LegacyFarms;
 import covers1624.legacyfarms.utils.Vect;
+
+import java.util.HashMap;
 
 public class StructureBlueprint {
 	public String id;
@@ -20,12 +20,15 @@ public class StructureBlueprint {
 	}
 
 	public int getBlockId(Vect pos) {
-		if (pos.y >= this.pattern.length)
+		if (pos.y >= this.pattern.length) {
 			return -1;
-		if (pos.x >= this.pattern[pos.y].length)
+		}
+		if (pos.x >= this.pattern[pos.y].length) {
 			return -1;
-		if (pos.z >= this.pattern[pos.y][pos.x].length)
+		}
+		if (pos.z >= this.pattern[pos.y][pos.x].length) {
 			return -1;
+		}
 		return this.pattern[pos.y][pos.x][pos.z];
 	}
 
@@ -48,9 +51,9 @@ public class StructureBlueprint {
 	public static final HashMap<String, StructureBlueprint> index = new HashMap<String, StructureBlueprint>();
 
 	public static StructureBlueprint getBlueprint(String id) {
-		if (index.containsKey(id))
+		if (index.containsKey(id)) {
 			return index.get(id);
-		else {
+		} else {
 			LegacyFarms.logger.fatal("Tried to retrieve unknown StructureBlueprint identified by " + id);
 			return null;
 		}

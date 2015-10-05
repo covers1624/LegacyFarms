@@ -1,9 +1,5 @@
 package covers1624.legacyfarms.utils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-
 import buildcraft.api.core.Position;
 import buildcraft.api.transport.IPipe;
 import buildcraft.api.transport.IPipeConnection;
@@ -14,6 +10,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 
 public class BlockUtils {
 
@@ -28,8 +28,9 @@ public class BlockUtils {
 		LinkedList<ForgeDirection> possiblePipes = new LinkedList<ForgeDirection>();
 
 		for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
-			if (from != ForgeDirection.UNKNOWN && from != dir.getOpposite())
+			if (from != ForgeDirection.UNKNOWN && from != dir.getOpposite()) {
 				continue;
+			}
 
 			Position posPipe = new Position(blockPos.x, blockPos.y, blockPos.z, dir);
 			posPipe.moveForwards(1.0);
@@ -38,10 +39,12 @@ public class BlockUtils {
 
 			if (pipeEntry instanceof IPipe && ((IPipe) pipeEntry).getTile().canInjectItems(from)) {
 				if (from != ForgeDirection.UNKNOWN && pipeEntry instanceof IPipeConnection) {
-					if (((IPipe) pipeEntry).getTile().isPipeConnected(from))
+					if (((IPipe) pipeEntry).getTile().isPipeConnected(from)) {
 						possiblePipes.add(dir);
-				} else
+					}
+				} else {
 					possiblePipes.add(dir);
+				}
 			}
 		}
 
@@ -53,14 +56,18 @@ public class BlockUtils {
 		ArrayList<IInventory> inventories = new ArrayList<IInventory>();
 
 		for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
-			if (from != ForgeDirection.UNKNOWN && from != dir.getOpposite())
+			if (from != ForgeDirection.UNKNOWN && from != dir.getOpposite()) {
 				continue;
+			}
 
 			TileEntity entity = world.getTileEntity(blockPos.x + dir.offsetX, blockPos.y + dir.offsetY, blockPos.z + dir.offsetZ);
-			if (entity != null)
+			if (entity != null) {
 				if (entity instanceof IInventory)
-					// if (!(entity instanceof IPowerReceptor)) {
+				// if (!(entity instanceof IPowerReceptor)) {
+				{
 					inventories.add((IInventory) entity);
+				}
+			}
 			// }
 		}
 
@@ -71,10 +78,11 @@ public class BlockUtils {
 		LinkedList<ForgeDirection> filtered = new LinkedList<ForgeDirection>();
 		ArrayList<ForgeDirection> excludeList = new ArrayList<ForgeDirection>(Arrays.asList(exclude));
 
-		for (int i = 0; i < all.length; i++)
+		for (int i = 0; i < all.length; i++) {
 			if (!excludeList.contains(all[i])) {
 				filtered.add(all[i]);
 			}
+		}
 
 		return filtered.toArray(new ForgeDirection[filtered.size()]);
 
@@ -82,12 +90,15 @@ public class BlockUtils {
 
 	public static void putFromStackIntoPipe(TileEntity tile, ForgeDirection[] pipes, ItemStack stack) {
 
-		if (stack == null)
+		if (stack == null) {
 			return;
-		if (stack.stackSize <= 0)
+		}
+		if (stack.stackSize <= 0) {
 			return;
-		if (pipes.length <= 0)
+		}
+		if (pipes.length <= 0) {
 			return;
+		}
 
 		int choice = tile.getWorldObj().rand.nextInt(pipes.length);
 

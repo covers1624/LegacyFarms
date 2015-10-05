@@ -23,9 +23,10 @@ public class ClientProxy implements ILFProxy {
 
 	}
 
-	@Override public RenderPlanter getPlanterRenderer(int meta) {
+	@Override
+	public RenderPlanter getPlanterRenderer(int meta) {
 		RenderPlanter renderPlanter;
-		if (!planterRenderers.containsKey(meta)){
+		if (!planterRenderers.containsKey(meta)) {
 			renderPlanter = new RenderPlanter(Reference.MODEL_FOLDER + BlockPlanter.getUnlocFromMeta(meta));
 			planterRenderers.put(meta, renderPlanter);
 		} else {

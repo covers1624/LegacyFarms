@@ -1,13 +1,13 @@
 package covers1624.legacyfarms.crop.providers;
 
-import java.util.ArrayList;
-
 import covers1624.legacyfarms.crop.ICropEntity;
 import forestry.core.proxy.Proxies;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
 
 public class CropSapling implements ICropEntity {
 
@@ -44,8 +44,9 @@ public class CropSapling implements ICropEntity {
 			block = world.getBlock(xCoord, yCoord + count, zCoord);
 		}
 
-		if (next != null)
+		if (next != null) {
 			return next;
+		}
 
 		count = -1;
 		block = world.getBlock(xCoord, yCoord + count, zCoord);

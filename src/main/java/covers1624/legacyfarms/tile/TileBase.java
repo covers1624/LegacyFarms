@@ -1,7 +1,6 @@
 package covers1624.legacyfarms.tile;
 
 import com.mojang.authlib.GameProfile;
-
 import covers1624.legacyfarms.network.INetworkTile;
 import covers1624.legacyfarms.utils.Vect;
 import forestry.api.core.IErrorLogic;

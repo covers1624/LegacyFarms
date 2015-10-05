@@ -4,19 +4,19 @@
  * are made available under the terms of the GNU Lesser Public License v3
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/gpl-3.0.txt
- * 
+ * <p/>
  * Various Contributors including, but not limited to:
  * SirSengir (original work), CovertJaguar, Player, Binnie, MysteriousAges
  ******************************************************************************/
 package covers1624.legacyfarms.crop.providers;
-
-import java.util.ArrayList;
 
 import covers1624.legacyfarms.crop.ICropEntity;
 import forestry.core.proxy.Proxies;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
 
 public class CropNetherwart implements ICropEntity {
 

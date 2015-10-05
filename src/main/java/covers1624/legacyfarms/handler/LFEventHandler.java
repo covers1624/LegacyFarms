@@ -1,7 +1,5 @@
 package covers1624.legacyfarms.handler;
 
-import java.util.ArrayList;
-
 import covers1624.legacyfarms.utils.BlockPosition;
 import covers1624.legacyfarms.utils.TreeGrowObjectHolder;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -13,6 +11,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.terraingen.SaplingGrowTreeEvent;
+
+import java.util.ArrayList;
 
 public class LFEventHandler {
 
@@ -40,7 +40,7 @@ public class LFEventHandler {
 						continue;
 					}
 					objectHolder.tick(); // No sense ticking the object if it
-											// isn't in the correct world.
+					// isn't in the correct world.
 					if (!objectHolder.shouldChangeBlock()) {
 						finishedTrees.add(objectHolder);
 					}
