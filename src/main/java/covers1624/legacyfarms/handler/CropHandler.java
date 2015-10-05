@@ -2,7 +2,7 @@ package covers1624.legacyfarms.handler;
 
 import java.util.ArrayList;
 
-import covers1624.legacyfarms.utils.LogHelper;
+import covers1624.legacyfarms.LegacyFarms;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -16,19 +16,19 @@ public class CropHandler {
 
 	public static void registerLeaves(ItemStack itemStack) {
 		if (registeredLeaves.contains(itemStack)) {
-			LogHelper.warn("Leaves allready registered, will not register stack. Name: %s", itemStack.getDisplayName());
+			LegacyFarms.logger.warn("Leaves allready registered, will not register stack. Name: %s", itemStack.getDisplayName());
 			return;
 		}
-		LogHelper.info("Adding leaves: " + itemStack.getDisplayName());
+		LegacyFarms.logger.info("Adding leaves: " + itemStack.getDisplayName());
 		registeredLeaves.add(itemStack);
 	}
 
 	public static void registerLog(ItemStack itemStack) {
 		if (registeredLogs.contains(itemStack)) {
-			LogHelper.warn("Logs allready registered, will not register stack. Name: %s", itemStack.getDisplayName());
+			LegacyFarms.logger.warn("Logs allready registered, will not register stack. Name: %s", itemStack.getDisplayName());
 			return;
 		}
-		LogHelper.info("Adding log: " + itemStack.getDisplayName());
+		LegacyFarms.logger.info("Adding log: " + itemStack.getDisplayName());
 		registeredLogs.add(itemStack);
 	}
 

@@ -10,6 +10,7 @@ import covers1624.legacyfarms.init.Crops;
 import covers1624.legacyfarms.init.ModBlocks;
 import covers1624.legacyfarms.proxy.ILFProxy;
 import covers1624.legacyfarms.reference.Reference;
+import covers1624.lib.util.LogHelper;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -25,6 +26,7 @@ import net.minecraftforge.common.MinecraftForge;
 public class LegacyFarms {
 
 	public static final LFCreativeTab creativeTab = new LFCreativeTab();
+	public static final LogHelper logger = new LogHelper(Reference.MOD_NAME);
 
 	@SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.SERVER_PROXY)
 	public static ILFProxy proxy;

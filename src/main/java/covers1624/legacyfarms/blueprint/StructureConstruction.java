@@ -10,7 +10,7 @@
  ******************************************************************************/
 package covers1624.legacyfarms.blueprint;
 
-import covers1624.legacyfarms.utils.LogHelper;
+import covers1624.legacyfarms.LegacyFarms;
 import covers1624.legacyfarms.utils.Vect;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -137,7 +137,7 @@ public class StructureConstruction {
 		if (StructureBlueprint.index.containsKey(ident)) {
 			blueprint = StructureBlueprint.index.get(ident);
 		} else {
-			LogHelper.error("Tried to load non-existing structure blueprint identified by " + ident);
+			LegacyFarms.logger.error("Tried to load non-existing structure blueprint identified by " + ident);
 		}
 
 		position = new Vect(nbttagcompound.getInteger("XPosition"), nbttagcompound.getInteger("YPosition"), nbttagcompound.getInteger("ZPosition"));

@@ -55,14 +55,20 @@ repositories {
         name = "MM repo"
         url = "http://maven.k-4u.nl/"
     }
+	//Covers Lib
+	maven {
+		name ="Covers1624 Repo"
+		url = "http://adel.podgeweb.com:1616/maven/"
+	}
 }
 
 dependencies {
-	//compile "codechicken:CodeChickenLib:1.7.10-1.1.3.138:dev"
-	//compile "codechicken:CodeChickenCore:1.7.10-1.0.7.46:dev"
-	//compile "codechicken:NotEnoughItems:1.7.10-1.0.5.111:dev"
-	//compile "mcp.mobius.waila:Waila:1.5.10_1.7.10"// Waila
-	compile 'com.mod-buildcraft:buildcraft:7.1.1:dev'  // Buildcraft
+	compile "Covers1624Lib:Covers1624Lib:1.7.10-1.0-#3:dev"
+	compile "codechicken:CodeChickenLib:1.7.10-1.1.3.138:dev"
+	compile "codechicken:CodeChickenCore:1.7.10-1.0.7.46:dev"
+	compile "codechicken:NotEnoughItems:1.7.10-1.0.5.111:dev"
+	compile "mcp.mobius.waila:Waila:1.5.10_1.7.10"// Waila
+	compile 'com.mod-buildcraft:buildcraft:7.1.8:dev'  // Buildcraft
 	compile 'net.industrial-craft:industrialcraft-2:2.2.764-experimental:dev' //IC2
 	//compile "pneumaticCraft:PneumaticCraft-1.7.10:1.9.10-98:userdev"
 	

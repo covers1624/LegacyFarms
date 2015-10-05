@@ -6,7 +6,7 @@ import covers1624.legacyfarms.tile.TileBase;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 
-public abstract class TileHarvester extends TileBase implements IInventory {
+public abstract class TileHarvester extends TileBase {//implements IInventory {
 
 	private ArrayList<ItemStack> validWindfall = new ArrayList<ItemStack>();
 

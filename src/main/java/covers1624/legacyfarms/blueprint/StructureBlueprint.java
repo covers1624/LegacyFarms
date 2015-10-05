@@ -2,7 +2,7 @@ package covers1624.legacyfarms.blueprint;
 
 import java.util.HashMap;
 
-import covers1624.legacyfarms.utils.LogHelper;
+import covers1624.legacyfarms.LegacyFarms;
 import covers1624.legacyfarms.utils.Vect;
 
 public class StructureBlueprint {
@@ -51,7 +51,7 @@ public class StructureBlueprint {
 		if (index.containsKey(id))
 			return index.get(id);
 		else {
-			LogHelper.fatal("Tried to retrieve unknown StructureBlueprint identified by " + id);
+			LegacyFarms.logger.fatal("Tried to retrieve unknown StructureBlueprint identified by " + id);
 			return null;
 		}
 	}

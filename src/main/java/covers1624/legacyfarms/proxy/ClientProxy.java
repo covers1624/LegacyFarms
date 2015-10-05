@@ -12,9 +12,8 @@ public class ClientProxy implements ILFProxy {
 
 	@Override
 	public void registerRenderers() {
-		// RenderingRegistry.registerBlockHandler(planterRenderID, new RenderHandler());
 		ClientRegistry.bindTileEntitySpecialRenderer(TilePlanter.class, new TilePlanterRender());
-		RenderingRegistry.registerBlockHandler(new PlanterRenderingHandler());
+		RenderingRegistry.registerBlockHandler(planterRenderID, new PlanterRenderingHandler());
 
 	}
 

@@ -18,9 +18,9 @@ import net.minecraftforge.common.util.ForgeDirection;
 public class BlockUtils {
 
 	public static ArrayList<ItemStack> getBlockDrops(World world, Vect pos) {
+
 		Block block = world.getBlock(pos.x, pos.y, pos.z);
 		int meta = world.getBlockMetadata(pos.x, pos.y, pos.z);
-
 		return block.getDrops(world, pos.x, pos.y, pos.z, meta, 0);
 	}
 
