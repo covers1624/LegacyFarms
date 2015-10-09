@@ -2,8 +2,8 @@ package covers1624.legacyfarms.handler;
 
 import covers1624.legacyfarms.container.ContainerArboretum;
 import covers1624.legacyfarms.container.ContainerNetherFarm;
-import covers1624.legacyfarms.gui.GuiArboretum;
-import covers1624.legacyfarms.gui.GuiNetherFarm;
+import covers1624.legacyfarms.gui.planter.GuiArboretum;
+import covers1624.legacyfarms.gui.planter.GuiNetherFarm;
 import covers1624.legacyfarms.tile.planter.TilePlanter;
 import covers1624.legacyfarms.utils.GuiId;
 import cpw.mods.fml.common.network.IGuiHandler;

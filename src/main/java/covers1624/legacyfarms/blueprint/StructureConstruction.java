@@ -12,6 +12,7 @@ package covers1624.legacyfarms.blueprint;
 
 import covers1624.legacyfarms.LegacyFarms;
 import covers1624.legacyfarms.utils.Vect;
+import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class StructureConstruction {
@@ -28,11 +29,8 @@ public class StructureConstruction {
 
 	/**
 	 * @param bp Blueprint to use
-	 * @param d  Direction block is facing
-	 * @param xP X-Coordinate for starting block
-	 * @param yP Y-Coordinate for starting block
-	 * @param zP Z-Coordinate for starting block
-	 * @param xS Shift on xCoordinate from starting block
+	 * @param p Starting block
+	 * @param s Shift on xCoordinate from starting block
 	 */
 	public StructureConstruction(StructureBlueprint bp, Vect p, Vect s) {
 		this.blueprint = bp;
@@ -41,14 +39,12 @@ public class StructureConstruction {
 		shift = s;
 	}
 
-	public int getCurrentBlockId() {
-		return blueprint.getBlockId(current);
+	public Block getCurrentBlock() {
+		return blueprint.getBlock(current);
 	}
 
 	/**
 	 * Y-Coordinate to place current planned block on. Independent of direction originating machine block is facing.
-	 *
-	 * @return
 	 */
 	public int getCurrentY() {
 		return position.y + current.y + shift.y;

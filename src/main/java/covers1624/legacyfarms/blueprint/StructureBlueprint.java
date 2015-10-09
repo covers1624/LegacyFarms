@@ -2,32 +2,33 @@ package covers1624.legacyfarms.blueprint;
 
 import covers1624.legacyfarms.LegacyFarms;
 import covers1624.legacyfarms.utils.Vect;
+import net.minecraft.block.Block;
 
 import java.util.HashMap;
 
 public class StructureBlueprint {
 	public String id;
 	// Y / X / Z
-	private int[][][] pattern;
+	private Block[][][] pattern;
 
 	public StructureBlueprint(String id, Vect area) {
 		this.id = id;
-		this.pattern = new int[area.y][area.x][area.z];
+		this.pattern = new Block[area.y][area.x][area.z];
 	}
 
-	public void setPlane(int y, int[][] plane) {
+	public void setPlane(int y, Block[][] plane) {
 		pattern[y] = plane;
 	}
 
-	public int getBlockId(Vect pos) {
+	public Block getBlock(Vect pos) {
 		if (pos.y >= this.pattern.length) {
-			return -1;
+			return null;
 		}
 		if (pos.x >= this.pattern[pos.y].length) {
-			return -1;
+			return null;
 		}
 		if (pos.z >= this.pattern[pos.y][pos.x].length) {
-			return -1;
+			return null;
 		}
 		return this.pattern[pos.y][pos.x][pos.z];
 	}

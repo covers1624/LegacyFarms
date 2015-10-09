@@ -2,6 +2,7 @@ package covers1624.legacyfarms.container;
 
 import covers1624.legacyfarms.gui.OutputSlot;
 import covers1624.legacyfarms.tile.planter.TilePlanter;
+import covers1624.lib.inventory.InventoryUtils;
 import forestry.core.gui.ContainerForestry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -29,17 +30,17 @@ public class ContainerArboretum extends ContainerForestry {
 		addSlotToContainer(new OutputSlot(arboretum, 10, 141, 35));
 		addSlotToContainer(new OutputSlot(arboretum, 11, 141, 53));
 
-		// InventoryUtils.bindPlayerInventory(this, playerInventory, 18, 84);
-		int var3;
-		for (var3 = 0; var3 < 3; ++var3) {
-			for (int var4 = 0; var4 < 9; ++var4) {
-				addSlotToContainer(new Slot(playerInventory, var4 + var3 * 9 + 9, 8 + var4 * 18, 84 + var3 * 18));
-			}
-		}
-
-		for (var3 = 0; var3 < 9; ++var3) {
-			addSlotToContainer(new Slot(playerInventory, var3, 8 + var3 * 18, 142));
-		}
+		InventoryUtils.bindPlayerInventory(this, playerInventory, 8, 84);
+		//int var3;
+		//for (var3 = 0; var3 < 3; ++var3) {
+		//	for (int var4 = 0; var4 < 9; ++var4) {
+		//		addSlotToContainer(new Slot(playerInventory, var4 + var3 * 9 + 9, 8 + var4 * 18, 84 + var3 * 18));
+		//	}
+		//}
+		//
+		//for (var3 = 0; var3 < 9; ++var3) {
+		//	addSlotToContainer(new Slot(playerInventory, var3, 8 + var3 * 18, 142));
+		//}
 	}
 
 	@Override

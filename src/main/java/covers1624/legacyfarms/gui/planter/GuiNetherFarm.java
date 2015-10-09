@@ -1,4 +1,4 @@
-package covers1624.legacyfarms.gui;
+package covers1624.legacyfarms.gui.planter;
 
 import covers1624.legacyfarms.block.BlockPlanter;
 import covers1624.legacyfarms.container.ContainerNetherFarm;

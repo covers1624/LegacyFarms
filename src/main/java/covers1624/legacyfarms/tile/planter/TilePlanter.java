@@ -27,6 +27,7 @@ import net.minecraft.util.ChunkCoordinates;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class TilePlanter extends TileInventory implements IRestrictedAccessTile, IEnergyReceiver {
 
@@ -456,7 +457,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 		int processedBlocks = 0;
 		while (!templateSoil.isFinished && processedBlocks < ConfigurationHandler.planterThrottle) {
 			processedBlocks++;
-			if (templateSoil.getCurrentBlockId() == Item.getIdFromItem(validGround.getItem())) {
+			if (templateSoil.getCurrentBlock() == Block.getBlockFromItem(validGround.getItem())) {
 				Vect pos = templateSoil.getCurrentPos();
 
 				Block block = worldObj.getBlock(pos.x, pos.y, pos.z);
@@ -487,7 +488,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 
 		while (!templateWater.isFinished) {
 			// Place water if required
-			if (Block.getBlockById(templateWater.getCurrentBlockId()) == Blocks.water) {
+			if (templateWater.getCurrentBlock() == Blocks.water) {
 				Vect pos = templateWater.getCurrentPos();
 				boolean skip = false;
 
@@ -538,7 +539,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 		int processedBlocks = 0;
 		while (!templatePlantation.isFinished && processedBlocks < ConfigurationHandler.planterThrottle) {
 			processedBlocks++;
-			if (Block.getBlockById(templatePlantation.getCurrentBlockId()) == Blocks.sapling) {
+			if (templatePlantation.getCurrentBlock() == Blocks.sapling) {
 				int x = templatePlantation.getCurrentX();
 				int y = templatePlantation.getCurrentY();
 				int z = templatePlantation.getCurrentZ();
@@ -959,5 +960,11 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 	@Override
 	public boolean canConnectEnergy(ForgeDirection from) {
 		return true;
+	}
+
+	public void addWailaInfo(List<String> info){
+		info.add("Cleared: " + isCleared);
+		info.add("");
+		info.add("Soil: " + validSoil.getDisplayName());
 	}
 }

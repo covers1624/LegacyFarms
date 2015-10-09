@@ -29,78 +29,82 @@ public class Blueprints {
 	public static final StructureBlueprint wheatPlantation = new StructureBlueprint("wheatPlantation", new Vect(15, 1, 15));
 
 	public static void init() {
-		int i;
-		int j;
+		Block i;
+		Block j;
+		Block n = null;
+		Block a = Blocks.air;
+
 		// Arboretum
-		i = getId(ModBlocks.forestrySoil);
-		int[][] soil = new int[][] { // Format :D
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 2
-				new int[] { i, i, -1, -1, -1, -1, -1, -1, -1, -1, -1, i, i }, // 3
-				new int[] { i, i, -1, -1, -1, -1, -1, -1, -1, -1, -1, i, i }, // 4
-				new int[] { i, i, -1, -1, -1, -1, -1, -1, -1, -1, -1, i, i }, // 5
-				new int[] { i, i, -1, -1, -1, -1, -1, -1, -1, -1, -1, i, i }, // 6
-				new int[] { i, i, -1, -1, -1, -1, -1, -1, -1, -1, -1, i, i }, // 7
-				new int[] { i, i, -1, -1, -1, -1, -1, -1, -1, -1, -1, i, i }, // 8
-				new int[] { i, i, -1, -1, -1, -1, -1, -1, -1, -1, -1, i, i }, // 9
-				new int[] { i, i, -1, -1, -1, -1, -1, -1, -1, -1, -1, i, i }, // 10
-				new int[] { i, i, -1, -1, -1, -1, -1, -1, -1, -1, -1, i, i }, // 11
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 12
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 13
+		i = ModBlocks.forestrySoil;
+		Block[][] soil = new Block[][] { // Format :D
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 2
+				new Block[] { i, i, n, n, n, n, n, n, n, n, n, i, i }, // 3
+				new Block[] { i, i, n, n, n, n, n, n, n, n, n, i, i }, // 4
+				new Block[] { i, i, n, n, n, n, n, n, n, n, n, i, i }, // 5
+				new Block[] { i, i, n, n, n, n, n, n, n, n, n, i, i }, // 6
+				new Block[] { i, i, n, n, n, n, n, n, n, n, n, i, i }, // 7
+				new Block[] { i, i, n, n, n, n, n, n, n, n, n, i, i }, // 8
+				new Block[] { i, i, n, n, n, n, n, n, n, n, n, i, i }, // 9
+				new Block[] { i, i, n, n, n, n, n, n, n, n, n, i, i }, // 10
+				new Block[] { i, i, n, n, n, n, n, n, n, n, n, i, i }, // 11
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 12
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 13
 		};
 		defaultSoil.setPlane(0, soil);
-		i = getId(Blocks.sapling);
-		int[][] plantation = new int[][] { // Format :D
-				new int[] { i, 0, i, 0, i, 0, i, 0, i, 0, i, 0, i }, // 1
-				new int[] { 0, i, 0, i, 0, i, 0, i, 0, i, 0, i, 0 }, // 2
-				new int[] { i, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0, i }, // 3
-				new int[] { 0, i, -1, -1, -1, -1, -1, -1, -1, -1, -1, i, 0 }, // 4
-				new int[] { i, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0, i }, // 5
-				new int[] { 0, i, -1, -1, -1, -1, -1, -1, -1, -1, -1, i, 0 }, // 6
-				new int[] { i, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0, i }, // 7
-				new int[] { 0, i, -1, -1, -1, -1, -1, -1, -1, -1, -1, i, 0 }, // 8
-				new int[] { i, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0, i }, // 9
-				new int[] { 0, i, -1, -1, -1, -1, -1, -1, -1, -1, -1, i, 0 }, // 10
-				new int[] { i, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0, i }, // 11
-				new int[] { 0, i, 0, i, 0, i, 0, i, 0, i, 0, i, 0 }, // 12
-				new int[] { i, 0, i, 0, i, 0, i, 0, i, 0, i, 0, i } // 13
+
+		i = Blocks.sapling;
+		Block[][] plantation = new Block[][] { // Format :D
+				new Block[] { i, a, i, a, i, a, i, a, i, a, i, a, i }, // 1
+				new Block[] { a, i, a, i, a, i, a, i, a, i, a, i, a }, // 2
+				new Block[] { i, a, n, n, n, n, n, n, n, n, n, a, i }, // 3
+				new Block[] { a, i, n, n, n, n, n, n, n, n, n, i, a }, // 4
+				new Block[] { i, a, n, n, n, n, n, n, n, n, n, a, i }, // 5
+				new Block[] { a, i, n, n, n, n, n, n, n, n, n, i, a }, // 6
+				new Block[] { i, a, n, n, n, n, n, n, n, n, n, a, i }, // 7
+				new Block[] { a, i, n, n, n, n, n, n, n, n, n, i, a }, // 8
+				new Block[] { i, a, n, n, n, n, n, n, n, n, n, a, i }, // 9
+				new Block[] { a, i, n, n, n, n, n, n, n, n, n, i, a }, // 10
+				new Block[] { i, a, n, n, n, n, n, n, n, n, n, a, i }, // 11
+				new Block[] { a, i, a, i, a, i, a, i, a, i, a, i, a }, // 12
+				new Block[] { i, a, i, a, i, a, i, a, i, a, i, a, i } // 13
 		};
 		defaultPlantation.setPlane(0, plantation);
 
-		int[][] arboretum0 = new int[][] { // Format
-				new int[] { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 }, // 1
-				new int[] { -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1 }, // 2
-				new int[] { -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1 }, // 3
-				new int[] { -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1 }, // 4
-				new int[] { -1, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, -1 }, // 5
-				new int[] { -1, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, -1 }, // 6
-				new int[] { -1, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, -1 }, // 7
-				new int[] { -1, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, -1 }, // 8
-				new int[] { -1, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, -1 }, // 9
-				new int[] { -1, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, -1 }, // 10
-				new int[] { -1, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, -1 }, // 11
-				new int[] { -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1 }, // 12
-				new int[] { -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1 }, // 13
-				new int[] { -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1 }, // 14
-				new int[] { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 } // 15
+		Block[][] arboretum0 = new Block[][] { // Format
+				new Block[] { n, n, n, n, n, n, n, n, n, n, n, n, n, n, n }, // 1
+				new Block[] { n, a, a, a, a, a, a, a, a, a, a, a, a, a, n }, // 2
+				new Block[] { n, a, a, a, a, a, a, a, a, a, a, a, a, a, n }, // 3
+				new Block[] { n, a, a, a, a, a, a, a, a, a, a, a, a, a, n }, // 4
+				new Block[] { n, a, a, a, n, n, n, n, n, n, n, a, a, a, n }, // 5
+				new Block[] { n, a, a, a, n, n, n, n, n, n, n, a, a, a, n }, // 6
+				new Block[] { n, a, a, a, n, n, n, n, n, n, n, a, a, a, n }, // 7
+				new Block[] { n, a, a, a, n, n, n, n, n, n, n, a, a, a, n }, // 8
+				new Block[] { n, a, a, a, n, n, n, n, n, n, n, a, a, a, n }, // 9
+				new Block[] { n, a, a, a, n, n, n, n, n, n, n, a, a, a, n }, // 10
+				new Block[] { n, a, a, a, n, n, n, n, n, n, n, a, a, a, n }, // 11
+				new Block[] { n, a, a, a, a, a, a, a, a, a, a, a, a, a, n }, // 12
+				new Block[] { n, a, a, a, a, a, a, a, a, a, a, a, a, a, n }, // 13
+				new Block[] { n, a, a, a, a, a, a, a, a, a, a, a, a, a, n }, // 14
+				new Block[] { n, n, n, n, n, n, n, n, n, n, n, n, n, n, n } // 15
 		};
 		defaultArboretum.setPlane(0, arboretum0);
-		int[][] arboretum1 = new int[][] { // Format
-				new int[] { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 }, // 1
-				new int[] { -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1 }, // 2
-				new int[] { -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1 }, // 3
-				new int[] { -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1 }, // 4
-				new int[] { -1, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, -1 }, // 5
-				new int[] { -1, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, -1 }, // 6
-				new int[] { -1, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, -1 }, // 7
-				new int[] { -1, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, -1 }, // 8
-				new int[] { -1, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, -1 }, // 9
-				new int[] { -1, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, -1 }, // 10
-				new int[] { -1, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, -1 }, // 11
-				new int[] { -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1 }, // 12
-				new int[] { -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1 }, // 13
-				new int[] { -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1 }, // 14
-				new int[] { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 } // 15
+		Block[][] arboretum1 = new Block[][] { // Format
+				new Block[] { n, n, n, n, n, n, n, n, n, n, n, n, n, n, n }, // 1
+				new Block[] { n, a, a, a, a, a, a, a, a, a, a, a, a, a, n }, // 2
+				new Block[] { n, a, a, a, a, a, a, a, a, a, a, a, a, a, n }, // 3
+				new Block[] { n, a, a, a, a, a, a, a, a, a, a, a, a, a, n }, // 4
+				new Block[] { n, a, a, a, n, n, n, n, n, n, n, a, a, a, n }, // 5
+				new Block[] { n, a, a, a, n, n, n, n, n, n, n, a, a, a, n }, // 6
+				new Block[] { n, a, a, a, n, n, n, n, n, n, n, a, a, a, n }, // 7
+				new Block[] { n, a, a, a, n, n, n, n, n, n, n, a, a, a, n }, // 8
+				new Block[] { n, a, a, a, n, n, n, n, n, n, n, a, a, a, n }, // 9
+				new Block[] { n, a, a, a, n, n, n, n, n, n, n, a, a, a, n }, // 10
+				new Block[] { n, a, a, a, n, n, n, n, n, n, n, a, a, a, n }, // 11
+				new Block[] { n, a, a, a, a, a, a, a, a, a, a, a, a, a, n }, // 12
+				new Block[] { n, a, a, a, a, a, a, a, a, a, a, a, a, a, n }, // 13
+				new Block[] { n, a, a, a, a, a, a, a, a, a, a, a, a, a, n }, // 14
+				new Block[] { n, n, n, n, n, n, n, n, n, n, n, n, n, n, n } // 15
 		};
 		defaultArboretum.setPlane(1, arboretum1);
 		defaultArboretum.setPlane(2, arboretum1);
@@ -112,22 +116,22 @@ public class Blueprints {
 		defaultArboretum.setPlane(8, arboretum1);
 		defaultArboretum.setPlane(9, arboretum1);
 
-		int[][] farm0 = new int[][] { // Format
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 1
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 2
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 3
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 4
-				new int[] { 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, 0 }, // 5
-				new int[] { 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, 0 }, // 6
-				new int[] { 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, 0 }, // 7
-				new int[] { 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, 0 }, // 8
-				new int[] { 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, 0 }, // 9
-				new int[] { 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, 0 }, // 10
-				new int[] { 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, 0 }, // 11
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 12
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 13
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 14
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 15
+		Block[][] farm0 = new Block[][] { // Format
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a, a, a }, // 1
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a, a, a }, // 2
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a, a, a }, // 3
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a, a, a }, // 4
+				new Block[] { a, a, a, a, n, n, n, n, n, n, n, a, a, a, a }, // 5
+				new Block[] { a, a, a, a, n, n, n, n, n, n, n, a, a, a, a }, // 6
+				new Block[] { a, a, a, a, n, n, n, n, n, n, n, a, a, a, a }, // 7
+				new Block[] { a, a, a, a, n, n, n, n, n, n, n, a, a, a, a }, // 8
+				new Block[] { a, a, a, a, n, n, n, n, n, n, n, a, a, a, a }, // 9
+				new Block[] { a, a, a, a, n, n, n, n, n, n, n, a, a, a, a }, // 10
+				new Block[] { a, a, a, a, n, n, n, n, n, n, n, a, a, a, a }, // 11
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a, a, a }, // 12
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a, a, a }, // 13
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a, a, a }, // 14
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a, a, a }, // 15
 		};
 		defaultFarm.setPlane(0, farm0);
 		defaultFarm.setPlane(1, farm0);
@@ -136,55 +140,57 @@ public class Blueprints {
 		defaultFarm.setPlane(4, farm0);
 		defaultFarm.setPlane(5, farm0);
 
-		i = getId(ModBlocks.forestrySoil);
-		j = getId(Blocks.water);
-		int[][] bogSoil = new int[][] { // Format :D
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
-				new int[] { i, j, i, i, j, i, i, j, i, i, j, i, i, j, i }, // 1
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 2
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 3
-				new int[] { i, j, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, j, i }, // 4
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 5
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 6
-				new int[] { i, j, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, j, i }, // 7
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 8
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 9
-				new int[] { i, j, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, j, i }, // 10
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 11
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 12
-				new int[] { i, j, i, i, j, i, i, j, i, i, j, i, i, j, i }, // 13
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 13
+		i = ModBlocks.forestrySoil;
+		j = Blocks.water;
+		Block[][] bogSoil = new Block[][] { // Format :D
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
+				new Block[] { i, j, i, i, j, i, i, j, i, i, j, i, i, j, i }, // 1
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 2
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 3
+				new Block[] { i, j, i, a, a, a, a, a, a, a, a, a, i, j, i }, // 4
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 5
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 6
+				new Block[] { i, j, i, a, a, a, a, a, a, a, a, a, i, j, i }, // 7
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 8
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 9
+				new Block[] { i, j, i, a, a, a, a, a, a, a, a, a, i, j, i }, // 10
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 11
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 12
+				new Block[] { i, j, i, i, j, i, i, j, i, i, j, i, i, j, i }, // 13
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 13
 		};
 		bogEarth.setPlane(0, bogSoil);
 
-		i = getId(Blocks.dirt);
-		int[][] area = new int[][] { new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 2
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 3
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 4
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 5
-				new int[] { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 }, // 6
-				new int[] { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 }, // 7
-				new int[] { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 }, // 8
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 9
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 10
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 11
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 12
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 13
+		i = Blocks.dirt;
+		Block[][] area = new Block[][] {  // Format :D
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 2
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 3
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 4
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 5
+				new Block[] { n, n, n, n, n, n, n, n, n, n, n, n, n }, // 6
+				new Block[] { n, n, n, n, n, n, n, n, n, n, n, n, n }, // 7
+				new Block[] { n, n, n, n, n, n, n, n, n, n, n, n, n }, // 8
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 9
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 10
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 11
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 12
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 13
 		};
-		int[][] areaY = new int[][] { new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 2
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 2
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 2
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 4
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 2
-				new int[] { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 }, // 6
-				new int[] { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 }, // 7
-				new int[] { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 }, // 8
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 2
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 10
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 2
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 12
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 2
+		Block[][] areaY = new Block[][] {  // Format :D
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a }, // 2
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a }, // 2
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a }, // 2
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a }, // 4
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a }, // 2
+				new Block[] { n, n, n, n, n, n, n, n, n, n, n, n, n }, // 6
+				new Block[] { n, n, n, n, n, n, n, n, n, n, n, n, n }, // 7
+				new Block[] { n, n, n, n, n, n, n, n, n, n, n, n, n }, // 8
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a }, // 2
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a }, // 10
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a }, // 2
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a }, // 12
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a }, // 2
 		};
 		pumpkinArea.setPlane(0, area);
 		pumpkinArea.setPlane(1, areaY);
@@ -194,58 +200,61 @@ public class Blueprints {
 		pumpkinArea.setPlane(5, areaY);
 		pumpkinArea.setPlane(6, areaY);
 
-		i = getId(Blocks.farmland);
-		j = getId(Blocks.water);
-		int[][] soilPumpkin = new int[][] { new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 2
-				new int[] { i, i, i, i, j, i, i, i, i, j, i, i, i }, // 3
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 4
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 5
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 6
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 7
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 8
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 9
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 10
-				new int[] { i, i, i, j, i, i, i, i, j, i, i, i, i }, // 11
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 12
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 13
+		i = Blocks.farmland;
+		j = Blocks.water;
+		Block[][] soilPumpkin = new Block[][] {  // Format :D
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 2
+				new Block[] { i, i, i, i, j, i, i, i, i, j, i, i, i }, // 3
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 4
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 5
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a }, // 6
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a }, // 7
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a }, // 8
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 9
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 10
+				new Block[] { i, i, i, j, i, i, i, i, j, i, i, i, i }, // 11
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 12
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 13
 		};
 		pumpkinSoil.setPlane(0, soilPumpkin);
 
-		i = getId(Blocks.sapling);
-		int[][] plantationPumpkin = new int[][] { new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 2
-				new int[] { 0, i, i, 0, 0, 0, i, i, 0, 0, 0, i, 0 }, // 3
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 4
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 5
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 6
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 7
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 8
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 5
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 10
-				new int[] { 0, i, 0, 0, 0, i, i, 0, 0, 0, i, i, 0 }, // 11
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 12
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 13
+		i = Blocks.sapling;
+		Block[][] plantationPumpkin = new Block[][] {  // Format :D
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a }, // 2
+				new Block[] { a, i, i, a, a, a, i, i, a, a, a, i, a }, // 3
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a }, // 4
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 5
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a }, // 6
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a }, // 7
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a }, // 8
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 5
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a }, // 10
+				new Block[] { a, i, a, a, a, i, i, a, a, a, i, i, a }, // 11
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a }, // 12
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 13
 		};
 		pumpkinFarm.setPlane(0, plantationPumpkin);
 
-		int[][] farmShroom = new int[][] { new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 1
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 2
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 3
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 4
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 5
-				new int[] { 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, 0, 0 }, // 6
-				new int[] { 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, 0, 0 }, // 7
-				new int[] { 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, 0, 0 }, // 8
-				new int[] { 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, 0, 0 }, // 9
-				new int[] { 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, 0, 0 }, // 10
-				new int[] { 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, 0, 0 }, // 11
-				new int[] { 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, 0, 0 }, // 12
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 13
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 14
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 15
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 16
-				new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // 17
+		Block[][] farmShroom = new Block[][] {  // Format :D
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a }, // 1
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a }, // 2
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a }, // 3
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a }, // 4
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a }, // 5
+				new Block[] { a, a, a, a, a, n, n, n, n, n, n, n, a, a, a, a, a }, // 6
+				new Block[] { a, a, a, a, a, n, n, n, n, n, n, n, a, a, a, a, a }, // 7
+				new Block[] { a, a, a, a, a, n, n, n, n, n, n, n, a, a, a, a, a }, // 8
+				new Block[] { a, a, a, a, a, n, n, n, n, n, n, n, a, a, a, a, a }, // 9
+				new Block[] { a, a, a, a, a, n, n, n, n, n, n, n, a, a, a, a, a }, // 10
+				new Block[] { a, a, a, a, a, n, n, n, n, n, n, n, a, a, a, a, a }, // 11
+				new Block[] { a, a, a, a, a, n, n, n, n, n, n, n, a, a, a, a, a }, // 12
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a }, // 13
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a }, // 14
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a }, // 15
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a }, // 16
+				new Block[] { a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a }, // 17
 		};
 		defaultShroom.setPlane(0, farmShroom);
 		defaultShroom.setPlane(1, farmShroom);
@@ -258,121 +267,122 @@ public class Blueprints {
 		defaultShroom.setPlane(8, farmShroom);
 		defaultShroom.setPlane(9, farmShroom);
 
-		i = getId(Blocks.mycelium);
-		int[][] soilShroom = new int[][] { new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 2
-				new int[] { i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i }, // 3
-				new int[] { i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i }, // 4
-				new int[] { i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i }, // 5
-				new int[] { i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i }, // 6
-				new int[] { i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i }, // 7
-				new int[] { i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i }, // 8
-				new int[] { i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i }, // 9
-				new int[] { i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i }, // 10
-				new int[] { i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i }, // 11
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 12
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 13
+		i = Blocks.mycelium;
+		Block[][] soilShroom = new Block[][] {
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 2
+				new Block[] { i, i, a, a, a, a, a, a, a, a, a, i, i }, // 3
+				new Block[] { i, i, a, a, a, a, a, a, a, a, a, i, i }, // 4
+				new Block[] { i, i, a, a, a, a, a, a, a, a, a, i, i }, // 5
+				new Block[] { i, i, a, a, a, a, a, a, a, a, a, i, i }, // 6
+				new Block[] { i, i, a, a, a, a, a, a, a, a, a, i, i }, // 7
+				new Block[] { i, i, a, a, a, a, a, a, a, a, a, i, i }, // 8
+				new Block[] { i, i, a, a, a, a, a, a, a, a, a, i, i }, // 9
+				new Block[] { i, i, a, a, a, a, a, a, a, a, a, i, i }, // 10
+				new Block[] { i, i, a, a, a, a, a, a, a, a, a, i, i }, // 11
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 12
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 13
 		};
 		shroomSoil.setPlane(0, soilShroom);
 
-		i = getId(Blocks.sapling);
-		int[][] plantationShroom = new int[][] { new int[] { i, 0, i, 0, i, 0, i, 0, i, 0, i, 0, i }, // 1
-				new int[] { 0, i, 0, i, 0, i, 0, i, 0, i, 0, i, 0 }, // 2
-				new int[] { i, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, i }, // 3
-				new int[] { 0, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, 0 }, // 4
-				new int[] { i, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, i }, // 5
-				new int[] { 0, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, 0 }, // 6
-				new int[] { i, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, i }, // 7
-				new int[] { 0, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, 0 }, // 8
-				new int[] { i, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, i }, // 9
-				new int[] { 0, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, 0 }, // 10
-				new int[] { i, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, i }, // 11
-				new int[] { 0, i, 0, i, 0, i, 0, i, 0, i, 0, i, 0 }, // 12
-				new int[] { i, 0, i, 0, i, 0, i, 0, i, 0, i, 0, i } // 13
+		i = Blocks.sapling;
+		Block[][] plantationShroom = new Block[][] {
+				new Block[] { i, a, i, a, i, a, i, a, i, a, i, a, i }, // 1
+				new Block[] { a, i, a, i, a, i, a, i, a, i, a, i, a }, // 2
+				new Block[] { i, a, a, a, a, a, a, a, a, a, a, a, i }, // 3
+				new Block[] { a, i, a, a, a, a, a, a, a, a, a, i, a }, // 4
+				new Block[] { i, a, a, a, a, a, a, a, a, a, a, a, i }, // 5
+				new Block[] { a, i, a, a, a, a, a, a, a, a, a, i, a }, // 6
+				new Block[] { i, a, a, a, a, a, a, a, a, a, a, a, i }, // 7
+				new Block[] { a, i, a, a, a, a, a, a, a, a, a, i, a }, // 8
+				new Block[] { i, a, a, a, a, a, a, a, a, a, a, a, i }, // 9
+				new Block[] { a, i, a, a, a, a, a, a, a, a, a, i, a }, // 10
+				new Block[] { i, a, a, a, a, a, a, a, a, a, a, a, i }, // 11
+				new Block[] { a, i, a, i, a, i, a, i, a, i, a, i, a }, // 12
+				new Block[] { i, a, i, a, i, a, i, a, i, a, i, a, i } // 13
 		};
 		shroomPlantation.setPlane(0, plantationShroom);
 
-		i = getId(Blocks.soul_sand);
-		int[][] soulSoil = new int[][] { new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
-				new int[] { i, 0, i, i, 0, i, i, 0, i, i, 0, i, i, 0, i }, // 2
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 3
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 4
-				new int[] { i, 0, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, 0, i }, // 5
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 6
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 7
-				new int[] { i, 0, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, 0, i }, // 8
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 9
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 10
-				new int[] { i, 0, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, 0, i }, // 11
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 12
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 13
-				new int[] { i, 0, i, i, 0, i, i, 0, i, i, 0, i, i, 0, i }, // 14
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 15
+		i = Blocks.soul_sand;
+		Block[][] soulSoil = new Block[][] {
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
+				new Block[] { i, a, i, i, a, i, i, a, i, i, a, i, i, a, i }, // 2
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 3
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 4
+				new Block[] { i, a, i, a, a, a, a, a, a, a, a, a, i, a, i }, // 5
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 6
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 7
+				new Block[] { i, a, i, a, a, a, a, a, a, a, a, a, i, a, i }, // 8
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 9
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 10
+				new Block[] { i, a, i, a, a, a, a, a, a, a, a, a, i, a, i }, // 11
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 12
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 13
+				new Block[] { i, a, i, i, a, i, i, a, i, i, a, i, i, a, i }, // 14
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 15
 		};
 		netherwartSoil.setPlane(0, soulSoil);
 
-		i = getId(Blocks.sapling);
-		int[][] wheatPlants = new int[][] { new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
-				new int[] { i, 0, i, i, 0, i, i, 0, i, i, 0, i, i, 0, i }, // 2
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 3
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 4
-				new int[] { i, 0, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, 0, i }, // 5
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 6
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 7
-				new int[] { i, 0, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, 0, i }, // 8
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 9
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 10
-				new int[] { i, 0, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, 0, i }, // 11
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 12
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 13
-				new int[] { i, 0, i, i, 0, i, i, 0, i, i, 0, i, i, 0, i }, // 14
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 15
+		i = Blocks.sapling;
+		Block[][] wheatPlants = new Block[][] {
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
+				new Block[] { i, a, i, i, a, i, i, a, i, i, a, i, i, a, i }, // 2
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 3
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 4
+				new Block[] { i, a, i, a, a, a, a, a, a, a, a, a, i, a, i }, // 5
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 6
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 7
+				new Block[] { i, a, i, a, a, a, a, a, a, a, a, a, i, a, i }, // 8
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 9
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 10
+				new Block[] { i, a, i, a, a, a, a, a, a, a, a, a, i, a, i }, // 11
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 12
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 13
+				new Block[] { i, a, i, i, a, i, i, a, i, i, a, i, i, a, i }, // 14
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 15
 		};
 		netherwartPlantation.setPlane(0, wheatPlants);
 
-		i = getId(Blocks.farmland);
-		j = getId(Blocks.water);
-		int[][] farmedSoil = new int[][] { new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
-				new int[] { i, j, i, i, j, i, i, j, i, i, j, i, i, j, i }, // 2
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 3
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 4
-				new int[] { i, j, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, j, i }, // 5
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 6
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 7
-				new int[] { i, j, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, j, i }, // 8
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 9
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 10
-				new int[] { i, j, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, j, i }, // 11
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 12
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 13
-				new int[] { i, j, i, i, j, i, i, j, i, i, j, i, i, j, i }, // 14
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 15
+		i = Blocks.farmland;
+		j = Blocks.water;
+		Block[][] farmedSoil = new Block[][] {
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
+				new Block[] { i, j, i, i, j, i, i, j, i, i, j, i, i, j, i }, // 2
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 3
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 4
+				new Block[] { i, j, i, a, a, a, a, a, a, a, a, a, i, j, i }, // 5
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 6
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 7
+				new Block[] { i, j, i, a, a, a, a, a, a, a, a, a, i, j, i }, // 8
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 9
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 10
+				new Block[] { i, j, i, a, a, a, a, a, a, a, a, a, i, j, i }, // 11
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 12
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 13
+				new Block[] { i, j, i, i, j, i, i, j, i, i, j, i, i, j, i }, // 14
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 15
 		};
 		farmSoil.setPlane(0, farmedSoil);
 
-		i = getId(Blocks.sapling);
-		int[][] wheatPlants1 = new int[][] { new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
-				new int[] { i, j, i, i, j, i, i, j, i, i, j, i, i, j, i }, // 1
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 2
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 3
-				new int[] { i, j, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, j, i }, // 4
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 5
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 6
-				new int[] { i, j, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, j, i }, // 7
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 8
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 9
-				new int[] { i, j, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, j, i }, // 10
-				new int[] { i, i, i, 0, 0, 0, 0, 0, 0, 0, 0, 0, i, i, i }, // 11
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 12
-				new int[] { i, j, i, i, j, i, i, j, i, i, j, i, i, j, i }, // 13
-				new int[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 13
+		i = Blocks.sapling;
+		Block[][] wheatPlants1 = new Block[][] {
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
+				new Block[] { i, j, i, i, j, i, i, j, i, i, j, i, i, j, i }, // 1
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 2
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 3
+				new Block[] { i, j, i, a, a, a, a, a, a, a, a, a, i, j, i }, // 4
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 5
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 6
+				new Block[] { i, j, i, a, a, a, a, a, a, a, a, a, i, j, i }, // 7
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 8
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 9
+				new Block[] { i, j, i, a, a, a, a, a, a, a, a, a, i, j, i }, // 10
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 11
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 12
+				new Block[] { i, j, i, i, j, i, i, j, i, i, j, i, i, j, i }, // 13
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 13
 		};
 		wheatPlantation.setPlane(0, wheatPlants1);
 
 	}
-
-	private static int getId(Block block) {
-		return Block.getIdFromBlock(block);
-	}
-
 }

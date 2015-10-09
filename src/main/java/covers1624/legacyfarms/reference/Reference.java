@@ -15,4 +15,5 @@ public class Reference {
 	// Proxy Classes
 	public static final String CLIENT_PROXY = "covers1624.legacyfarms.proxy.ClientProxy";
 	public static final String SERVER_PROXY = "covers1624.legacyfarms.proxy.ServerProxy";
+	public static final String WAILA_CALLBACK = "covers1624.legacyfarms.intermods.waila.WailaModule.callBackRegister";
 }

@@ -12,11 +12,13 @@ import covers1624.legacyfarms.proxy.ILFProxy;
 import covers1624.legacyfarms.reference.Reference;
 import covers1624.lib.util.LogHelper;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
@@ -44,6 +46,11 @@ import net.minecraftforge.common.MinecraftForge;
 		MinecraftForge.EVENT_BUS.register(eventHandler);
 		MinecraftForge.TERRAIN_GEN_BUS.register(eventHandler);
 		FMLCommonHandler.instance().bus().register(eventHandler);
+
+		if (Loader.isModLoaded("Waila")){
+			logger.trace("Registering Waila Module.");
+			FMLInterModComms.sendMessage("Waila", "register", Reference.WAILA_CALLBACK);
+		}
 	}
 
 	@EventHandler
