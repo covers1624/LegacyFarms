@@ -47,6 +47,7 @@ import net.minecraftforge.common.MinecraftForge;
 		MinecraftForge.TERRAIN_GEN_BUS.register(eventHandler);
 		FMLCommonHandler.instance().bus().register(eventHandler);
 
+		//If statement probably not needed but needed for the log statement.
 		if (Loader.isModLoaded("Waila")){
 			logger.trace("Registering Waila Module.");
 			FMLInterModComms.sendMessage("Waila", "register", Reference.WAILA_CALLBACK);
@@ -65,5 +66,4 @@ import net.minecraftforge.common.MinecraftForge;
 		Crops.init();
 		CropHandler.init();
 	}
-
 }

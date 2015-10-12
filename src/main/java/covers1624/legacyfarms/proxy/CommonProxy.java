@@ -1,6 +1,6 @@
 package covers1624.legacyfarms.proxy;
 
-import covers1624.legacyfarms.render.RenderPlanter;
+import covers1624.legacyfarms.client.render.RenderPlanter;
 
 public class CommonProxy implements ILFProxy {
 
@@ -8,10 +8,4 @@ public class CommonProxy implements ILFProxy {
 	public void registerRenderers() {
 		// NOOP
 	}
-
-	@Override
-	public RenderPlanter getPlanterRenderer(int meta) {
-		return null;
-	}
-
 }

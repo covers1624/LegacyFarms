@@ -14,31 +14,24 @@ import net.minecraft.init.Blocks;
 
 public class ModBlocks {
 
-	public static Block blockHarvester;
-	public static Block blockPlanter;
-	public static Block blockSapling = Blocks.sapling;
+	public static BlockHarvester blockHarvester;
+	public static BlockPlanter blockPlanter;
 
+	public static Block blockSapling = Blocks.sapling;
 	public static Block forestrySoil = ForestryBlock.soil.block();
 
 	public static void init() {
 		blockHarvester = new BlockHarvester();
 		GameRegistry.registerBlock(blockHarvester, ItemBlockHarvester.class, blockHarvester.getUnlocalizedName());
-		GameRegistry.registerTileEntity(TileHarvester.class, "legacyFarms.harvester");
 
 		blockPlanter = new BlockPlanter();
 		GameRegistry.registerBlock(blockPlanter, ItemBlockPlanter.class, blockPlanter.getUnlocalizedName());
-		// GameRegistry.registerTileEntity(TilePlanter.class,
-		// "legacyFarms.planter");
-		// blockSapling = new BlockSaplingPhantom();
-		// GameRegistry.registerBlock(blockSapling,
-		// blockSapling.getUnlocalizedName());
-
 		initPlanterTiles();
 	}
 
 	private static void initPlanterTiles() {
-		GameRegistry.registerTileEntity(TilePlanterSapling.class, "legacyFarms.planter.Arbouretum");
-		GameRegistry.registerTileEntity(TilePlanterNetherwarts.class, "legacyFarms.planter.NetherFarm");
+		blockPlanter.addSubItemAndTileAndRegister(0, "arbouretum", TilePlanterSapling.class);
+		blockPlanter.addSubItemAndTileAndRegister(6, "infernalFarm", TilePlanterSapling.class);
 	}
 
 }

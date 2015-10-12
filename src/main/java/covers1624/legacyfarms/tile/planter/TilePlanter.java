@@ -10,6 +10,8 @@ import covers1624.legacyfarms.init.ModBlocks;
 import covers1624.legacyfarms.tile.TileInventory;
 import covers1624.legacyfarms.utils.BlockUtils;
 import covers1624.legacyfarms.utils.Vect;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import forestry.core.EnumErrorCode;
 import forestry.core.delegates.AccessHandler;
 import forestry.core.interfaces.IAccessHandler;
@@ -19,7 +21,6 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -276,15 +277,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 	}
 
 	protected boolean isGermlingStack(int i) {
-		if (!isGermlingSlot(i)) {
-			return false;
-		}
-
-		if (inventory.getStackInSlot(i) == null) {
-			return false;
-		}
-
-		return hasGermlingBySeed(inventory.getStackInSlot(i));
+		return isGermlingSlot(i) && inventory.getStackInSlot(i) != null && hasGermlingBySeed(inventory.getStackInSlot(i));
 	}
 
 	/**
@@ -312,8 +305,6 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 
 	/**
 	 * Returns the next free waste slot.
-	 *
-	 * @return
 	 */
 	protected int getFreeSoilSlot() {
 		for (int i = 0; i < 4; i++) {
@@ -331,8 +322,6 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 
 	/**
 	 * Returns the next free germling slot.
-	 *
-	 * @return
 	 */
 	protected int getFreeGermlingSlot(ItemStack germling) {
 		for (int i = 4; i < 8; i++) {
@@ -350,8 +339,6 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 
 	/**
 	 * Returns the next free waste slot.
-	 *
-	 * @return
 	 */
 	protected int getFreeDisposalSlot() {
 		for (int i = 8; i < inventory.getSizeInventory(); i++) {
@@ -379,8 +366,6 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 
 	/**
 	 * Return false for no operation, true for any operation.
-	 *
-	 * @return
 	 */
 	public boolean doWork() {
 		boolean hasOpHappend = false;
@@ -419,26 +404,27 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 			return false;
 		}
 		int blocksChanged = 0;
-		int curBlockid = 0;
-		while (curBlockid == 0 && !templateArboretum.isFinished) {
+		Block curBlock = Blocks.air;
+		while (curBlock == Blocks.air && !templateArboretum.isFinished) {
 			Vect curPos = new Vect(templateArboretum.getCurrentX(), templateArboretum.getCurrentY(), templateArboretum.getCurrentZ());
-			curBlockid = Block.getIdFromBlock(worldObj.getBlock(curPos.x, curPos.y, curPos.z));
+			curBlock = worldObj.getBlock(curPos.x, curPos.y, curPos.z);
 
-			if (curBlockid != 0 && BlockUtils.shouldBlueprintBreakBlock(worldObj, curPos.x, curPos.y, curPos.z) && !isSpecialBlock(worldObj.getBlock(curPos.x, curPos.y, curPos.z), worldObj.getBlockMetadata(curPos.x, curPos.y, curPos.z)) && curBlockid > -1) {
+			if (curBlock != Blocks.air && BlockUtils.shouldBlueprintBreakBlock(worldObj, curPos.x, curPos.y, curPos.z) && !isSpecialBlock(worldObj.getBlock(curPos.x, curPos.y, curPos.z), worldObj.getBlockMetadata(curPos.x, curPos.y, curPos.z)) && curBlock != null) {
 				ArrayList<ItemStack> items = BlockUtils.getBlockDrops(worldObj, curPos);
 
 				worldObj.setBlockToAir(curPos.x, curPos.y, curPos.z);
 				blocksChanged++;
+
 				// Only drop the blocks if the config is on.
 				if (ConfigurationHandler.planterDropBlocks) {
 					if (items != null) {
-						for (int i = 0; i < items.size(); i++) {
-							if (items.get(i) == null || items.get(i).getItem() == null) {
+						for (ItemStack item : items) {
+							if (item == null || item.getItem() == null) {
 								continue;
 							}
 
-							if (items.get(i).stackSize > 0) {
-								EntityItem entityItem = new EntityItem(worldObj, curPos.x, curPos.y, curPos.z, items.get(i));
+							if (item.stackSize > 0) {
+								EntityItem entityItem = new EntityItem(worldObj, curPos.x, curPos.y, curPos.z, item);
 								worldObj.spawnEntityInWorld(entityItem);
 							}
 						}
@@ -496,8 +482,8 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 				if (block != Blocks.water) {
 					// Make sure we are contained
 					Block[] neighbours = new Block[] { worldObj.getBlock(pos.x - 1, pos.y, pos.z), worldObj.getBlock(pos.x + 1, pos.y, pos.z), worldObj.getBlock(pos.x, pos.y, pos.z - 1), worldObj.getBlock(pos.x, pos.y, pos.z + 1) };
-					for (int i = 0; i < neighbours.length; i++) {
-						if (!validGround.isItemEqual(new ItemStack(neighbours[i])) && !validWaste.isItemEqual(new ItemStack(neighbours[i]))) {
+					for (Block neighbour : neighbours) {
+						if (!validGround.isItemEqual(new ItemStack(neighbour)) && !validWaste.isItemEqual(new ItemStack(neighbour))) {
 							skip = true;
 							break;
 						}
@@ -509,7 +495,6 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 			}
 			templateWater.advanceStep();
 		}
-
 		return false;
 	}
 
@@ -587,9 +572,14 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 
 	}
 
+	/**
+	 * Places a water block.
+	 *
+	 * @param pos Location to place water block.
+	 * @return see World.setBlock.
+	 */
 	private boolean waterBlock(Vect pos) {
-		worldObj.setBlock(pos.x, pos.y, pos.z, Blocks.water);
-		return true;
+		return worldObj.setBlock(pos.x, pos.y, pos.z, Blocks.water);
 	}
 
 	/**
@@ -608,7 +598,6 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 		if (validGround.isItemEqual(new ItemStack(block))) {
 			this.decrSoilStack(1); // decrease stash by one
 		}
-
 		return true;
 	}
 
@@ -625,12 +614,12 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 				// return false;
 
 				// Don't continue if no provider for some reason
-				ICropProvider provider = getCropProvider(
-				        /* inventory.getStackInSlot(stack) */new ItemStack(ModBlocks.blockSapling));
+				// TODO, make the planter place down all saplings.
+				ICropProvider provider = getCropProvider(/* inventory.getStackInSlot(stack) */new ItemStack(ModBlocks.blockSapling));
 				if (provider == null) {
 					continue;
 				}
-
+				// TODO, make the planter place down all saplings.
 				if (provider.doPlant(new ItemStack(ModBlocks.blockSapling)/* inventory.getStackInSlot(* stack) */, worldObj, x, y, z)) {
 					this.decrSaplingStack(stack, 1); // decrease stash by one
 					return true;
@@ -686,21 +675,21 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 				continue;
 			}
 
-			for (int j = 0; j < inventories.length; j++) {
+			for (IInventory inventory1 : inventories) {
 				// can become zero, if matching inventory was found.
 				if (inventory.getStackInSlot(i) == null) {
 					continue;
 				}
 
 				// Don't dump in arboretums!
-				if (inventories[j] instanceof TilePlanter) {
+				if (inventory1 instanceof TilePlanter) {
 					continue;
 				}
 
-				for (int k = 0; k < inventories[j].getSizeInventory(); k++) {
-					ItemStack stack = inventories[j].getStackInSlot(k);
+				for (int k = 0; k < inventory1.getSizeInventory(); k++) {
+					ItemStack stack = inventory1.getStackInSlot(k);
 					if (stack == null) {
-						inventories[j].setInventorySlotContents(k, inventory.getStackInSlot(i));
+						inventory1.setInventorySlotContents(k, inventory.getStackInSlot(i));
 						inventory.setInventorySlotContents(i, null);
 						break;
 					}
@@ -709,7 +698,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 						continue;
 					}
 
-					int available = inventories[j].getInventoryStackLimit() - stack.stackSize;
+					int available = inventory1.getInventoryStackLimit() - stack.stackSize;
 					if (available <= 0) {
 						continue;
 					}
@@ -719,9 +708,8 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 						inventory.setInventorySlotContents(i, null);
 						break;
 					} else {
-						stack.stackSize = inventories[j].getInventoryStackLimit();
+						stack.stackSize = inventory1.getInventoryStackLimit();
 						inventory.getStackInSlot(i).stackSize -= available;
-						continue;
 					}
 				}
 			}
@@ -767,11 +755,6 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 	/**
 	 * Adds humus and saplings to the appropriate free slots of the arboretum.
 	 * Does not care where the stuff comes from.
-	 *
-	 * @param stack
-	 * @param doAdd
-	 * @param from
-	 * @return
 	 */
 
 	public int addItem(ItemStack stack, boolean doAdd, ForgeDirection from) {
@@ -882,7 +865,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 
 			// Empty slot. Add
 			if (getStackInSlot(i) == null) {
-	            /* if (doAdd) { setInventorySlotContents(i, stack.copy()); }
+		        /* if (doAdd) { setInventorySlotContents(i, stack.copy()); }
                  * return stack.stackSize; */
 				continue;
 			}
@@ -938,8 +921,9 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 		return added;
 	}
 
-	// Needs to be implemented by all Planters, should return true if the block
-	// should NOT be removed
+	/**
+	 * Needs to be implemented by all Planters, should return true if the block should NOT be removed
+	 */
 	public abstract boolean isSpecialBlock(Block block, int meta);
 
 	@Override
@@ -962,7 +946,8 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 		return true;
 	}
 
-	public void addWailaInfo(List<String> info){
+	@SideOnly(Side.CLIENT)
+	public void addWailaInfo(List<String> info) {
 		info.add("Cleared: " + isCleared);
 		info.add("");
 		info.add("Soil: " + validSoil.getDisplayName());

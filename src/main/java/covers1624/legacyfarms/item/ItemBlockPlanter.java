@@ -1,6 +1,7 @@
 package covers1624.legacyfarms.item;
 
 import covers1624.legacyfarms.block.BlockPlanter;
+import covers1624.lib.MultiTileItem;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -9,7 +10,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.List;
 
-public class ItemBlockPlanter extends ItemBlock {
+public class ItemBlockPlanter extends MultiTileItem {
 
 	public ItemBlockPlanter(Block block) {
 		super(block);
@@ -22,17 +23,16 @@ public class ItemBlockPlanter extends ItemBlock {
 		return i;
 	}
 
-	@Override
-	public String getUnlocalizedName(ItemStack stack) {
-		return BlockPlanter.getUnlocFromMeta(stack.getItemDamage());
-	}
+	//@Override
+	//public String getUnlocalizedName(ItemStack stack) {
+	//	return BlockPlanter.getUnlocFromMeta(stack.getItemDamage());
+	//}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@Override
-	public void getSubItems(Item item, CreativeTabs creativeTabs, List subTypes) {
-		for (int i = 0; i < 7; i++) {
-			subTypes.add(new ItemStack(item, 1, i));
-		}
-	}
-
+	//@SuppressWarnings({ "rawtypes", "unchecked" })
+	//@Override
+	//public void getSubItems(Item item, CreativeTabs creativeTabs, List subTypes) {
+	//	for (int i = 0; i < 7; i++) {
+	//		subTypes.add(new ItemStack(item, 1, i));
+	//	}
+	//}
 }

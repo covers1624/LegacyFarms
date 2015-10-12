@@ -1,4 +1,4 @@
-package covers1624.legacyfarms.render;
+package covers1624.legacyfarms.client.render;
 
 import covers1624.legacyfarms.tile.planter.TilePlanter;
 import net.minecraft.client.Minecraft;
@@ -9,11 +9,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.ForgeDirection;
 import org.lwjgl.opengl.GL11;
 
-//import forestry.cultivation.gadgets.TilePlanter;
 
 public class RenderPlanter implements IBlockRenderer {
-	private ModelBase model = new ModelBase() {
-	};
 	private String gfxBase;
 
 	private ModelRenderer base;
@@ -22,6 +19,8 @@ public class RenderPlanter implements IBlockRenderer {
 	private ModelRenderer showcase;
 
 	public RenderPlanter() {
+		ModelBase model = new ModelBase() {
+		};
 		base = new ModelRenderer(model, 0, 0);
 		base.addBox(-8F, 4F, -8F, 16, 4, 16);
 		base.rotationPointX = 8;
@@ -75,7 +74,7 @@ public class RenderPlanter implements IBlockRenderer {
 		GL11.glTranslatef((float) x, (float) y, (float) z);
 
 		float[] angle = { 0, 0, 0 };
-		float[] translate = { 0, 0, 0 };
+		//float[] translate = { 0, 0, 0 };
 
 		if (orientation == null) {
 			orientation = ForgeDirection.WEST;
@@ -83,28 +82,28 @@ public class RenderPlanter implements IBlockRenderer {
 
 		switch (orientation) {
 		case EAST:
-			translate[1] = 1;
+			//translate[1] = 1;
 			break;
 		case WEST:
 			angle[2] = (float) Math.PI;
-			translate[1] = -1;
+			//translate[1] = -1;
 			break;
 		case UP:
 			angle[2] = (float) -Math.PI / 2;
-			translate[0] = 1;
+			//translate[0] = 1;
 			break;
 		case DOWN:
 			angle[2] = (float) Math.PI / 2;
-			translate[0] = -1;
+			//translate[0] = -1;
 			break;
 		case SOUTH:
 			angle[0] = (float) Math.PI / 2;
-			translate[2] = 1;
+			//translate[2] = 1;
 			break;
 		default:
 		case NORTH:
 			angle[0] = (float) -Math.PI / 2;
-			translate[2] = -1;
+			//translate[2] = -1;
 			break;
 		}
 

@@ -102,5 +102,4 @@ public class TileBase extends TileEntity implements IOwnable, IErrorLogicSource,
 		// TODO Auto-generated method stub
 
 	}
-
 }
