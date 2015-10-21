@@ -6,8 +6,10 @@ import buildcraft.api.transport.IPipeConnection;
 import covers1624.legacyfarms.handler.CropHandler;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryLargeChest;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
@@ -131,5 +133,23 @@ public class BlockUtils {
 			return false;
 		}
 		return true;
+	}
+
+	public static IInventory getChest(IInventory inventory) {
+		if (!(inventory instanceof TileEntityChest))
+			return inventory;
+
+		TileEntityChest chest = (TileEntityChest) inventory;
+
+		Vect[] adjacent = new Vect[] { new Vect(chest.xCoord + 1, chest.yCoord, chest.zCoord), new Vect(chest.xCoord - 1, chest.yCoord, chest.zCoord),
+				new Vect(chest.xCoord, chest.yCoord, chest.zCoord + 1), new Vect(chest.xCoord, chest.yCoord, chest.zCoord - 1) };
+
+		for (Vect pos : adjacent) {
+			TileEntity otherchest = chest.getWorldObj().getTileEntity(pos.x, pos.y, pos.z);
+			if (otherchest instanceof TileEntityChest)
+				return new InventoryLargeChest("", chest, (TileEntityChest) otherchest);
+		}
+
+		return inventory;
 	}
 }

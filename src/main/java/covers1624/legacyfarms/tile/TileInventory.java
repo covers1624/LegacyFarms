@@ -9,9 +9,15 @@ public abstract class TileInventory extends TileBase implements ISidedInventory 
 
 	protected TileInventoryAdapter<? extends TileInventory> inventory;
 
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public TileInventory(int size) {
+		inventory = new TileInventoryAdapter(this, size, "Items");
+	}
+
+
 	public TileInventory() {
-		inventory = new TileInventoryAdapter(this, 12, "Items");
+		this(12);
 	}
 
 	public abstract void openGui(EntityPlayer player);
@@ -26,11 +32,8 @@ public abstract class TileInventory extends TileBase implements ISidedInventory 
 
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player) {
-		if (worldObj.getTileEntity(xCoord, yCoord, zCoord) != this) {
-			return false;
-		}
+		return worldObj.getTileEntity(xCoord, yCoord, zCoord) == this && player.getDistanceSq(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D) <= 64.0D;
 
-		return player.getDistanceSq(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D) <= 64.0D;
 	}
 
 	@Override
@@ -43,7 +46,6 @@ public abstract class TileInventory extends TileBase implements ISidedInventory 
 
 	@Override
 	public ItemStack getStackInSlot(int slot) {
-
 		return null;
 	}
 
@@ -81,10 +83,7 @@ public abstract class TileInventory extends TileBase implements ISidedInventory 
 
 	@Override
 	public boolean hasCustomInventoryName() {
-		if (inventory != null) {
-			return inventory.hasCustomInventoryName();
-		}
-		return false;
+		return inventory != null && inventory.hasCustomInventoryName();
 	}
 
 	@Override
@@ -106,7 +105,16 @@ public abstract class TileInventory extends TileBase implements ISidedInventory 
 	@Override
 	public int[] getAccessibleSlotsFromSide(int side) {
 		if (inventory != null) {
-
+			switch (side) {
+			case 0:
+			case 1:
+				return new int[] { 0, 1, 2, 3, 4, 5, 6, 7 };
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+				return new int[] { 8, 9, 10, 11 };
+			}
 		}
 		return null;
 	}

@@ -14,6 +14,19 @@ public class CropHandler {
 	public static ArrayList<ItemStack> blueprintWhitelistedBlocks = new ArrayList<ItemStack>();
 	public static ArrayList<ItemStack> blueprintBlacklistedBlocks = new ArrayList<ItemStack>();
 
+	public static void init() {
+		ArrayList<ItemStack> leaves = OreDictionary.getOres("treeLeaves");
+		for (ItemStack stack : leaves) {
+			registerLeaves(stack);
+		}
+		ArrayList<ItemStack> logs = OreDictionary.getOres("logWood");
+		for (ItemStack stack : logs) {
+			registerLog(stack);
+		}
+		blueprintWhitelistedBlocks.add(new ItemStack(Blocks.redstone_torch));
+	}
+
+	//REGISTER
 	public static void registerLeaves(ItemStack itemStack) {
 		if (registeredLeaves.contains(itemStack)) {
 			LegacyFarms.logger.warn("Leaves allready registered, will not register stack. Name: %s", itemStack.getDisplayName());
@@ -32,6 +45,7 @@ public class CropHandler {
 		registeredLogs.add(itemStack);
 	}
 
+	//GET
 	public static boolean containsLogOrLeaf(ItemStack stack) {
 		for (ItemStack itemStack : registeredLeaves) {
 			if (itemStack.getItem() == stack.getItem()) {
@@ -69,17 +83,4 @@ public class CropHandler {
 		}
 		return false;
 	}
-
-	public static void init() {
-		ArrayList<ItemStack> leaves = OreDictionary.getOres("treeLeaves");
-		for (ItemStack stack : leaves) {
-			registerLeaves(stack);
-		}
-		ArrayList<ItemStack> logs = OreDictionary.getOres("logWood");
-		for (ItemStack stack : logs) {
-			registerLog(stack);
-		}
-		blueprintWhitelistedBlocks.add(new ItemStack(Blocks.redstone_torch));
-	}
-
 }

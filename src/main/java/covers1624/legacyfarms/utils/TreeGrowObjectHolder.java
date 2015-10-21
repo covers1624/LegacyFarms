@@ -1,5 +1,7 @@
 package covers1624.legacyfarms.utils;
 
+import covers1624.lib.util.BlockPosition;
+
 public class TreeGrowObjectHolder {
 
 	private BlockPosition pos;

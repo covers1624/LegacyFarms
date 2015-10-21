@@ -6,7 +6,6 @@ import covers1624.legacyfarms.blueprint.StructureBlueprint;
 import covers1624.legacyfarms.blueprint.StructureConstruction;
 import covers1624.legacyfarms.crop.ICropProvider;
 import covers1624.legacyfarms.handler.ConfigurationHandler;
-import covers1624.legacyfarms.init.ModBlocks;
 import covers1624.legacyfarms.tile.TileInventory;
 import covers1624.legacyfarms.utils.BlockUtils;
 import covers1624.legacyfarms.utils.Vect;
@@ -55,17 +54,13 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 	protected boolean requiresSoil = true;
 	protected boolean requiresGermling = false;
 
-	public ItemStack validSoil; // Block or item that can be used to create the
-	// ground to plant on
+	public ItemStack validSoil; // Block or item that can be used to create the ground to plant on
 	public ItemStack validGround; // Block that can be planted on
 	public ItemStack validWaste; // Block that is waste to be collected
-	public ItemStack validDisposal; // Block that is put into inventory when
-	// waste is collected
+	public ItemStack validDisposal; // Block that is put into inventory when waste is collected
 
-	protected boolean isCleared = false; // Whether the arboretum area has been
-	// cleared.
-	protected boolean isUnbroken = false; // Whether the arboretum has already
-	// been fully built
+	protected boolean isCleared = false; // Whether the arboretum area has been cleared.
+	protected boolean isUnbroken = false; // Whether the arboretum has already been fully built
 
 	private final AccessHandler accessHandler = new AccessHandler(this);
 
@@ -78,10 +73,12 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 	}
 
 	public TilePlanter(ICropProvider provider) {
+		super();
 		cropProviders.add(provider);
 	}
 
 	public TilePlanter(ArrayList<ICropProvider> providers) {
+		super();
 		for (ICropProvider provider : providers) {
 			cropProviders.add(provider);
 		}
@@ -122,6 +119,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 		} else {
 			doWork();
 		}
+		isInited = true;
 	}
 
 	@Override
@@ -132,6 +130,9 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 		if (inventory != null) {
 			inventory.readFromNBT(tagCompound);
 		}
+		if (accessHandler != null) {
+			accessHandler.readFromNBT(tagCompound);
+		}
 	}
 
 	@Override
@@ -141,6 +142,9 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 		tagCompound.setBoolean("IsBuilt", isUnbroken);
 		if (inventory != null) {
 			inventory.writeToNBT(tagCompound);
+		}
+		if (accessHandler != null) {
+			accessHandler.writeToNBT(tagCompound);
 		}
 	}
 
@@ -389,8 +393,10 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 		}
 		if (maintainSoil()) {
 			hasOpHappend = true;
-		} else if (maintainVegetation()) {
-			hasOpHappend = true;
+		} else if (templateSoil.isFinished) {
+			if (maintainVegetation()) {
+				hasOpHappend = true;
+			}
 		}
 
 		dumpStash();
@@ -615,12 +621,12 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 
 				// Don't continue if no provider for some reason
 				// TODO, make the planter place down all saplings.
-				ICropProvider provider = getCropProvider(/* inventory.getStackInSlot(stack) */new ItemStack(ModBlocks.blockSapling));
+				ICropProvider provider = getCropProvider(inventory.getStackInSlot(stack));
 				if (provider == null) {
 					continue;
 				}
 				// TODO, make the planter place down all saplings.
-				if (provider.doPlant(new ItemStack(ModBlocks.blockSapling)/* inventory.getStackInSlot(* stack) */, worldObj, x, y, z)) {
+				if (provider.doPlant(inventory.getStackInSlot(stack), worldObj, x, y, z)) {
 					this.decrSaplingStack(stack, 1); // decrease stash by one
 					return true;
 				}
@@ -822,7 +828,6 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 	 * Waste can be extracted from the sides, raw materials are added from top
 	 * or bottom.
 	 */
-
 	public int getStartInventorySide(int side) {
 		if (side == 0) {
 			return SLOT_SOIL_1;
@@ -849,7 +854,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 
 	@Override
 	public void markDirty() {
-		// inventory.markDirty();
+		//inventory.markDirty();
 	}
 
 	@Override
@@ -865,8 +870,8 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 
 			// Empty slot. Add
 			if (getStackInSlot(i) == null) {
-		        /* if (doAdd) { setInventorySlotContents(i, stack.copy()); }
-                 * return stack.stackSize; */
+			    /* if (doAdd) { setInventorySlotContents(i, stack.copy()); }
+	             * return stack.stackSize; */
 				continue;
 			}
 
@@ -922,7 +927,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 	}
 
 	/**
-	 * Needs to be implemented by all Planters, should return true if the block should NOT be removed
+	 * Needs to be implemented by all Planters, should return true if the block is special, that means the block wont be broken by the planter when clearing an area.
 	 */
 	public abstract boolean isSpecialBlock(Block block, int meta);
 

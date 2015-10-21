@@ -18,6 +18,7 @@ public class ConfigurationHandler {
 
 	// Functionality.
 	public static boolean planterSideSensitive;
+	public static boolean harvesterSideSensitive;
 	public static boolean planterDropBlocks;
 
 	public static void init(File file) {
@@ -38,8 +39,11 @@ public class ConfigurationHandler {
 		planterMaxRF = configuration.getInt("Planter Max RF", "Power", 1024, 100, 10000, "The ammount of RF that Planters are able to store.");
 
 		// Functionality.
-		planterSideSensitive = configuration.getBoolean("Planter Side Sensitive", "Customization", true, "Set to false if farms should output all harvested products regardless of side a pipe is attached to");
+		planterSideSensitive = configuration.getBoolean("Planter Side Sensitive", "Customization", true, "Set to false if planters should output all harvested products regardless of side a pipe is attached to");
+		harvesterSideSensitive = configuration.getBoolean("Harvester Side Sensitive", "Customization", true, "Set to false if harvesters should output all harvested products regardless of side a pipe is attached to");
 		planterDropBlocks = configuration.getBoolean("Planter Drop Blocks", "Customization", true, "Set this to false and Planters will not drop blocks when clearing an area.");
+
+
 
 		configuration.save();
 	}

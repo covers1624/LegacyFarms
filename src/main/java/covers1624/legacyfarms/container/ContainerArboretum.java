@@ -1,34 +1,44 @@
 package covers1624.legacyfarms.container;
 
-import covers1624.legacyfarms.gui.OutputSlot;
+import covers1624.legacyfarms.init.ModBlocks;
+import covers1624.legacyfarms.slot.InputSlot;
+import covers1624.legacyfarms.slot.OutputSlot;
 import covers1624.legacyfarms.tile.planter.TilePlanter;
 import covers1624.lib.inventory.InventoryUtils;
-import forestry.core.gui.ContainerForestry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Slot;
+import net.minecraft.inventory.Container;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
-public class ContainerArboretum extends ContainerForestry {
+import java.util.ArrayList;
+
+public class ContainerArboretum extends Container {
 
 	private TilePlanter arboretum;
+	private static ArrayList<ItemStack> soil = new ArrayList<ItemStack>();
+	private static ArrayList<ItemStack> saplings = OreDictionary.getOres("treeSapling");
+
+	static {
+		soil.add(new ItemStack(ModBlocks.forestrySoil));
+	}
 
 	public ContainerArboretum(InventoryPlayer playerInventory, TilePlanter arboretum) {
 		this.arboretum = arboretum;
+		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 0, 19, 35, soil));
+		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 1, 37, 35, soil));
+		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 2, 19, 53, soil));
+		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 3, 37, 53, soil));
 
-		addSlotToContainer(new Slot(arboretum, 0, 19, 35));
-		addSlotToContainer(new Slot(arboretum, 1, 19, 53));
-		addSlotToContainer(new Slot(arboretum, 2, 37, 35));
-		addSlotToContainer(new Slot(arboretum, 3, 37, 53));
+		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 4, 71, 35, saplings));
+		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 5, 89, 35, saplings));
+		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 6, 71, 53, saplings));
+		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 7, 89, 53, saplings));
 
-		addSlotToContainer(new Slot(arboretum, 4, 71, 35));
-		addSlotToContainer(new Slot(arboretum, 5, 71, 53));
-		addSlotToContainer(new Slot(arboretum, 6, 89, 35));
-		addSlotToContainer(new Slot(arboretum, 7, 89, 53));
-
-		addSlotToContainer(new OutputSlot(arboretum, 8, 123, 35));
-		addSlotToContainer(new OutputSlot(arboretum, 9, 123, 53));
-		addSlotToContainer(new OutputSlot(arboretum, 10, 141, 35));
-		addSlotToContainer(new OutputSlot(arboretum, 11, 141, 53));
+		InventoryUtils.addSlotToContainer(this, new OutputSlot(arboretum, 8, 123, 35));
+		InventoryUtils.addSlotToContainer(this, new OutputSlot(arboretum, 9, 141, 35));
+		InventoryUtils.addSlotToContainer(this, new OutputSlot(arboretum, 10, 123, 53));
+		InventoryUtils.addSlotToContainer(this, new OutputSlot(arboretum, 11, 141, 53));
 
 		InventoryUtils.bindPlayerInventory(this, playerInventory, 8, 84);
 		//int var3;
@@ -49,8 +59,7 @@ public class ContainerArboretum extends ContainerForestry {
 	}
 
 	@Override
-	protected boolean canAccess(EntityPlayer player) {
-		return true;
+	public ItemStack transferStackInSlot(EntityPlayer player, int slotIndex) {
+		return InventoryUtils.transferStackInSlot(this, player, slotIndex);
 	}
-
 }

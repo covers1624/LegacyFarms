@@ -1,4 +1,4 @@
-package covers1624.legacyfarms.gui;
+package covers1624.legacyfarms.slot;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;

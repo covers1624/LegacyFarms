@@ -1,14 +1,7 @@
 package covers1624.legacyfarms.item;
 
-import covers1624.legacyfarms.block.BlockPlanter;
-import covers1624.lib.MultiTileItem;
+import covers1624.lib.item.MultiTileItem;
 import net.minecraft.block.Block;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-
-import java.util.List;
 
 public class ItemBlockPlanter extends MultiTileItem {
 

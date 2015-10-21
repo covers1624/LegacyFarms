@@ -1,7 +1,7 @@
 package covers1624.legacyfarms.handler;
 
-import covers1624.legacyfarms.utils.BlockPosition;
 import covers1624.legacyfarms.utils.TreeGrowObjectHolder;
+import covers1624.lib.util.BlockPosition;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 import cpw.mods.fml.common.gameevent.TickEvent.WorldTickEvent;

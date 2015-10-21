@@ -4,9 +4,9 @@ import covers1624.legacyfarms.block.BlockHarvester;
 import covers1624.legacyfarms.block.BlockPlanter;
 import covers1624.legacyfarms.item.ItemBlockHarvester;
 import covers1624.legacyfarms.item.ItemBlockPlanter;
-import covers1624.legacyfarms.tile.harvester.TileHarvester;
-import covers1624.legacyfarms.tile.planter.TilePlanterNetherwarts;
+import covers1624.legacyfarms.tile.harvester.TileHarvesterSapling;
 import covers1624.legacyfarms.tile.planter.TilePlanterSapling;
+import covers1624.lib.util.ItemUtils;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.core.config.ForestryBlock;
 import net.minecraft.block.Block;
@@ -21,8 +21,10 @@ public class ModBlocks {
 	public static Block forestrySoil = ForestryBlock.soil.block();
 
 	public static void init() {
+		ItemUtils.readOres();
 		blockHarvester = new BlockHarvester();
 		GameRegistry.registerBlock(blockHarvester, ItemBlockHarvester.class, blockHarvester.getUnlocalizedName());
+		initHarvesterTiles();
 
 		blockPlanter = new BlockPlanter();
 		GameRegistry.registerBlock(blockPlanter, ItemBlockPlanter.class, blockPlanter.getUnlocalizedName());
@@ -32,6 +34,10 @@ public class ModBlocks {
 	private static void initPlanterTiles() {
 		blockPlanter.addSubItemAndTileAndRegister(0, "arbouretum", TilePlanterSapling.class);
 		blockPlanter.addSubItemAndTileAndRegister(6, "infernalFarm", TilePlanterSapling.class);
+	}
+
+	private static void initHarvesterTiles() {
+		blockHarvester.addSubItemAndTileAndRegister(0, "logger", TileHarvesterSapling.class);
 	}
 
 }
