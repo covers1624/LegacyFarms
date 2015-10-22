@@ -30,7 +30,10 @@ public class CropProviderSapling implements ICropProvider {
 	public boolean isCrop(World world, int x, int y, int z) {
 		Block block = world.getBlock(x, y, z);
 		int meta = world.getBlockMetadata(x, y, z);
-		if (ItemUtils.getOreClassSafe(new ItemStack(block, 1, meta)).equals("treeSapling") || ItemUtils.getOreClassSafe(new ItemStack(block, 1, meta)).equals("logWood")) {
+		//if (ItemUtils.getOreClassSafe(new ItemStack(block, 1, meta)).equals("treeSapling") || ItemUtils.getOreClassSafe(new ItemStack(block, 1, meta)).equals("logWood")) {
+		//	return true;
+		//}
+		if (new ItemStack(block, 1, meta).isItemEqual(new ItemStack(Blocks.sapling)) || new ItemStack(block, 1, meta).isItemEqual(new ItemStack(Blocks.log))){
 			return true;
 		}
 		return false;

@@ -18,13 +18,13 @@ public class CropSapling implements ICropEntity {
 	private Block block;
 	private int meta;
 
-	public CropSapling(World world, int i, int j, int k) {
+	public CropSapling(World world, int x, int y, int z) {
 		this.world = world;
-		this.xCoord = i;
-		this.yCoord = j;
-		this.zCoord = k;
-		this.block = world.getBlock(i, j, k);
-		this.meta = world.getBlockMetadata(i, j, k);
+		this.xCoord = x;
+		this.yCoord = y;
+		this.zCoord = z;
+		this.block = world.getBlock(x, y, z);
+		this.meta = world.getBlockMetadata(x, y, z);
 	}
 
 	@Override

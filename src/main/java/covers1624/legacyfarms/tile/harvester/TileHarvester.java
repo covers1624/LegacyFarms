@@ -1,5 +1,6 @@
 package covers1624.legacyfarms.tile.harvester;
 
+import covers1624.legacyfarms.LegacyFarms;
 import covers1624.legacyfarms.crop.ICropEntity;
 import covers1624.legacyfarms.crop.ICropProvider;
 import covers1624.legacyfarms.handler.ConfigurationHandler;
@@ -8,6 +9,7 @@ import covers1624.legacyfarms.tile.planter.TilePlanter;
 import covers1624.legacyfarms.utils.BlockUtils;
 import covers1624.legacyfarms.utils.Vect;
 import covers1624.lib.util.ItemUtils;
+import covers1624.lib.util.LogHelper;
 import forestry.core.delegates.AccessHandler;
 import forestry.core.interfaces.IAccessHandler;
 import forestry.core.interfaces.IRestrictedAccessTile;
@@ -148,9 +150,6 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 	}
 
 	public boolean doWork() {
-		if (!worldObj.isRemote) {
-			return false;
-		}
 
 		// We already have a candidate, so we don't need to search for a block
 		// to chop.

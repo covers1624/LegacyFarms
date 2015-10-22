@@ -21,7 +21,7 @@ public class ModBlocks {
 	public static Block forestrySoil = ForestryBlock.soil.block();
 
 	public static void init() {
-		ItemUtils.readOres();
+		//ItemUtils.readOres();
 		blockHarvester = new BlockHarvester();
 		GameRegistry.registerBlock(blockHarvester, ItemBlockHarvester.class, blockHarvester.getUnlocalizedName());
 		initHarvesterTiles();
