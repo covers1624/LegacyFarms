@@ -38,7 +38,7 @@ public class TilePlanterSapling extends TilePlanter {
 
 	@Override
 	public boolean isSpecialBlock(Block block, int meta) {
-		if (block == ModBlocks.forestrySoil || block == Block.getBlockFromItem(validWaste.getItem())) {
+		if (block == ModBlocks.forestrySoil) {
 			return true;
 		}
 		if (CropHandler.containsLogOrLeaf(new ItemStack(block, 1, meta))) {

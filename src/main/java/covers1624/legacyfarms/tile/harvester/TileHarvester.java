@@ -234,7 +234,7 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 
 	protected void storeProduct(ArrayList<ItemStack> harvest) {
 		for (ItemStack stack : harvest) {
-
+			LegacyFarms.logger.info(stack.getDisplayName());
 			int slot = getFreeProductSlot(stack);
 			if (slot < 0) {
 				return;

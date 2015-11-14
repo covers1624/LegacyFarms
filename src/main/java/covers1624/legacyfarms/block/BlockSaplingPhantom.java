@@ -1,7 +1,10 @@
 package covers1624.legacyfarms.block;
 
 import covers1624.legacyfarms.LegacyFarms;
+import covers1624.legacyfarms.init.ModBlocks;
 import covers1624.legacyfarms.worldgen.WorldGenTree;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -15,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class BlockSaplingPhantom extends BlockSapling {
+public class BlockSaplingPhantom extends BlockBush {
 
 	private WorldGenerator[] generators;
 	private ItemStack[] drops;
@@ -26,6 +29,7 @@ public class BlockSaplingPhantom extends BlockSapling {
 		setBlockName("phantomSapling");
 		float f = 0.4F;
 		setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f * 2.0F, 0.5F + f);
+		setupGenerators();
 	}
 
 	private void setupGenerators() {
@@ -39,7 +43,18 @@ public class BlockSaplingPhantom extends BlockSapling {
 
 	@Override
 	public IIcon getIcon(int side, int meta) {
-		return null;// super.getIcon(side, meta);
+		return Blocks.sapling.getIcon(0, meta);
+
+	}
+
+	@Override
+	public int getRenderType() {
+		return Blocks.sapling.getRenderType();
+	}
+
+	@Override
+	protected boolean canPlaceBlockOn(Block block) {
+		return block == Blocks.dirt || block == ModBlocks.forestrySoil;
 	}
 
 	@Override
@@ -66,11 +81,11 @@ public class BlockSaplingPhantom extends BlockSapling {
 	}
 
 	private void tickSapling(World world, int x, int y, int z, Random random, int type, int maturity) {
-		int lightvalue = world.getBlockLightValue(x, y + 1, z);
+		int lightValue = world.getBlockLightValue(x, y + 1, z);
 
-		int growchance = 15;
+		int growChance = 15;
 
-		if (lightvalue >= 9 && random.nextInt(growchance) == 0) {
+		if (lightValue >= 9 && random.nextInt(growChance) == 0) {
 			if (maturity != 3) {
 				maturity = 3;
 				int matX = maturity << 2;
@@ -95,9 +110,6 @@ public class BlockSaplingPhantom extends BlockSapling {
 	@Override
 	public void getSubBlocks(Item item, CreativeTabs p_149666_2_, List list) {
 		list.add(new ItemStack(item, 1, 0));
-		list.add(new ItemStack(item, 1, 1));
-		list.add(new ItemStack(item, 1, 2));
-		list.add(new ItemStack(item, 1, 3));
 	}
 
 }

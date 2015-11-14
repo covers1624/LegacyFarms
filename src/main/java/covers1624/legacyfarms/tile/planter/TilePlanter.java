@@ -235,7 +235,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 	}
 
 	protected boolean isGermlingSlot(int i) {
-		return i < 8;
+		return i >= 4 || i < 8;
 	}
 
 	protected boolean isDisposalSlot(int i) {
@@ -871,7 +871,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 			// Empty slot. Add
 			if (getStackInSlot(i) == null) {
 			    /* if (doAdd) { setInventorySlotContents(i, stack.copy()); }
-	             * return stack.stackSize; */
+		         * return stack.stackSize; */
 				continue;
 			}
 

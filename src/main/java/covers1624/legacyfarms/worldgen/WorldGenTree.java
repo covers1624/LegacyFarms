@@ -19,6 +19,8 @@ public class WorldGenTree extends WorldGenTrees {
 
 	public WorldGenTree(boolean flag, int metaWood, int metaLeaves) {
 		super(flag);
+		this.metaWood = metaWood;
+		this.metaLeaves = metaLeaves;
 	}
 
 	@Override
