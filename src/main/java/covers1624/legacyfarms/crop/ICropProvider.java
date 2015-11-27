@@ -13,7 +13,11 @@ package covers1624.legacyfarms.crop;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
+
 public interface ICropProvider {
+
+	ArrayList<ItemStack> validPlants = new ArrayList<ItemStack>();
 
 	/**
 	 * @param germling

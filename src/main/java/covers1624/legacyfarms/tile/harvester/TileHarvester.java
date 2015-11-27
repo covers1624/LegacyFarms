@@ -311,7 +311,7 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 		if (pipes.length > 0) {
 			dumpToPipe(pipes);
 		} else {
-			IInventory[] inventories = BlockUtils.getAdjacentInventories(worldObj, getCoords(), ForgeDirection.UNKNOWN);
+			IInventory[] inventories = BlockUtils.getAdjacentInventories(worldObj, getCoords().toBlockPos(), ForgeDirection.UNKNOWN);
 			dumpToInventory(inventories);
 		}
 	}
@@ -368,7 +368,7 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 				if (getStackInSlot(i) == null) {
 					continue;
 				}
-
+				LegacyFarms.logger.info(inventory1.getClass().getName());
 				// Don't dump in arboretums!
 				if (inventory1 instanceof TilePlanter) {
 					continue;

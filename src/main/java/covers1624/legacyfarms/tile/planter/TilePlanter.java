@@ -372,7 +372,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 	 * Return false for no operation, true for any operation.
 	 */
 	public boolean doWork() {
-		boolean hasOpHappend = false;
+		boolean hasOpHappened = false;
 		// LogHelper.info("Work!");
 		if (templateArboretum == null) {
 			templateArboretum = new StructureConstruction(site, getCoords(), siteOffset);
@@ -389,18 +389,18 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 			return clearArea();
 		}
 		if (maintainWater()) {
-			hasOpHappend = true;
+			hasOpHappened = true;
 		}
 		if (maintainSoil()) {
-			hasOpHappend = true;
+			hasOpHappened = true;
 		} else if (templateSoil.isFinished) {
 			if (maintainVegetation()) {
-				hasOpHappend = true;
+				hasOpHappened = true;
 			}
 		}
 
 		dumpStash();
-		return hasOpHappend;
+		return hasOpHappened;
 	}
 
 	private boolean clearArea() {
@@ -625,10 +625,11 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 				if (provider == null) {
 					continue;
 				}
-				// TODO, make the planter place down all saplings.
-				if (provider.doPlant(inventory.getStackInSlot(stack), worldObj, x, y, z)) {
-					this.decrSaplingStack(stack, 1); // decrease stash by one
-					return true;
+				if (provider.isGermling(inventory.getStackInSlot(stack))) {
+					if (provider.doPlant(inventory.getStackInSlot(stack), worldObj, x, y, z)) {
+						this.decrSaplingStack(stack, 1); // decrease stash by one
+						return true;
+					}
 				}
 			}
 		}
@@ -641,7 +642,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 		if (pipes.length > 0) {
 			dumpToPipe(pipes);
 		} else {
-			IInventory[] inventories = BlockUtils.getAdjacentInventories(worldObj, getCoords(), ForgeDirection.UNKNOWN);
+			IInventory[] inventories = BlockUtils.getAdjacentInventories(worldObj, getCoords().toBlockPos(), ForgeDirection.UNKNOWN);
 			dumpToInventory(inventories);
 		}
 	}
@@ -871,7 +872,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 			// Empty slot. Add
 			if (getStackInSlot(i) == null) {
 			    /* if (doAdd) { setInventorySlotContents(i, stack.copy()); }
-		         * return stack.stackSize; */
+			     * return stack.stackSize; */
 				continue;
 			}
 
@@ -898,7 +899,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 			}
 
 			// Not enough space
-            /* if (all) { continue; } */
+	        /* if (all) { continue; } */
 
 			if (doAdd) {
 				getStackInSlot(i).stackSize = getStackInSlot(i).getMaxStackSize();

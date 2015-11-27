@@ -1,5 +1,7 @@
 package covers1624.legacyfarms.utils;
 
+import covers1624.lib.util.BlockPosition;
+
 public class Vect {
 	public int x;
 	public int y;
@@ -74,5 +76,9 @@ public class Vect {
 			return false;
 		}
 		return true;
+	}
+
+	public BlockPosition toBlockPos() {
+		return new BlockPosition(x, y, z);
 	}
 }

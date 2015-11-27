@@ -3,7 +3,9 @@ package covers1624.legacyfarms.utils;
 import buildcraft.api.core.Position;
 import buildcraft.api.transport.IPipe;
 import buildcraft.api.transport.IPipeConnection;
+import covers1624.legacyfarms.LegacyFarms;
 import covers1624.legacyfarms.handler.CropHandler;
+import covers1624.lib.util.BlockPosition;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryLargeChest;
@@ -54,25 +56,22 @@ public class BlockUtils {
 
 	}
 
-	public static IInventory[] getAdjacentInventories(World world, Vect blockPos, ForgeDirection from) {
+	public static IInventory[] getAdjacentInventories(World world, BlockPosition blockPos, ForgeDirection from) {
 		ArrayList<IInventory> inventories = new ArrayList<IInventory>();
 
 		for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
 			if (from != ForgeDirection.UNKNOWN && from != dir.getOpposite()) {
 				continue;
 			}
-
-			TileEntity entity = world.getTileEntity(blockPos.x + dir.offsetX, blockPos.y + dir.offsetY, blockPos.z + dir.offsetZ);
+			blockPos.step(dir);
+			TileEntity entity = blockPos.getTileEntity(world);
 			if (entity != null) {
-				if (entity instanceof IInventory)
-				// if (!(entity instanceof IPowerReceptor)) {
-				{
+				if (entity instanceof IInventory) {
 					inventories.add((IInventory) entity);
 				}
 			}
-			// }
+			blockPos.step(dir.getOpposite());
 		}
-
 		return inventories.toArray(new IInventory[inventories.size()]);
 	}
 
@@ -136,18 +135,19 @@ public class BlockUtils {
 	}
 
 	public static IInventory getChest(IInventory inventory) {
-		if (!(inventory instanceof TileEntityChest))
+		if (!(inventory instanceof TileEntityChest)) {
 			return inventory;
+		}
 
 		TileEntityChest chest = (TileEntityChest) inventory;
 
-		Vect[] adjacent = new Vect[] { new Vect(chest.xCoord + 1, chest.yCoord, chest.zCoord), new Vect(chest.xCoord - 1, chest.yCoord, chest.zCoord),
-				new Vect(chest.xCoord, chest.yCoord, chest.zCoord + 1), new Vect(chest.xCoord, chest.yCoord, chest.zCoord - 1) };
+		Vect[] adjacent = new Vect[] { new Vect(chest.xCoord + 1, chest.yCoord, chest.zCoord), new Vect(chest.xCoord - 1, chest.yCoord, chest.zCoord), new Vect(chest.xCoord, chest.yCoord, chest.zCoord + 1), new Vect(chest.xCoord, chest.yCoord, chest.zCoord - 1) };
 
 		for (Vect pos : adjacent) {
 			TileEntity otherchest = chest.getWorldObj().getTileEntity(pos.x, pos.y, pos.z);
-			if (otherchest instanceof TileEntityChest)
+			if (otherchest instanceof TileEntityChest) {
 				return new InventoryLargeChest("", chest, (TileEntityChest) otherchest);
+			}
 		}
 
 		return inventory;

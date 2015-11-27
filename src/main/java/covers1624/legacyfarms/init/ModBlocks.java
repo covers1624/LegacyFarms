@@ -18,13 +18,13 @@ public class ModBlocks {
 	public static BlockHarvester blockHarvester;
 	public static BlockPlanter blockPlanter;
 
-	public static Block blockSapling;
+	public static Block blockSapling = Blocks.sapling;
 	public static Block forestrySoil = ForestryBlock.soil.block();
 
 	public static void init() {
 
-		blockSapling = new BlockSaplingPhantom();
-		GameRegistry.registerBlock(blockSapling, blockSapling.getUnlocalizedName());
+		//blockSapling = new BlockSaplingPhantom();
+		//GameRegistry.registerBlock(blockSapling, blockSapling.getUnlocalizedName());
 		//ItemUtils.readOres();
 		blockHarvester = new BlockHarvester();
 		GameRegistry.registerBlock(blockHarvester, ItemBlockHarvester.class, blockHarvester.getUnlocalizedName());

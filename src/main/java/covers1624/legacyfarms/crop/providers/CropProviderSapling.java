@@ -20,10 +20,7 @@ public class CropProviderSapling implements ICropProvider {
 
 	@Override
 	public boolean isGermling(ItemStack germling) {
-		if (germling != null){
-			return ItemUtils.matchItemStackOre(germling, new ItemStack(Blocks.sapling));
-		}
-		return false;
+		return validPlants.contains(ItemUtils.copyStack(germling, 1));
 	}
 
 	@Override
@@ -63,10 +60,7 @@ public class CropProviderSapling implements ICropProvider {
 		Block block = world.getBlock(x, y, z);
 		Block below = world.getBlock(x, y - 1, z);
 		int meta = world.getBlockMetadata(x, y - 1, z);
-		if (block != Blocks.air || below != ModBlocks.forestrySoil || meta != 0) {
-			return false;
-		}
-		if (!(germling.getItem() instanceof ItemBlock)) {
+		if (block != Blocks.air || below != ModBlocks.forestrySoil || meta != 0 || !(germling.getItem() instanceof ItemBlock)) {
 			return false;
 		}
 
@@ -79,5 +73,9 @@ public class CropProviderSapling implements ICropProvider {
 	@Override
 	public ICropEntity getCrop(World world, int x, int y, int z) {
 		return new CropSapling(world, x, y, z);
+	}
+
+	static {
+		validPlants.add(new ItemStack(ModBlocks.blockSapling));
 	}
 }
