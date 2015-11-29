@@ -10,17 +10,17 @@
  ******************************************************************************/
 package covers1624.legacyfarms.blueprint;
 
-import covers1624.legacyfarms.LegacyFarms;
-import covers1624.legacyfarms.utils.Vect;
+import covers1624.legacyfarms.init.Blueprints;
+import covers1624.lib.util.BlockPosition;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class StructureConstruction {
 	private StructureBlueprint blueprint;
 
-	private Vect position;
-	private Vect shift;
-	private Vect current = new Vect(0, 0, 0);
+	private BlockPosition position;
+	private BlockPosition shift;
+	private BlockPosition current = new BlockPosition(0, 0, 0);
 
 	public boolean isFinished = false;
 
@@ -29,10 +29,10 @@ public class StructureConstruction {
 
 	/**
 	 * @param bp Blueprint to use
-	 * @param p Starting block
-	 * @param s Shift on xCoordinate from starting block
+	 * @param p  Starting block
+	 * @param s  Shift on xCoordinate from starting block
 	 */
-	public StructureConstruction(StructureBlueprint bp, Vect p, Vect s) {
+	public StructureConstruction(StructureBlueprint bp, BlockPosition p, BlockPosition s) {
 		this.blueprint = bp;
 
 		position = p;
@@ -63,8 +63,8 @@ public class StructureConstruction {
 	/**
 	 * @return Current block to build/check as vector position.
 	 */
-	public Vect getCurrentPos() {
-		return new Vect(this.getCurrentX(), this.getCurrentY(), this.getCurrentZ());
+	public BlockPosition getCurrentPos() {
+		return new BlockPosition(this.getCurrentX(), this.getCurrentY(), this.getCurrentZ());
 	}
 
 	public void advanceStep() {
@@ -89,48 +89,16 @@ public class StructureConstruction {
 	}
 
 	public void reset() {
-		current = new Vect(0, 0, 0);
+		current = new BlockPosition(0, 0, 0);
 		isFinished = false;
 	}
 
 	public void readFromNBT(NBTTagCompound nbttagcompound) {
 		isFinished = nbttagcompound.getBoolean("IsFinished");
-
-		String ident;
-		if (nbttagcompound.hasKey("BlueprintIdent")) {
-			ident = nbttagcompound.getString("BlueprintIdent");
-		} else {
-			// Legacy for version < 1.0.7.15
-			int id = nbttagcompound.getInteger("BlueprintId");
-			switch (id) {
-			case 0:
-				ident = "defaultArboretum";
-				break;
-			case 1:
-				ident = "saplingSoil";
-				break;
-			case 2:
-				ident = "saplingPlantation";
-				break;
-			case 3:
-				ident = "wheatSoil";
-				break;
-			case 4:
-				ident = "wheatPlantation";
-				break;
-			default:
-				ident = "defaultArboretum";
-			}
-		}
-		if (StructureBlueprint.index.containsKey(ident)) {
-			blueprint = StructureBlueprint.index.get(ident);
-		} else {
-			LegacyFarms.logger.error("Tried to load non-existing structure blueprint identified by " + ident);
-		}
-
-		position = new Vect(nbttagcompound.getInteger("XPosition"), nbttagcompound.getInteger("YPosition"), nbttagcompound.getInteger("ZPosition"));
-		shift = new Vect(nbttagcompound.getInteger("XShift"), nbttagcompound.getInteger("YShift"), nbttagcompound.getInteger("ZShift"));
-		current = new Vect(nbttagcompound.getInteger("XCurrent"), nbttagcompound.getInteger("YCurrent"), nbttagcompound.getInteger("ZCurrent"));
+		blueprint = Blueprints.getBlueprintByName(nbttagcompound.getString("BlueprintIdent"));
+		position = new BlockPosition(nbttagcompound.getInteger("XPosition"), nbttagcompound.getInteger("YPosition"), nbttagcompound.getInteger("ZPosition"));
+		shift = new BlockPosition(nbttagcompound.getInteger("XShift"), nbttagcompound.getInteger("YShift"), nbttagcompound.getInteger("ZShift"));
+		current = new BlockPosition(nbttagcompound.getInteger("XCurrent"), nbttagcompound.getInteger("YCurrent"), nbttagcompound.getInteger("ZCurrent"));
 	}
 
 	public void writeToNBT(NBTTagCompound nbttagcompound) {

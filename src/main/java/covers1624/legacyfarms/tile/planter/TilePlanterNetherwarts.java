@@ -4,7 +4,7 @@ import covers1624.legacyfarms.LegacyFarms;
 import covers1624.legacyfarms.crop.CropProviders;
 import covers1624.legacyfarms.init.Blueprints;
 import covers1624.legacyfarms.utils.GuiId;
-import covers1624.legacyfarms.utils.Vect;
+import covers1624.lib.util.BlockPosition;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -21,11 +21,11 @@ public class TilePlanterNetherwarts extends TilePlanter {
 		validDisposal = new ItemStack(Blocks.sand);
 
 		site = Blueprints.defaultFarm;
-		siteOffset = new Vect(-7, 0, -7);
+		siteOffset = new BlockPosition(-7, 0, -7);
 		soil = Blueprints.netherwartSoil;
-		soilOffset = new Vect(-7, 0, -7);
+		soilOffset = new BlockPosition(-7, 0, -7);
 		plantation = Blueprints.netherwartPlantation;
-		plantationOffset = new Vect(-7, 1, -7);
+		plantationOffset = new BlockPosition(-7, 1, -7);
 	}
 
 	@Override

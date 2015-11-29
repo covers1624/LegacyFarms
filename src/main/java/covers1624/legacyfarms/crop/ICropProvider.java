@@ -10,8 +10,10 @@
  ******************************************************************************/
 package covers1624.legacyfarms.crop;
 
+import covers1624.lib.util.BlockPosition;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import sun.org.mozilla.javascript.internal.ast.Block;
 
 import java.util.ArrayList;
 
@@ -20,48 +22,41 @@ public interface ICropProvider {
 	ArrayList<ItemStack> validPlants = new ArrayList<ItemStack>();
 
 	/**
-	 * @param germling
-	 * @return True if the passed itemstack is a valid germling for use in planting.
+	 * @param germling .
+	 * @return True if the passed ItemStack is a valid germling for use in planting.
 	 */
-	public boolean isGermling(ItemStack germling);
+	boolean isGermling(ItemStack germling);
 
 	/**
-	 * @param world
-	 * @param x
-	 * @param y
-	 * @param z
+	 * @param world World.
+	 * @param blockPos Position.
 	 * @return True if the block at the passed location is a valid crop (mature or immature). Includes saplings!
 	 */
-	public boolean isCrop(World world, int x, int y, int z);
+	boolean isCrop(World world, BlockPosition blockPos);
 
 	/**
 	 * Called once to configure possible windfall created by harvested crops managed by this provider.
 	 *
 	 * @return Array of item stacks representing possible windfall.
 	 */
-	public ItemStack[] getWindfall();
+	ItemStack[] getWindfall();
 
 	/**
 	 * Plant a crop in the world with the germling given. Planter will have called isGermling beforehand.
 	 *
 	 * @param germling ItemStack representing the germling available. Stack is decreased by the planter, not by the provider.
-	 * @param world
-	 * @param x
-	 * @param y
-	 * @param z
-	 * @return True if planting is successfull, false otherwise.
+	 * @param world World.
+	 * @param blockPos Pos.
+	 * @return True if planting is successful, false otherwise.
 	 */
-	public boolean doPlant(ItemStack germling, World world, int x, int y, int z);
+	boolean doPlant(ItemStack germling, World world, BlockPosition blockPos);
 
 	/**
 	 * Returns the crop at the given location. Planter will have called isCrop beforehand.
 	 *
-	 * @param world
-	 * @param x
-	 * @param y
-	 * @param z
-	 * @return
+	 * @param world World.
+	 * @param blockPos Pos.
 	 */
-	public ICropEntity getCrop(World world, int x, int y, int z);
+	ICropEntity getCrop(World world, BlockPosition blockPos);
 
 }

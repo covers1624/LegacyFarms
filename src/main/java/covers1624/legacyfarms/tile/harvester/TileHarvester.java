@@ -7,7 +7,7 @@ import covers1624.legacyfarms.handler.ConfigurationHandler;
 import covers1624.legacyfarms.tile.TileInventory;
 import covers1624.legacyfarms.tile.planter.TilePlanter;
 import covers1624.legacyfarms.utils.BlockUtils;
-import covers1624.legacyfarms.utils.Vect;
+import covers1624.lib.util.BlockPosition;
 import covers1624.lib.util.ItemUtils;
 import covers1624.lib.util.LogHelper;
 import forestry.core.delegates.AccessHandler;
@@ -36,10 +36,10 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 
 	//protected ItemStack[] harvestStacks = new ItemStack[8];
 
-	protected Vect area = new Vect(21, 13, 21);
-	protected Vect posOffset = new Vect(-10, -2, -10);
-	protected Vect posCurrent = new Vect(0, 0, 0);
-	protected Vect posNext = null;
+	protected BlockPosition area = new BlockPosition(21, 13, 21);
+	protected BlockPosition posOffset = new BlockPosition(-10, -2, -10);
+	protected BlockPosition posCurrent = new BlockPosition(0, 0, 0);
+	protected BlockPosition posNext = null;
 	protected boolean isFinished = false;
 
 	private short productSlot1 = 0;
@@ -89,18 +89,18 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 	}
 
 	@Deprecated
-	public boolean isCropAt(int x, int y, int z) {
+	public boolean isCropAt(BlockPosition blockPosition) {
 		for (ICropProvider cropProvider : cropProviders) {
-			if (cropProvider.isCrop(worldObj, x, y, z)) {
+			if (cropProvider.isCrop(worldObj, blockPosition)) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	private ICropProvider getCropProvider(int x, int y, int z) {
+	private ICropProvider getCropProvider(BlockPosition blockPosition) {
 		for (ICropProvider provider : cropProviders) {
-			if (provider.isCrop(worldObj, x, y, z)) {
+			if (provider.isCrop(worldObj, blockPosition)) {
 				return provider;
 			}
 		}
@@ -154,14 +154,14 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 		// We already have a candidate, so we don't need to search for a block
 		// to chop.
 		if (this.posNext != null) {
-			Vect killMe = posNext;
+			BlockPosition killMe = posNext;
 			this.posNext = null;
-			ICropProvider provider = getCropProvider(killMe.x, killMe.y, killMe.z);
+			ICropProvider provider = getCropProvider(killMe);
 			if (provider == null) {
 				return false;
 			}
 
-			ICropEntity crop = provider.getCrop(worldObj, killMe.x, killMe.y, killMe.z);
+			ICropEntity crop = provider.getCrop(worldObj, killMe);
 			if (crop != null && crop.isHarvestable()) {
 				hewTree(crop);
 			}
@@ -172,14 +172,14 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 		while (!isFinished && processedBlocks < ConfigurationHandler.harvesterThrottle) {
 			processedBlocks++;
 			advanceAxe();
-			Vect posBlock = posCurrent.add(getCoords());
+			BlockPosition posBlock = posCurrent.add(getCoords());
 			posBlock = posBlock.add(posOffset);
 			worldObj.getBlock(posBlock.x, posBlock.y, posBlock.z);
-			ICropProvider provider = getCropProvider(posBlock.x, posBlock.y, posBlock.z);
+			ICropProvider provider = getCropProvider(posBlock);
 			if (provider == null) {
 				continue;
 			}
-			ICropEntity crop = provider.getCrop(worldObj, posBlock.x, posBlock.y, posBlock.z);
+			ICropEntity crop = provider.getCrop(worldObj, posBlock);
 			if (crop != null && crop.isHarvestable()) {
 				hewTree(crop);
 				break;
@@ -229,7 +229,7 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 			return;
 		}
 
-		posNext = new Vect(next[0], next[1], next[2]);
+		posNext = new BlockPosition(next[0], next[1], next[2]);
 	}
 
 	protected void storeProduct(ArrayList<ItemStack> harvest) {
@@ -251,15 +251,15 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 
 	protected void resetAxe() {
 		isFinished = false;
-		posCurrent = new Vect(0, 0, 0);
+		posCurrent = new BlockPosition(0, 0, 0);
 	}
 
 	/**
 	 * Collects all saplings within the logger's area and puts them in internal storage.
 	 */
 	protected void collectWindfall() {
-		Vect min = new Vect(xCoord + posOffset.x, yCoord + posOffset.y, zCoord + posOffset.z);
-		Vect max = new Vect(xCoord + posOffset.x + area.x, yCoord + posOffset.y + area.y, zCoord + posOffset.z + area.z);
+		BlockPosition min = new BlockPosition(xCoord + posOffset.x, yCoord + posOffset.y, zCoord + posOffset.z);
+		BlockPosition max = new BlockPosition(xCoord + posOffset.x + area.x, yCoord + posOffset.y + area.y, zCoord + posOffset.z + area.z);
 
 		AxisAlignedBB harvestBox = AxisAlignedBB.getBoundingBox(min.x, min.y, min.z, max.x, max.y, max.z);
 		List list = worldObj.getEntitiesWithinAABB(Entity.class, harvestBox);
@@ -311,7 +311,7 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 		if (pipes.length > 0) {
 			dumpToPipe(pipes);
 		} else {
-			IInventory[] inventories = BlockUtils.getAdjacentInventories(worldObj, getCoords().toBlockPos(), ForgeDirection.UNKNOWN);
+			IInventory[] inventories = BlockUtils.getAdjacentInventories(worldObj, getCoords(), ForgeDirection.UNKNOWN);
 			dumpToInventory(inventories);
 		}
 	}

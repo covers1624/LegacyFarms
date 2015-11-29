@@ -3,7 +3,6 @@ package covers1624.legacyfarms.utils;
 import buildcraft.api.core.Position;
 import buildcraft.api.transport.IPipe;
 import buildcraft.api.transport.IPipeConnection;
-import covers1624.legacyfarms.LegacyFarms;
 import covers1624.legacyfarms.handler.CropHandler;
 import covers1624.lib.util.BlockPosition;
 import net.minecraft.block.Block;
@@ -21,14 +20,14 @@ import java.util.LinkedList;
 
 public class BlockUtils {
 
-	public static ArrayList<ItemStack> getBlockDrops(World world, Vect pos) {
+	public static ArrayList<ItemStack> getBlockDrops(World world, BlockPosition pos) {
 
-		Block block = world.getBlock(pos.x, pos.y, pos.z);
-		int meta = world.getBlockMetadata(pos.x, pos.y, pos.z);
+		Block block = pos.getBlock(world);
+		int meta = pos.getBlockMeta(world);
 		return block.getDrops(world, pos.x, pos.y, pos.z, meta, 0);
 	}
 
-	public static ForgeDirection[] getPipeDirections(World world, Vect blockPos, ForgeDirection from) {
+	public static ForgeDirection[] getPipeDirections(World world, BlockPosition blockPos, ForgeDirection from) {
 		LinkedList<ForgeDirection> possiblePipes = new LinkedList<ForgeDirection>();
 
 		for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
@@ -52,7 +51,7 @@ public class BlockUtils {
 			}
 		}
 
-		return possiblePipes.toArray(new ForgeDirection[0]);
+		return possiblePipes.toArray(new ForgeDirection[possiblePipes.size()]);
 
 	}
 
@@ -119,9 +118,9 @@ public class BlockUtils {
 		pipe.getTile().injectItem(payload, true, itemPos.orientation, null);
 	}
 
-	public static boolean shouldBlueprintBreakBlock(World world, int x, int y, int z) {
-		Block block = world.getBlock(x, y, z);
-		int meta = world.getBlockMetadata(x, y, z);
+	public static boolean shouldBlueprintBreakBlock(World world, BlockPosition blockPosition) {
+		Block block = blockPosition.getBlock(world);
+		int meta = blockPosition.getBlockMeta(world);
 		if (CropHandler.blueprintWhitelistedBlocks.contains(new ItemStack(block, 1, meta))) {
 			return false;
 		}
@@ -141,12 +140,12 @@ public class BlockUtils {
 
 		TileEntityChest chest = (TileEntityChest) inventory;
 
-		Vect[] adjacent = new Vect[] { new Vect(chest.xCoord + 1, chest.yCoord, chest.zCoord), new Vect(chest.xCoord - 1, chest.yCoord, chest.zCoord), new Vect(chest.xCoord, chest.yCoord, chest.zCoord + 1), new Vect(chest.xCoord, chest.yCoord, chest.zCoord - 1) };
+		BlockPosition[] adjacent = new BlockPosition[] { new BlockPosition(chest.xCoord + 1, chest.yCoord, chest.zCoord), new BlockPosition(chest.xCoord - 1, chest.yCoord, chest.zCoord), new BlockPosition(chest.xCoord, chest.yCoord, chest.zCoord + 1), new BlockPosition(chest.xCoord, chest.yCoord, chest.zCoord - 1) };
 
-		for (Vect pos : adjacent) {
-			TileEntity otherchest = chest.getWorldObj().getTileEntity(pos.x, pos.y, pos.z);
-			if (otherchest instanceof TileEntityChest) {
-				return new InventoryLargeChest("", chest, (TileEntityChest) otherchest);
+		for (BlockPosition pos : adjacent) {
+			TileEntity otherChest = chest.getWorldObj().getTileEntity(pos.x, pos.y, pos.z);
+			if (otherChest instanceof TileEntityChest) {
+				return new InventoryLargeChest("", chest, (TileEntityChest) otherChest);
 			}
 		}
 

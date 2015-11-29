@@ -2,7 +2,7 @@ package covers1624.legacyfarms.tile;
 
 import com.mojang.authlib.GameProfile;
 import covers1624.legacyfarms.network.INetworkTile;
-import covers1624.legacyfarms.utils.Vect;
+import covers1624.lib.util.BlockPosition;
 import forestry.api.core.IErrorLogic;
 import forestry.api.core.IErrorLogicSource;
 import forestry.core.delegates.ErrorLogic;
@@ -31,8 +31,8 @@ public class TileBase extends TileEntity implements IOwnable, IErrorLogicSource,
 		this.facing = facing;
 	}
 
-	public Vect getCoords() {
-		return new Vect(xCoord, yCoord, zCoord);
+	public BlockPosition getCoords() {
+		return new BlockPosition(xCoord, yCoord, zCoord);
 	}
 
 	@Override

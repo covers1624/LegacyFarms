@@ -8,7 +8,7 @@ import covers1624.legacyfarms.crop.ICropProvider;
 import covers1624.legacyfarms.handler.ConfigurationHandler;
 import covers1624.legacyfarms.tile.TileInventory;
 import covers1624.legacyfarms.utils.BlockUtils;
-import covers1624.legacyfarms.utils.Vect;
+import covers1624.lib.util.BlockPosition;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.core.EnumErrorCode;
@@ -39,11 +39,11 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 
 	// Blueptint stuff
 	public StructureBlueprint site;
-	public Vect siteOffset;
+	public BlockPosition siteOffset;
 	public StructureBlueprint soil;
-	public Vect soilOffset;
+	public BlockPosition soilOffset;
 	public StructureBlueprint plantation;
-	public Vect plantationOffset;
+	public BlockPosition plantationOffset;
 
 	protected StructureConstruction templateArboretum;
 	protected StructureConstruction templateSoil;
@@ -412,10 +412,10 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 		int blocksChanged = 0;
 		Block curBlock = Blocks.air;
 		while (curBlock == Blocks.air && !templateArboretum.isFinished) {
-			Vect curPos = new Vect(templateArboretum.getCurrentX(), templateArboretum.getCurrentY(), templateArboretum.getCurrentZ());
+			BlockPosition curPos = new BlockPosition(templateArboretum.getCurrentX(), templateArboretum.getCurrentY(), templateArboretum.getCurrentZ());
 			curBlock = worldObj.getBlock(curPos.x, curPos.y, curPos.z);
 
-			if (curBlock != Blocks.air && BlockUtils.shouldBlueprintBreakBlock(worldObj, curPos.x, curPos.y, curPos.z) && !isSpecialBlock(worldObj.getBlock(curPos.x, curPos.y, curPos.z), worldObj.getBlockMetadata(curPos.x, curPos.y, curPos.z)) && curBlock != null) {
+			if (curBlock != Blocks.air && BlockUtils.shouldBlueprintBreakBlock(worldObj, curPos) && !isSpecialBlock(worldObj.getBlock(curPos.x, curPos.y, curPos.z), worldObj.getBlockMetadata(curPos.x, curPos.y, curPos.z)) && curBlock != null) {
 				ArrayList<ItemStack> items = BlockUtils.getBlockDrops(worldObj, curPos);
 
 				worldObj.setBlockToAir(curPos.x, curPos.y, curPos.z);
@@ -450,7 +450,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 		while (!templateSoil.isFinished && processedBlocks < ConfigurationHandler.planterThrottle) {
 			processedBlocks++;
 			if (templateSoil.getCurrentBlock() == Block.getBlockFromItem(validGround.getItem())) {
-				Vect pos = templateSoil.getCurrentPos();
+				BlockPosition pos = templateSoil.getCurrentPos();
 
 				Block block = worldObj.getBlock(pos.x, pos.y, pos.z);
 				Block above = worldObj.getBlock(pos.x, pos.y, pos.z);
@@ -481,7 +481,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 		while (!templateWater.isFinished) {
 			// Place water if required
 			if (templateWater.getCurrentBlock() == Blocks.water) {
-				Vect pos = templateWater.getCurrentPos();
+				BlockPosition pos = templateWater.getCurrentPos();
 				boolean skip = false;
 
 				Block block = worldObj.getBlock(pos.x, pos.y, pos.z);
@@ -504,7 +504,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 		return false;
 	}
 
-	private void collectSand(Vect blockPos) {
+	private void collectSand(BlockPosition blockPos) {
 		worldObj.setBlockToAir(blockPos.x, blockPos.y, blockPos.z);
 
 		int slot = this.getFreeDisposalSlot();
@@ -531,11 +531,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 		while (!templatePlantation.isFinished && processedBlocks < ConfigurationHandler.planterThrottle) {
 			processedBlocks++;
 			if (templatePlantation.getCurrentBlock() == Blocks.sapling) {
-				int x = templatePlantation.getCurrentX();
-				int y = templatePlantation.getCurrentY();
-				int z = templatePlantation.getCurrentZ();
-
-				if (plantSapling(x, y, z)) {
+				if (plantSapling(templatePlantation.getCurrentPos())) {
 					templatePlantation.advanceStep();
 					return true;
 				}
@@ -584,23 +580,23 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 	 * @param pos Location to place water block.
 	 * @return see World.setBlock.
 	 */
-	private boolean waterBlock(Vect pos) {
-		return worldObj.setBlock(pos.x, pos.y, pos.z, Blocks.water);
+	private boolean waterBlock(BlockPosition pos) {
+		return pos.setBlock(worldObj, Blocks.water);
 	}
 
 	/**
 	 * Replaces a single block with a humus block. Consumes one humus block from
 	 * an item stack.
 	 */
-	private boolean fillBlock(Vect pos) {
+	private boolean fillBlock(BlockPosition pos) {
 		if (!this.canFill()) {
 			return false;
 		}
 
-		worldObj.setBlock(pos.x, pos.y, pos.z, Block.getBlockFromItem(validGround.getItem()), validGround.getItemDamage(), 3);
+		pos.setBlock(worldObj, Block.getBlockFromItem(validGround.getItem()), validGround.getItemDamage());
 
 		// Only decrease stash if replacing was successful
-		Block block = worldObj.getBlock(pos.x, pos.y, pos.z);
+		Block block = pos.getBlock(worldObj);
 		if (validGround.isItemEqual(new ItemStack(block))) {
 			this.decrSoilStack(1); // decrease stash by one
 		}
@@ -612,7 +608,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 	 *
 	 * @return True if a sapling was successfully planted. False otherwise.
 	 */
-	protected boolean plantSapling(int x, int y, int z) {
+	protected boolean plantSapling(BlockPosition blockPos) {
 		for (int stack = 0; stack < inventory.getSizeInventory(); stack++) {
 			if (isGermlingStack(stack)) {
 				// Can't plant without germling
@@ -626,7 +622,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 					continue;
 				}
 				if (provider.isGermling(inventory.getStackInSlot(stack))) {
-					if (provider.doPlant(inventory.getStackInSlot(stack), worldObj, x, y, z)) {
+					if (provider.doPlant(inventory.getStackInSlot(stack), worldObj, blockPos)) {
 						this.decrSaplingStack(stack, 1); // decrease stash by one
 						return true;
 					}
@@ -642,7 +638,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 		if (pipes.length > 0) {
 			dumpToPipe(pipes);
 		} else {
-			IInventory[] inventories = BlockUtils.getAdjacentInventories(worldObj, getCoords().toBlockPos(), ForgeDirection.UNKNOWN);
+			IInventory[] inventories = BlockUtils.getAdjacentInventories(worldObj, getCoords(), ForgeDirection.UNKNOWN);
 			dumpToInventory(inventories);
 		}
 	}

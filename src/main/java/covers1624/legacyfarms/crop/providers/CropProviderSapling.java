@@ -1,18 +1,17 @@
 package covers1624.legacyfarms.crop.providers;
 
-import covers1624.legacyfarms.LegacyFarms;
 import covers1624.legacyfarms.crop.ICropEntity;
 import covers1624.legacyfarms.crop.ICropProvider;
 import covers1624.legacyfarms.init.ModBlocks;
-
+import covers1624.lib.util.BlockPosition;
 import covers1624.lib.util.ItemUtils;
-import covers1624.lib.util.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.ArrayList;
 
@@ -20,17 +19,17 @@ public class CropProviderSapling implements ICropProvider {
 
 	@Override
 	public boolean isGermling(ItemStack germling) {
-		return validPlants.contains(ItemUtils.copyStack(germling, 1));
+		return germling != null && validPlants.contains(ItemUtils.copyStack(germling, 1));
 	}
 
 	@Override
-	public boolean isCrop(World world, int x, int y, int z) {
-		Block block = world.getBlock(x, y, z);
-		int meta = world.getBlockMetadata(x, y, z);
+	public boolean isCrop(World world, BlockPosition blockPos) {
+		Block block = blockPos.getBlock(world);
+		int meta = blockPos.getBlockMeta(world);
 		//if (ItemUtils.getOreClassSafe(new ItemStack(block, 1, meta)).equals("treeSapling") || ItemUtils.getOreClassSafe(new ItemStack(block, 1, meta)).equals("logWood")) {
 		//	return true;
 		//}
-		if (new ItemStack(block, 1, meta).isItemEqual(new ItemStack(Blocks.sapling)) || new ItemStack(block, 1, meta).isItemEqual(new ItemStack(Blocks.log))){
+		if (new ItemStack(block, 1, meta).isItemEqual(new ItemStack(Blocks.sapling)) || new ItemStack(block, 1, meta).isItemEqual(new ItemStack(Blocks.log))) {
 			return true;
 		}
 		return false;
@@ -56,23 +55,24 @@ public class CropProviderSapling implements ICropProvider {
 	}
 
 	@Override
-	public boolean doPlant(ItemStack germling, World world, int x, int y, int z) {
-		Block block = world.getBlock(x, y, z);
-		Block below = world.getBlock(x, y - 1, z);
-		int meta = world.getBlockMetadata(x, y - 1, z);
+	public boolean doPlant(ItemStack germling, World world, BlockPosition blockPos) {
+		Block block = blockPos.getBlock(world);
+		blockPos.step(ForgeDirection.DOWN);
+		Block below = blockPos.getBlock(world);
+		int meta = blockPos.getBlockMeta(world);
+		blockPos.step(ForgeDirection.UP);
 		if (block != Blocks.air || below != ModBlocks.forestrySoil || meta != 0 || !(germling.getItem() instanceof ItemBlock)) {
 			return false;
 		}
 
 		Block toPlace = Block.getBlockFromItem(germling.getItem());
-
-		world.setBlock(x, y, z, toPlace, germling.getItemDamage(), 3);
+		blockPos.setBlock(world, toPlace, germling.getItemDamage());
 		return true;
 	}
 
 	@Override
-	public ICropEntity getCrop(World world, int x, int y, int z) {
-		return new CropSapling(world, x, y, z);
+	public ICropEntity getCrop(World world, BlockPosition blockPos) {
+		return new CropSapling(world, blockPos);
 	}
 
 	static {

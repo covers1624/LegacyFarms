@@ -48,7 +48,9 @@ public class LFEventHandler {
 					Block block = objectHolder.getBlockPosition().getBlock(event.world);
 					int meta = objectHolder.getBlockPosition().getBlockMeta(event.world);
 					if (CropHandler.containsLog(new ItemStack(block, 1, meta))) {
-						objectHolder.getBlockPosition().setBlock(event.world, Blocks.sand, ForgeDirection.DOWN);
+						objectHolder.getBlockPosition().step(ForgeDirection.DOWN);
+						objectHolder.getBlockPosition().setBlock(event.world, Blocks.sand);
+						objectHolder.getBlockPosition().step(ForgeDirection.UP);
 						finishedTrees.add(objectHolder);
 					}
 

@@ -1,6 +1,7 @@
 package covers1624.legacyfarms.crop.providers;
 
 import covers1624.legacyfarms.crop.ICropEntity;
+import covers1624.lib.util.BlockPosition;
 import forestry.core.proxy.Proxies;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -18,13 +19,13 @@ public class CropSapling implements ICropEntity {
 	private Block block;
 	private int meta;
 
-	public CropSapling(World world, int x, int y, int z) {
+	public CropSapling(World world, BlockPosition blockPos) {
 		this.world = world;
-		this.xCoord = x;
-		this.yCoord = y;
-		this.zCoord = z;
-		this.block = world.getBlock(x, y, z);
-		this.meta = world.getBlockMetadata(x, y, z);
+		this.xCoord = blockPos.x;
+		this.yCoord = blockPos.y;
+		this.zCoord = blockPos.z;
+		this.block = blockPos.getBlock(world);
+		this.meta = blockPos.getBlockMeta(world);
 	}
 
 	@Override

@@ -11,6 +11,7 @@
 package covers1624.legacyfarms.crop.providers;
 
 import covers1624.legacyfarms.crop.ICropEntity;
+import covers1624.lib.util.BlockPosition;
 import forestry.core.proxy.Proxies;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -26,12 +27,12 @@ public class CropNetherwart implements ICropEntity {
 	private int zCoord;
 	private int meta;
 
-	public CropNetherwart(World world, int i, int j, int k) {
+	public CropNetherwart(World world, BlockPosition blockPos) {
 		this.world = world;
-		this.xCoord = i;
-		this.yCoord = j;
-		this.zCoord = k;
-		this.meta = world.getBlockMetadata(i, j, k);
+		this.xCoord = blockPos.x;
+		this.yCoord = blockPos.y;
+		this.zCoord = blockPos.z;
+		this.meta = world.getBlockMetadata(blockPos.x, blockPos.y, blockPos.z);
 	}
 
 	@Override

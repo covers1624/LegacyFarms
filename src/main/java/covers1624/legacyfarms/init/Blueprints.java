@@ -1,34 +1,84 @@
 package covers1624.legacyfarms.init;
 
 import covers1624.legacyfarms.blueprint.StructureBlueprint;
-import covers1624.legacyfarms.utils.Vect;
+import covers1624.lib.util.BlockPosition;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 
+import java.util.HashMap;
+
 public class Blueprints {
 
-	public static final StructureBlueprint defaultArboretum = new StructureBlueprint("defaultArboretum", new Vect(15, 10, 15));
-	public static final StructureBlueprint defaultFarm = new StructureBlueprint("defaultFarm", new Vect(15, 6, 15));
-	public static final StructureBlueprint defaultSoil = new StructureBlueprint("saplingSoil", new Vect(13, 1, 13));
-	public static final StructureBlueprint defaultPlantation = new StructureBlueprint("saplingPlantation", new Vect(13, 1, 13));
+	private static HashMap<String, Integer> nameIndex = new HashMap<String, Integer>();
+	private static HashMap<Integer, StructureBlueprint> structureIndex = new HashMap<Integer, StructureBlueprint>();
+	private static int currIndex = 1;
 
-	public static final StructureBlueprint bogEarth = new StructureBlueprint("bogEarth", new Vect(15, 1, 15));
+	public static final StructureBlueprint defaultArboretum = new StructureBlueprint("defaultArboretum", new BlockPosition(15, 10, 15));
+	public static final StructureBlueprint defaultFarm = new StructureBlueprint("defaultFarm", new BlockPosition(15, 6, 15));
+	public static final StructureBlueprint defaultSoil = new StructureBlueprint("saplingSoil", new BlockPosition(13, 1, 13));
+	public static final StructureBlueprint defaultPlantation = new StructureBlueprint("saplingPlantation", new BlockPosition(13, 1, 13));
 
-	public static final StructureBlueprint pumpkinArea = new StructureBlueprint("pumpkinArea", new Vect(13, 7, 13));
-	public static final StructureBlueprint pumpkinSoil = new StructureBlueprint("pumpkinSoil", new Vect(13, 1, 13));
-	public static final StructureBlueprint pumpkinFarm = new StructureBlueprint("pumpkinFarm", new Vect(13, 1, 13));
+	public static final StructureBlueprint bogEarth = new StructureBlueprint("bogEarth", new BlockPosition(15, 1, 15));
 
-	public static final StructureBlueprint defaultShroom = new StructureBlueprint("mushroomFarm", new Vect(17, 10, 17));
-	public static final StructureBlueprint shroomSoil = new StructureBlueprint("mushroomSoil", new Vect(13, 1, 13));
-	public static final StructureBlueprint shroomPlantation = new StructureBlueprint("mushroomPlantation", new Vect(13, 1, 13));
+	public static final StructureBlueprint pumpkinArea = new StructureBlueprint("pumpkinArea", new BlockPosition(13, 7, 13));
+	public static final StructureBlueprint pumpkinSoil = new StructureBlueprint("pumpkinSoil", new BlockPosition(13, 1, 13));
+	public static final StructureBlueprint pumpkinFarm = new StructureBlueprint("pumpkinFarm", new BlockPosition(13, 1, 13));
 
-	public static final StructureBlueprint netherwartSoil = new StructureBlueprint("netherwartSoil", new Vect(15, 1, 15));
-	public static final StructureBlueprint netherwartPlantation = new StructureBlueprint("netherwartPlantation", new Vect(15, 1, 15));
+	public static final StructureBlueprint defaultShroom = new StructureBlueprint("mushroomFarm", new BlockPosition(17, 10, 17));
+	public static final StructureBlueprint shroomSoil = new StructureBlueprint("mushroomSoil", new BlockPosition(13, 1, 13));
+	public static final StructureBlueprint shroomPlantation = new StructureBlueprint("mushroomPlantation", new BlockPosition(13, 1, 13));
 
-	public static final StructureBlueprint farmSoil = new StructureBlueprint("wheatSoil", new Vect(15, 1, 15));
-	public static final StructureBlueprint wheatPlantation = new StructureBlueprint("wheatPlantation", new Vect(15, 1, 15));
+	public static final StructureBlueprint netherwartSoil = new StructureBlueprint("netherwartSoil", new BlockPosition(15, 1, 15));
+	public static final StructureBlueprint netherwartPlantation = new StructureBlueprint("netherwartPlantation", new BlockPosition(15, 1, 15));
+
+	public static final StructureBlueprint farmSoil = new StructureBlueprint("wheatSoil", new BlockPosition(15, 1, 15));
+	public static final StructureBlueprint wheatPlantation = new StructureBlueprint("wheatPlantation", new BlockPosition(15, 1, 15));
 
 	public static void init() {
+		createData();
+		registerData();
+	}
+
+	private static void registerData() {
+		registerStructureBlueprint(defaultArboretum);
+		registerStructureBlueprint(defaultFarm);
+		registerStructureBlueprint(defaultSoil);
+		registerStructureBlueprint(defaultPlantation);
+		registerStructureBlueprint(bogEarth);
+		registerStructureBlueprint(pumpkinArea);
+		registerStructureBlueprint(pumpkinSoil);
+		registerStructureBlueprint(pumpkinFarm);
+		registerStructureBlueprint(defaultShroom);
+		registerStructureBlueprint(shroomSoil);
+		registerStructureBlueprint(shroomPlantation);
+		registerStructureBlueprint(netherwartSoil);
+		registerStructureBlueprint(netherwartPlantation);
+		registerStructureBlueprint(farmSoil);
+		registerStructureBlueprint(wheatPlantation);
+	}
+
+	public static void registerStructureBlueprint(StructureBlueprint structureBlueprint) {
+		nameIndex.put(structureBlueprint.id, currIndex);
+		structureIndex.put(currIndex, structureBlueprint);
+		currIndex++;
+	}
+
+	public static StructureBlueprint getBlueprintByName(String name) {
+		int id = nameIndex.get(name);
+		if (id > 0 && id >= currIndex) {
+			return structureIndex.get(id);
+		}
+		return null;
+	}
+
+	public static StructureBlueprint getBlueprintByID(int id) {
+		if (id > 0 && id >= currIndex){
+			return structureIndex.get(id);
+		}
+		return null;
+	}
+
+	private static void createData() {
 		Block i;
 		Block j;
 		Block n = null;
@@ -268,8 +318,7 @@ public class Blueprints {
 		defaultShroom.setPlane(9, farmShroom);
 
 		i = Blocks.mycelium;
-		Block[][] soilShroom = new Block[][] {
-				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
+		Block[][] soilShroom = new Block[][] { new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
 				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 2
 				new Block[] { i, i, a, a, a, a, a, a, a, a, a, i, i }, // 3
 				new Block[] { i, i, a, a, a, a, a, a, a, a, a, i, i }, // 4
@@ -286,8 +335,7 @@ public class Blueprints {
 		shroomSoil.setPlane(0, soilShroom);
 
 		i = Blocks.sapling;
-		Block[][] plantationShroom = new Block[][] {
-				new Block[] { i, a, i, a, i, a, i, a, i, a, i, a, i }, // 1
+		Block[][] plantationShroom = new Block[][] { new Block[] { i, a, i, a, i, a, i, a, i, a, i, a, i }, // 1
 				new Block[] { a, i, a, i, a, i, a, i, a, i, a, i, a }, // 2
 				new Block[] { i, a, a, a, a, a, a, a, a, a, a, a, i }, // 3
 				new Block[] { a, i, a, a, a, a, a, a, a, a, a, i, a }, // 4
@@ -304,8 +352,7 @@ public class Blueprints {
 		shroomPlantation.setPlane(0, plantationShroom);
 
 		i = Blocks.soul_sand;
-		Block[][] soulSoil = new Block[][] {
-				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
+		Block[][] soulSoil = new Block[][] { new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
 				new Block[] { i, a, i, i, a, i, i, a, i, i, a, i, i, a, i }, // 2
 				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 3
 				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 4
@@ -324,8 +371,7 @@ public class Blueprints {
 		netherwartSoil.setPlane(0, soulSoil);
 
 		i = Blocks.sapling;
-		Block[][] wheatPlants = new Block[][] {
-				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
+		Block[][] wheatPlants = new Block[][] { new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
 				new Block[] { i, a, i, i, a, i, i, a, i, i, a, i, i, a, i }, // 2
 				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 3
 				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 4
@@ -345,8 +391,7 @@ public class Blueprints {
 
 		i = Blocks.farmland;
 		j = Blocks.water;
-		Block[][] farmedSoil = new Block[][] {
-				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
+		Block[][] farmedSoil = new Block[][] { new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
 				new Block[] { i, j, i, i, j, i, i, j, i, i, j, i, i, j, i }, // 2
 				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 3
 				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 4
@@ -365,8 +410,7 @@ public class Blueprints {
 		farmSoil.setPlane(0, farmedSoil);
 
 		i = Blocks.sapling;
-		Block[][] wheatPlants1 = new Block[][] {
-				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
+		Block[][] wheatPlants1 = new Block[][] { new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
 				new Block[] { i, j, i, i, j, i, i, j, i, i, j, i, i, j, i }, // 1
 				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 2
 				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 3
@@ -383,6 +427,5 @@ public class Blueprints {
 				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 13
 		};
 		wheatPlantation.setPlane(0, wheatPlants1);
-
 	}
 }
