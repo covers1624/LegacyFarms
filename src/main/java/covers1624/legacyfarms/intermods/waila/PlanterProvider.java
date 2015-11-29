@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by covers1624 on 10/5/2015}.
  */
-public class PlanterProvider implements IWailaDataProvider{
+public class PlanterProvider implements IWailaDataProvider {
 	@Override
 	public ItemStack getWailaStack(IWailaDataAccessor accessor, IWailaConfigHandler config) {
 		return null;

@@ -46,7 +46,7 @@ public class RenderingHandler implements ISimpleBlockRenderingHandler {
 			}
 		}
 		return null;
-}
+	}
 
 	@Override
 	public boolean shouldRender3DInInventory(int modelId) {

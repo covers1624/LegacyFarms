@@ -5,7 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 
 public class TileHarvesterSapling extends TileHarvester {
 
-	public TileHarvesterSapling(){
+	public TileHarvesterSapling() {
 		super(CropProviders.arborealCrops);
 	}
 

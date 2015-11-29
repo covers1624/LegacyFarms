@@ -9,12 +9,10 @@ public abstract class TileInventory extends TileBase implements ISidedInventory 
 
 	protected TileInventoryAdapter<? extends TileInventory> inventory;
 
-
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public TileInventory(int size) {
 		inventory = new TileInventoryAdapter(this, size, "Items");
 	}
-
 
 	public TileInventory() {
 		this(12);

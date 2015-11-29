@@ -1,10 +1,10 @@
 package covers1624.legacyfarms.proxy;
 
+import covers1624.legacyfarms.client.render.RenderPlanter;
+import covers1624.legacyfarms.client.render.RenderingHandler;
+import covers1624.legacyfarms.client.render.TileRenderHandler;
 import covers1624.legacyfarms.init.ModBlocks;
 import covers1624.legacyfarms.reference.Reference;
-import covers1624.legacyfarms.client.render.RenderingHandler;
-import covers1624.legacyfarms.client.render.RenderPlanter;
-import covers1624.legacyfarms.client.render.TileRenderHandler;
 import covers1624.legacyfarms.tile.TileBase;
 import covers1624.legacyfarms.utils.PlanterUtils;
 import cpw.mods.fml.client.registry.ClientRegistry;

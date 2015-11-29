@@ -10,6 +10,7 @@ public class ItemUtils {
 
 	/**
 	 * Returns true if the items match, will ignore metadata if one or both items have the wildcard value as their metadata.
+	 *
 	 * @param stack1
 	 * @param stack2
 	 * @return

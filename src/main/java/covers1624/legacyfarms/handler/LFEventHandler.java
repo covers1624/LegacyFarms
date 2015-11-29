@@ -1,6 +1,5 @@
 package covers1624.legacyfarms.handler;
 
-import covers1624.legacyfarms.event.PhantomSaplingGrowEvent;
 import covers1624.legacyfarms.utils.TreeGrowObjectHolder;
 import covers1624.lib.util.BlockPosition;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;

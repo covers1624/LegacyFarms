@@ -9,7 +9,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.ForgeDirection;
 import org.lwjgl.opengl.GL11;
 
-
 public class RenderPlanter implements IBlockRenderer {
 	private String gfxBase;
 

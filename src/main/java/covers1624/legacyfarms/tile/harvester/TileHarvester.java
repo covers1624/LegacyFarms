@@ -9,7 +9,6 @@ import covers1624.legacyfarms.tile.planter.TilePlanter;
 import covers1624.legacyfarms.utils.BlockUtils;
 import covers1624.lib.util.BlockPosition;
 import covers1624.lib.util.ItemUtils;
-import covers1624.lib.util.LogHelper;
 import forestry.core.delegates.AccessHandler;
 import forestry.core.interfaces.IAccessHandler;
 import forestry.core.interfaces.IRestrictedAccessTile;

@@ -51,8 +51,8 @@ public class BlockHarvester extends BlockBase {
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
 		TileEntity tileEntity = super.createNewTileEntity(world, meta);
-		if (tileEntity == null){
-			if (meta == 0){
+		if (tileEntity == null) {
+			if (meta == 0) {
 				return new TileHarvesterSapling();
 			}
 		}

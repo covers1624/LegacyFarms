@@ -72,7 +72,7 @@ public class Blueprints {
 	}
 
 	public static StructureBlueprint getBlueprintByID(int id) {
-		if (id > 0 && id >= currIndex){
+		if (id > 0 && id >= currIndex) {
 			return structureIndex.get(id);
 		}
 		return null;

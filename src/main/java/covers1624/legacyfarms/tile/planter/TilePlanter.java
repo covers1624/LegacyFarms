@@ -895,7 +895,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 			}
 
 			// Not enough space
-	        /* if (all) { continue; } */
+		    /* if (all) { continue; } */
 
 			if (doAdd) {
 				getStackInSlot(i).stackSize = getStackInSlot(i).getMaxStackSize();

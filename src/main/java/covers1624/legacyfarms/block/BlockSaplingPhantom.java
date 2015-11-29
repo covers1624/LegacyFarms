@@ -5,7 +5,6 @@ import covers1624.legacyfarms.init.ModBlocks;
 import covers1624.legacyfarms.worldgen.WorldGenTree;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
-import net.minecraft.block.BlockSapling;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;

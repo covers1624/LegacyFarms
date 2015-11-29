@@ -8,7 +8,7 @@ import mcp.mobius.waila.api.IWailaRegistrar;
  */
 public class WailaModule {
 
-	public static void callBackRegister(IWailaRegistrar registrar){
+	public static void callBackRegister(IWailaRegistrar registrar) {
 
 		registrar.registerBodyProvider(new PlanterProvider(), TilePlanter.class);
 	}

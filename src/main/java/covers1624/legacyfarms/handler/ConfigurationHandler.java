@@ -43,8 +43,6 @@ public class ConfigurationHandler {
 		harvesterSideSensitive = configuration.getBoolean("Harvester Side Sensitive", "Customization", true, "Set to false if harvesters should output all harvested products regardless of side a pipe is attached to");
 		planterDropBlocks = configuration.getBoolean("Planter Drop Blocks", "Customization", true, "Set this to false and Planters will not drop blocks when clearing an area.");
 
-
-
 		configuration.save();
 	}
 }

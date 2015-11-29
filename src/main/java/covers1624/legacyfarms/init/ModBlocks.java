@@ -2,12 +2,10 @@ package covers1624.legacyfarms.init;
 
 import covers1624.legacyfarms.block.BlockHarvester;
 import covers1624.legacyfarms.block.BlockPlanter;
-import covers1624.legacyfarms.block.BlockSaplingPhantom;
 import covers1624.legacyfarms.item.ItemBlockHarvester;
 import covers1624.legacyfarms.item.ItemBlockPlanter;
 import covers1624.legacyfarms.tile.harvester.TileHarvesterSapling;
 import covers1624.legacyfarms.tile.planter.TilePlanterSapling;
-import covers1624.lib.util.ItemUtils;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.core.config.ForestryBlock;
 import net.minecraft.block.Block;
