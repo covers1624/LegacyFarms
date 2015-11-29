@@ -2,7 +2,6 @@ What needs to be done still.
 
 Harvesters.
 Most of the planters.
-Convert the old Blueprint system from itemid's - Almost done.
 Power shared between machines.
 
 
