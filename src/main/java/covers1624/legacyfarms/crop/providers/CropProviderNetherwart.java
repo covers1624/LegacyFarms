@@ -20,6 +20,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import java.util.ArrayList;
+
 public class CropProviderNetherwart implements ICropProvider {
 
 	@Override
@@ -34,8 +36,8 @@ public class CropProviderNetherwart implements ICropProvider {
 	}
 
 	@Override
-	public ItemStack[] getWindfall() {
-		return null;
+	public void addWindfall(ArrayList<ItemStack> windfall) {
+
 	}
 
 	@Override

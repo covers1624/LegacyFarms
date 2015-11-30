@@ -25,15 +25,15 @@ public class ContainerArboretum extends Container {
 
 	public ContainerArboretum(InventoryPlayer playerInventory, TilePlanter arboretum) {
 		this.arboretum = arboretum;
-		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 0, 19, 35, soil));
-		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 1, 37, 35, soil));
-		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 2, 19, 53, soil));
-		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 3, 37, 53, soil));
+		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 0, 19, 35, new ItemStack(ModBlocks.forestrySoil)));
+		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 1, 37, 35, new ItemStack(ModBlocks.forestrySoil)));
+		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 2, 19, 53, new ItemStack(ModBlocks.forestrySoil)));
+		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 3, 37, 53, new ItemStack(ModBlocks.forestrySoil)));
 
-		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 4, 71, 35, saplings));
-		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 5, 89, 35, saplings));
-		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 6, 71, 53, saplings));
-		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 7, 89, 53, saplings));
+		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 4, 71, 35, new ItemStack(ModBlocks.blockSapling)));
+		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 5, 89, 35, new ItemStack(ModBlocks.blockSapling)));
+		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 6, 71, 53, new ItemStack(ModBlocks.blockSapling)));
+		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 7, 89, 53, new ItemStack(ModBlocks.blockSapling)));
 
 		InventoryUtils.addSlotToContainer(this, new OutputSlot(arboretum, 8, 123, 35));
 		InventoryUtils.addSlotToContainer(this, new OutputSlot(arboretum, 9, 141, 35));

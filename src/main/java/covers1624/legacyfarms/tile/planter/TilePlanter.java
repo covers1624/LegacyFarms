@@ -812,8 +812,8 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 	}
 
 	@Override
-	public ItemStack decrStackSize(int i, int j) {
-		return inventory.decrStackSize(i, j);
+	public ItemStack decrStackSize(int i, int amount) {
+		return inventory.decrStackSize(i, amount);
 	}
 
 	@Override

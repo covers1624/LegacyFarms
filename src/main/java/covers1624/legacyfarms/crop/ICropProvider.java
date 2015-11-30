@@ -35,10 +35,8 @@ public interface ICropProvider {
 
 	/**
 	 * Called once to configure possible windfall created by harvested crops managed by this provider.
-	 *
-	 * @return Array of item stacks representing possible windfall.
 	 */
-	ItemStack[] getWindfall();
+	void addWindfall(ArrayList<ItemStack> windfall);
 
 	/**
 	 * Plant a crop in the world with the germling given. Planter will have called isGermling beforehand.

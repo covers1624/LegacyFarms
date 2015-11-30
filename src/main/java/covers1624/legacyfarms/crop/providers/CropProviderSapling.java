@@ -36,22 +36,10 @@ public class CropProviderSapling implements ICropProvider {
 	}
 
 	@Override
-	public ItemStack[] getWindfall() {
-		ArrayList<ItemStack> windfall = new ArrayList<ItemStack>();
-		windfall.add(new ItemStack(Blocks.sapling, 1, 0));
-		windfall.add(new ItemStack(Blocks.sapling, 1, 1));
-		windfall.add(new ItemStack(Blocks.sapling, 1, 2));
-		windfall.add(new ItemStack(Blocks.sapling, 1, 3));
-
-		//if (true) {
+	public void addWindfall(ArrayList<ItemStack> windfall) {
+		windfall.add(new ItemStack(Blocks.sapling));
 		windfall.add(new ItemStack(Items.apple));
 		windfall.add(new ItemStack(Items.golden_apple));
-		//}
-		// for (ItemStack fruit : ForestryAPI.loggerWindfall) {
-		// windfall.add(fruit);
-		// }
-
-		return windfall.toArray(new ItemStack[windfall.size()]);
 	}
 
 	@Override

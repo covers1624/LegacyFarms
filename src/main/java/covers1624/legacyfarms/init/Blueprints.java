@@ -318,7 +318,8 @@ public class Blueprints {
 		defaultShroom.setPlane(9, farmShroom);
 
 		i = Blocks.mycelium;
-		Block[][] soilShroom = new Block[][] { new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
+		Block[][] soilShroom = new Block[][] { //
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
 				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 2
 				new Block[] { i, i, a, a, a, a, a, a, a, a, a, i, i }, // 3
 				new Block[] { i, i, a, a, a, a, a, a, a, a, a, i, i }, // 4
@@ -335,7 +336,8 @@ public class Blueprints {
 		shroomSoil.setPlane(0, soilShroom);
 
 		i = Blocks.sapling;
-		Block[][] plantationShroom = new Block[][] { new Block[] { i, a, i, a, i, a, i, a, i, a, i, a, i }, // 1
+		Block[][] plantationShroom = new Block[][] {//
+				new Block[] { i, a, i, a, i, a, i, a, i, a, i, a, i }, // 1
 				new Block[] { a, i, a, i, a, i, a, i, a, i, a, i, a }, // 2
 				new Block[] { i, a, a, a, a, a, a, a, a, a, a, a, i }, // 3
 				new Block[] { a, i, a, a, a, a, a, a, a, a, a, i, a }, // 4
@@ -352,46 +354,49 @@ public class Blueprints {
 		shroomPlantation.setPlane(0, plantationShroom);
 
 		i = Blocks.soul_sand;
-		Block[][] soulSoil = new Block[][] { new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
-				new Block[] { i, a, i, i, a, i, i, a, i, i, a, i, i, a, i }, // 2
+		Block[][] soulSoil = new Block[][] { //
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 2
 				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 3
 				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 4
-				new Block[] { i, a, i, a, a, a, a, a, a, a, a, a, i, a, i }, // 5
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 5
 				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 6
 				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 7
-				new Block[] { i, a, i, a, a, a, a, a, a, a, a, a, i, a, i }, // 8
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 8
 				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 9
 				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 10
-				new Block[] { i, a, i, a, a, a, a, a, a, a, a, a, i, a, i }, // 11
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 11
 				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 12
 				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 13
-				new Block[] { i, a, i, i, a, i, i, a, i, i, a, i, i, a, i }, // 14
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 14
 				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 15
 		};
 		netherwartSoil.setPlane(0, soulSoil);
 
 		i = Blocks.sapling;
-		Block[][] wheatPlants = new Block[][] { new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
-				new Block[] { i, a, i, i, a, i, i, a, i, i, a, i, i, a, i }, // 2
+		Block[][] wheatPlants = new Block[][] { //
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 2
 				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 3
 				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 4
-				new Block[] { i, a, i, a, a, a, a, a, a, a, a, a, i, a, i }, // 5
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 5
 				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 6
 				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 7
-				new Block[] { i, a, i, a, a, a, a, a, a, a, a, a, i, a, i }, // 8
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 8
 				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 9
 				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 10
-				new Block[] { i, a, i, a, a, a, a, a, a, a, a, a, i, a, i }, // 11
+				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 11
 				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 12
 				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 13
-				new Block[] { i, a, i, i, a, i, i, a, i, i, a, i, i, a, i }, // 14
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 14
 				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 15
 		};
 		netherwartPlantation.setPlane(0, wheatPlants);
 
 		i = Blocks.farmland;
 		j = Blocks.water;
-		Block[][] farmedSoil = new Block[][] { new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
+		Block[][] farmedSoil = new Block[][] { //
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
 				new Block[] { i, j, i, i, j, i, i, j, i, i, j, i, i, j, i }, // 2
 				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 3
 				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 4
@@ -410,7 +415,8 @@ public class Blueprints {
 		farmSoil.setPlane(0, farmedSoil);
 
 		i = Blocks.sapling;
-		Block[][] wheatPlants1 = new Block[][] { new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
+		Block[][] wheatPlants1 = new Block[][] { //
+				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
 				new Block[] { i, j, i, i, j, i, i, j, i, i, j, i, i, j, i }, // 1
 				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 2
 				new Block[] { i, i, i, a, a, a, a, a, a, a, a, a, i, i, i }, // 3

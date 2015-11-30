@@ -20,6 +20,14 @@ public class InputSlot extends Slot {
 		this.allowedItems = allowedItems;
 	}
 
+	public InputSlot(IInventory inventory, int slotIndex, int xPos, int yPos, ItemStack allowedItem) {
+		super(inventory, slotIndex, xPos, yPos);
+		if (allowedItem != null) {
+			allowedItems = new ArrayList<ItemStack>();
+			allowedItems.add(allowedItem);
+		}
+	}
+
 	@Override
 	public boolean isItemValid(ItemStack stack) {
 		if (allowedItems != null) {

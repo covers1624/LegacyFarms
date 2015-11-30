@@ -1,10 +1,17 @@
 package covers1624.legacyfarms.container;
 
+import covers1624.legacyfarms.slot.InputSlot;
 import covers1624.legacyfarms.tile.planter.TilePlanter;
+import covers1624.lib.inventory.InventoryUtils;
 import forestry.core.gui.ContainerForestry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
+
+import java.util.ArrayList;
 
 public class ContainerNetherFarm extends ContainerForestry {
 
@@ -12,26 +19,18 @@ public class ContainerNetherFarm extends ContainerForestry {
 
 	public ContainerNetherFarm(InventoryPlayer playerInventory, TilePlanter planter) {
 		this.planter = planter;
-		addSlotToContainer(new Slot(planter, 0, 34, 35));
-		addSlotToContainer(new Slot(planter, 1, 34, 53));
-		addSlotToContainer(new Slot(planter, 2, 52, 35));
-		addSlotToContainer(new Slot(planter, 3, 52, 53));
 
-		addSlotToContainer(new Slot(planter, 4, 107, 35));
-		addSlotToContainer(new Slot(planter, 5, 107, 53));
-		addSlotToContainer(new Slot(planter, 6, 125, 35));
-		addSlotToContainer(new Slot(planter, 7, 125, 53));
+		InventoryUtils.addSlotToContainer(this, new InputSlot(planter, 0, 34, 35, new ItemStack(Blocks.soul_sand)));
+		InventoryUtils.addSlotToContainer(this, new InputSlot(planter, 1, 52, 35, new ItemStack(Blocks.soul_sand)));
+		InventoryUtils.addSlotToContainer(this, new InputSlot(planter, 2, 34, 53, new ItemStack(Blocks.soul_sand)));
+		InventoryUtils.addSlotToContainer(this, new InputSlot(planter, 3, 52, 53, new ItemStack(Blocks.soul_sand)));
 
-		int var3;
-		for (var3 = 0; var3 < 3; ++var3) {
-			for (int var4 = 0; var4 < 9; ++var4) {
-				addSlotToContainer(new Slot(playerInventory, var4 + var3 * 9 + 9, 8 + var4 * 18, 84 + var3 * 18));
-			}
-		}
+		InventoryUtils.addSlotToContainer(this, new InputSlot(planter, 4, 107, 35, new ItemStack(Items.nether_wart)));
+		InventoryUtils.addSlotToContainer(this, new InputSlot(planter, 5, 125, 35, new ItemStack(Items.nether_wart)));
+		InventoryUtils.addSlotToContainer(this, new InputSlot(planter, 6, 107, 53, new ItemStack(Items.nether_wart)));
+		InventoryUtils.addSlotToContainer(this, new InputSlot(planter, 7, 125, 53, new ItemStack(Items.nether_wart)));
 
-		for (var3 = 0; var3 < 9; ++var3) {
-			addSlotToContainer(new Slot(playerInventory, var3, 8 + var3 * 18, 142));
-		}
+		InventoryUtils.bindPlayerInventory(this, playerInventory, 8, 84);
 	}
 
 	@Override

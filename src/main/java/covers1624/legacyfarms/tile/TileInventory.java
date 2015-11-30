@@ -44,13 +44,16 @@ public abstract class TileInventory extends TileBase implements ISidedInventory 
 
 	@Override
 	public ItemStack getStackInSlot(int slot) {
+		if(inventory != null){
+			return inventory.getStackInSlot(slot);
+		}
 		return null;
 	}
 
 	@Override
-	public ItemStack decrStackSize(int slot, int ammount) {
+	public ItemStack decrStackSize(int slot, int amount) {
 		if (inventory != null) {
-			inventory.decrStackSize(slot, ammount);
+			inventory.decrStackSize(slot, amount);
 		}
 		return null;
 	}
@@ -118,16 +121,17 @@ public abstract class TileInventory extends TileBase implements ISidedInventory 
 	}
 
 	@Override
-	public boolean canInsertItem(int p_102007_1_, ItemStack p_102007_2_, int p_102007_3_) {
+	public boolean canInsertItem(int slot, ItemStack itemStack, int side) {
 		if (inventory != null) {
-
+			inventory.canInsertItem(slot, itemStack, side);
 		}
 		return false;
 	}
 
 	@Override
-	public boolean canExtractItem(int p_102008_1_, ItemStack p_102008_2_, int p_102008_3_) {
+	public boolean canExtractItem(int slot, ItemStack itemStack, int side) {
 		if (inventory != null) {
+			canExtractItem(slot, itemStack, side);
 		}
 		return false;
 	}

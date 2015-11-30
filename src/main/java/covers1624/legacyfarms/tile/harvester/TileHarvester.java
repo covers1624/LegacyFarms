@@ -53,22 +53,28 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 	public TileHarvester(ICropProvider provider) {
 		super(8);
 		cropProviders.add(provider);
-		ItemStack[] windfall = provider.getWindfall();
-		if (windfall != null && windfall.length > 0) {
-			for (ItemStack itemStack : windfall) {
-				putWindfall(itemStack);
+		ArrayList<ItemStack> windFall = new ArrayList<ItemStack>();
+		provider.addWindfall(windFall);
+		if (!windFall.isEmpty()) {
+			for (ItemStack stack : windFall) {
+				if (stack != null) {
+					validWindfall.add(stack);
+				}
 			}
 		}
 	}
 
 	public TileHarvester(ArrayList<ICropProvider> providers) {
 		super(8);
+		ArrayList<ItemStack> windFall = new ArrayList<ItemStack>();
 		for (ICropProvider provider : providers) {
 			cropProviders.add(provider);
-			ItemStack[] windfall = provider.getWindfall();
-			if (windfall != null && windfall.length > 0) {
-				for (ItemStack itemStack : windfall) {
-					putWindfall(itemStack);
+			provider.addWindfall(windFall);
+		}
+		if (!windFall.isEmpty()) {
+			for (ItemStack stack : windFall) {
+				if (stack != null) {
+					validWindfall.add(ItemUtils.copyStack(stack, 1));
 				}
 			}
 		}
@@ -82,21 +88,6 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 		doWork();
 	}
 
-	public void putWindfall(ItemStack windfall) {
-		ItemStack stack = ItemUtils.copyStack(windfall, 1);
-		validWindfall.add(stack);
-	}
-
-	@Deprecated
-	public boolean isCropAt(BlockPosition blockPosition) {
-		for (ICropProvider cropProvider : cropProviders) {
-			if (cropProvider.isCrop(worldObj, blockPosition)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 	private ICropProvider getCropProvider(BlockPosition blockPosition) {
 		for (ICropProvider provider : cropProviders) {
 			if (provider.isCrop(worldObj, blockPosition)) {
@@ -106,9 +97,13 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 		return null;
 	}
 
-	public boolean hasWindfall(ItemStack stack) {
-		ItemStack itemStack = ItemUtils.copyStack(stack, 1);
-		return validWindfall.contains(itemStack);
+	public boolean isValidWindfall(ItemStack stack) {
+		for (ItemStack windfall : validWindfall){
+			if (windfall.getItem().equals(stack.getItem()) && windfall.getItemDamage() == stack.getItemDamage()){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public ItemStack getWindfall(ItemStack windfall) {
@@ -261,17 +256,13 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 		BlockPosition max = new BlockPosition(xCoord + posOffset.x + area.x, yCoord + posOffset.y + area.y, zCoord + posOffset.z + area.z);
 
 		AxisAlignedBB harvestBox = AxisAlignedBB.getBoundingBox(min.x, min.y, min.z, max.x, max.y, max.z);
-		List list = worldObj.getEntitiesWithinAABB(Entity.class, harvestBox);
+		List<Entity> list = worldObj.getEntitiesWithinAABB(Entity.class, harvestBox);
 
-		int i;
-		for (i = 0; i < list.size(); i++) {
-			Entity entity = (Entity) list.get(i);
-
+		for (Entity entity : list) {
 			if (entity instanceof EntityItem) {
 				EntityItem item = (EntityItem) entity;
 				ItemStack contained = item.getEntityItem();
-
-				if (contained != null && hasWindfall(contained)) {
+				if (contained != null && isValidWindfall(contained)) {
 					ItemStack windfall = getWindfall(contained);
 					if (windfall != null && windfall.getItemDamage() == contained.getItemDamage()) {
 						if (storeWindfall(contained)) {
@@ -335,7 +326,7 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 			ForgeDirection[] filtered;
 			if (!isSideSensitive || !ConfigurationHandler.harvesterSideSensitive) {
 				filtered = pipes;
-			} else if (hasWindfall(getStackInSlot(i))) {
+			} else if (isValidWindfall(getStackInSlot(i))) {
 				filtered = BlockUtils.filterPipeDirections(pipes, new ForgeDirection[] { ForgeDirection.WEST, ForgeDirection.EAST, ForgeDirection.NORTH, ForgeDirection.SOUTH });
 			} else {
 				filtered = BlockUtils.filterPipeDirections(pipes, new ForgeDirection[] { ForgeDirection.DOWN, ForgeDirection.UP, });
