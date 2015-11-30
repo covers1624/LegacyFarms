@@ -33,8 +33,6 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 
 	private final AccessHandler accessHandler = new AccessHandler(this);
 
-	//protected ItemStack[] harvestStacks = new ItemStack[8];
-
 	protected BlockPosition area = new BlockPosition(21, 13, 21);
 	protected BlockPosition posOffset = new BlockPosition(-10, -2, -10);
 	protected BlockPosition posCurrent = new BlockPosition(0, 0, 0);
@@ -82,6 +80,7 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 
 	@Override
 	public void updateEntity() {
+		//TODO power Values.
 		if (worldObj.isRemote) {
 			return;
 		}

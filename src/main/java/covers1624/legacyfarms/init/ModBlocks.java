@@ -10,8 +10,13 @@ import covers1624.legacyfarms.tile.planter.TilePlanterNetherwarts;
 import covers1624.legacyfarms.tile.planter.TilePlanterSapling;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.core.config.ForestryBlock;
+import forestry.core.items.ItemTypedBlock;
+import forestry.farming.gadgets.BlockMushroom;
+import forestry.plugins.PluginManager;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+
+import java.util.EnumSet;
 
 public class ModBlocks {
 
@@ -22,7 +27,7 @@ public class ModBlocks {
 	public static Block forestrySoil = ForestryBlock.soil.block();
 
 	public static void init() {
-
+		sanityCheckForestry();
 		//blockSapling = new BlockSaplingPhantom();
 		//GameRegistry.registerBlock(blockSapling, blockSapling.getUnlocalizedName());
 		//ItemUtils.readOres();
@@ -33,6 +38,8 @@ public class ModBlocks {
 		blockPlanter = new BlockPlanter();
 		GameRegistry.registerBlock(blockPlanter, ItemBlockPlanter.class, blockPlanter.getUnlocalizedName());
 		initPlanterTiles();
+
+
 	}
 
 	private static void initPlanterTiles() {
@@ -43,6 +50,21 @@ public class ModBlocks {
 	private static void initHarvesterTiles() {
 		blockHarvester.addSubItemAndTileAndRegister(0, "logger", TileHarvesterSapling.class);
 		blockHarvester.addSubItemAndTileAndRegister(8, "infernalCombine", TileHarvesterNetherwart.class);
+	}
+
+	//Make sure mushrooms are always registered.
+	private static void sanityCheckForestry(){
+		EnumSet<PluginManager.Module> loadedModules = PluginManager.getLoadedModules();
+		boolean farmingExists = false;
+		for (PluginManager.Module module: loadedModules){
+			if(module.ordinal() == PluginManager.Module.FARMING.ordinal()){
+				farmingExists = true;
+				break;
+			}
+		}
+		if(!farmingExists){
+			ForestryBlock.mushroom.registerBlock(new BlockMushroom(), ItemTypedBlock.class, "mushroom");
+		}
 	}
 
 }

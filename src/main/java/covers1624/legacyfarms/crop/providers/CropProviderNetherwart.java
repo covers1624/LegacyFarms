@@ -12,6 +12,7 @@ package covers1624.legacyfarms.crop.providers;
 
 import covers1624.legacyfarms.crop.ICropEntity;
 import covers1624.legacyfarms.crop.ICropProvider;
+import covers1624.legacyfarms.crop.providers.entity.CropNetherwart;
 import covers1624.lib.util.BlockPosition;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;

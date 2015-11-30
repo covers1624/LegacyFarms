@@ -2,6 +2,7 @@ package covers1624.legacyfarms.crop.providers;
 
 import covers1624.legacyfarms.crop.ICropEntity;
 import covers1624.legacyfarms.crop.ICropProvider;
+import covers1624.legacyfarms.crop.providers.entity.CropSapling;
 import covers1624.legacyfarms.init.ModBlocks;
 import covers1624.lib.util.BlockPosition;
 import covers1624.lib.util.ItemUtils;

@@ -1,4 +1,4 @@
-package covers1624.legacyfarms.crop.providers;
+package covers1624.legacyfarms.crop.providers.entity;
 
 import covers1624.legacyfarms.crop.ICropEntity;
 import covers1624.lib.util.BlockPosition;
