@@ -357,7 +357,6 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 				if (getStackInSlot(i) == null) {
 					continue;
 				}
-				LegacyFarms.logger.info(inventory1.getClass().getName());
 				// Don't dump in arboretums!
 				if (inventory1 instanceof TilePlanter) {
 					continue;

@@ -24,7 +24,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraftforge.common.MinecraftForge;
 
-@Mod(name = Reference.MOD_NAME, modid = Reference.MOD_ID, version = Reference.MOD_VERSION, dependencies = "after:Forestry")
+@Mod(name = Reference.MOD_NAME, modid = Reference.MOD_ID, dependencies = "after:Forestry")
 public class LegacyFarms {
 
 	public static final LFCreativeTab creativeTab = new LFCreativeTab();

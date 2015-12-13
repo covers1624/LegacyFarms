@@ -4,7 +4,7 @@ public class Reference {
 	// Mod Info
 	public static final String MOD_ID = "legacyfarms";
 	public static final String MOD_NAME = "LegacyFarms";
-	public static final String MOD_VERSION = "1.0";
+	public static final String MOD_VERSION = Version.getVersion();
 
 	// ResourceLocation Utils
 	public static final String MOD_PREFIX = MOD_ID + ":";

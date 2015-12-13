@@ -2,6 +2,7 @@ package covers1624.legacyfarms.tile.planter;
 
 import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyReceiver;
+import covers1624.legacyfarms.LegacyFarms;
 import covers1624.legacyfarms.blueprint.StructureBlueprint;
 import covers1624.legacyfarms.blueprint.StructureConstruction;
 import covers1624.legacyfarms.crop.ICropProvider;
@@ -38,26 +39,26 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 	public static final short SLOT_COUNT_PART = 4;
 
 	// Blueptint stuff
-	public StructureBlueprint site;
-	public BlockPosition siteOffset;
-	public StructureBlueprint soil;
-	public BlockPosition soilOffset;
-	public StructureBlueprint plantation;
-	public BlockPosition plantationOffset;
+	public StructureBlueprint site; // Area to clear.
+	public BlockPosition siteOffset; // Offset from the Planter.
+	public StructureBlueprint soil; // What is being planted for the soil.
+	public BlockPosition soilOffset; // Offset for the soil.
+	public StructureBlueprint plantation; // What we are actually planting.
+	public BlockPosition plantationOffset; // Offset for planting.
 
+	//Internal.
 	protected StructureConstruction templateArboretum;
 	protected StructureConstruction templateSoil;
-	protected StructureConstruction templateWater; // carbon copy of
-	// templateSoil
+	protected StructureConstruction templateWater; // carbon copy of templateSoil
 	protected StructureConstruction templatePlantation;
 
 	protected boolean requiresSoil = true;
 	protected boolean requiresGermling = false;
 
-	public ItemStack validSoil; // Block or item that can be used to create the ground to plant on
-	public ItemStack validGround; // Block that can be planted on
-	public ItemStack validWaste; // Block that is waste to be collected
-	public ItemStack validDisposal; // Block that is put into inventory when waste is collected
+	public ItemStack validSoil; // Block or item that can be used to create the ground to plant on.
+	public ItemStack validGround; // Block that can be planted on.
+	public ItemStack validWaste; // Block that is waste to be collected.
+	public ItemStack validDisposal; // Block that is put into inventory when waste is collected.
 
 	protected boolean isCleared = false; // Whether the arboretum area has been cleared.
 	protected boolean isUnbroken = false; // Whether the arboretum has already been fully built
@@ -68,6 +69,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 
 	private EnergyStorage energyStorage = new EnergyStorage(ConfigurationHandler.planterMaxRF);
 
+	//Constructors.
 	public TilePlanter() {
 		super();
 	}
@@ -119,6 +121,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 		} else {
 			doWork();
 		}
+		updateServerSide();
 		isInited = true;
 	}
 
@@ -452,11 +455,12 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 			if (templateSoil.getCurrentBlock() == Block.getBlockFromItem(validGround.getItem())) {
 				BlockPosition pos = templateSoil.getCurrentPos();
 
-				Block block = worldObj.getBlock(pos.x, pos.y, pos.z);
-				Block above = worldObj.getBlock(pos.x, pos.y, pos.z);
-				if (!(block != null && block.getBlockHardness(worldObj, pos.x, pos.y, pos.z) < 0) && !validGround.isItemEqual(new ItemStack(block)) && (above == Blocks.air || above == Blocks.snow_layer)) {
+				Block block = pos.getBlock(worldObj);
+				BlockPosition aboveBp = pos.copy().step(ForgeDirection.UP);
+				Block above = aboveBp.getBlock(worldObj);
+				if (!(block != null && block.getBlockHardness(worldObj, pos.x, pos.y, pos.z) < 0) && !validGround.isItemEqual(pos.getWorldItemStack(worldObj)) && (above == Blocks.air || above == Blocks.snow_layer)) {
 					if (validWaste != null) {
-						if (validWaste.isItemEqual(new ItemStack(block))) {
+						if (validWaste.isItemEqual(pos.getWorldItemStack(worldObj))) {
 							collectSand(pos);
 						}
 
@@ -486,10 +490,11 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 
 				Block block = worldObj.getBlock(pos.x, pos.y, pos.z);
 				if (block != Blocks.water) {
+
 					// Make sure we are contained
-					Block[] neighbours = new Block[] { worldObj.getBlock(pos.x - 1, pos.y, pos.z), worldObj.getBlock(pos.x + 1, pos.y, pos.z), worldObj.getBlock(pos.x, pos.y, pos.z - 1), worldObj.getBlock(pos.x, pos.y, pos.z + 1) };
-					for (Block neighbour : neighbours) {
-						if (!validGround.isItemEqual(new ItemStack(neighbour)) && !validWaste.isItemEqual(new ItemStack(neighbour))) {
+					List<BlockPosition> adjacent = pos.getAdjacent(false);
+					for (BlockPosition blockPos : adjacent){
+						if (!validGround.isItemEqual(blockPos.getWorldItemStack(worldObj)) && !validWaste.isItemEqual(blockPos.getWorldItemStack(worldObj))){
 							skip = true;
 							break;
 						}
@@ -557,7 +562,6 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 		if (i < 0) {
 			return;
 		}
-
 		inventory.decrStackSize(i, n);
 
 	}
@@ -594,10 +598,10 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 		}
 
 		pos.setBlock(worldObj, Block.getBlockFromItem(validGround.getItem()), validGround.getItemDamage());
-
 		// Only decrease stash if replacing was successful
-		Block block = pos.getBlock(worldObj);
-		if (validGround.isItemEqual(new ItemStack(block))) {
+
+
+		if (validGround.isItemEqual(pos.getWorldItemStack(worldObj))) {
 			this.decrSoilStack(1); // decrease stash by one
 		}
 		return true;
@@ -895,7 +899,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 			}
 
 			// Not enough space
-		    /* if (all) { continue; } */
+			/* if (all) { continue; } */
 
 			if (doAdd) {
 				getStackInSlot(i).stackSize = getStackInSlot(i).getMaxStackSize();

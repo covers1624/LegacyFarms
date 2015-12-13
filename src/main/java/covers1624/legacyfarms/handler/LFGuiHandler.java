@@ -2,8 +2,10 @@ package covers1624.legacyfarms.handler;
 
 import covers1624.legacyfarms.container.ContainerArboretum;
 import covers1624.legacyfarms.container.ContainerNetherFarm;
+import covers1624.legacyfarms.container.ContainerPeatBog;
 import covers1624.legacyfarms.gui.planter.GuiArboretum;
 import covers1624.legacyfarms.gui.planter.GuiNetherFarm;
+import covers1624.legacyfarms.gui.planter.GuiPeatBog;
 import covers1624.legacyfarms.tile.planter.TilePlanter;
 import covers1624.legacyfarms.utils.GuiId;
 import cpw.mods.fml.common.network.IGuiHandler;
@@ -22,6 +24,8 @@ public class LFGuiHandler implements IGuiHandler {
 			return new ContainerArboretum(player.inventory, getTilePlanter(world, x, y, z));
 		case NetherFarmGUI:
 			return new ContainerNetherFarm(player.inventory, getTilePlanter(world, x, y, z));
+		case PeatBogGUI:
+			return new ContainerPeatBog(player.inventory, getTilePlanter(world, x, y, z));
 		default:
 			return null;
 		}
@@ -37,6 +41,8 @@ public class LFGuiHandler implements IGuiHandler {
 			return new GuiArboretum(player.inventory, getTilePlanter(world, x, y, z));
 		case NetherFarmGUI:
 			return new GuiNetherFarm(player.inventory, getTilePlanter(world, x, y, z));
+		case PeatBogGUI:
+			return new GuiPeatBog(player.inventory, getTilePlanter(world, x, y, z));
 		default:
 			return null;
 		}

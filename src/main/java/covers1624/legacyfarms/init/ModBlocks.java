@@ -4,8 +4,10 @@ import covers1624.legacyfarms.block.BlockHarvester;
 import covers1624.legacyfarms.block.BlockPlanter;
 import covers1624.legacyfarms.item.ItemBlockHarvester;
 import covers1624.legacyfarms.item.ItemBlockPlanter;
+import covers1624.legacyfarms.tile.harvester.TileHarvesterBog;
 import covers1624.legacyfarms.tile.harvester.TileHarvesterNetherwart;
 import covers1624.legacyfarms.tile.harvester.TileHarvesterSapling;
+import covers1624.legacyfarms.tile.planter.TilePlanterBog;
 import covers1624.legacyfarms.tile.planter.TilePlanterNetherwarts;
 import covers1624.legacyfarms.tile.planter.TilePlanterSapling;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -44,11 +46,13 @@ public class ModBlocks {
 
 	private static void initPlanterTiles() {
 		blockPlanter.addSubItemAndTileAndRegister(0, "arbouretum", TilePlanterSapling.class);
+		blockPlanter.addSubItemAndTileAndRegister(4, "peatBog", TilePlanterBog.class);
 		blockPlanter.addSubItemAndTileAndRegister(6, "infernalFarm", TilePlanterNetherwarts.class);
 	}
 
 	private static void initHarvesterTiles() {
 		blockHarvester.addSubItemAndTileAndRegister(0, "logger", TileHarvesterSapling.class);
+		blockHarvester.addSubItemAndTileAndRegister(4, "turbary", TileHarvesterBog.class);
 		blockHarvester.addSubItemAndTileAndRegister(8, "infernalCombine", TileHarvesterNetherwart.class);
 	}
 
