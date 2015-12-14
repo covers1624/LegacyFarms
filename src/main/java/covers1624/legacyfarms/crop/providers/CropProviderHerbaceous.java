@@ -1,5 +1,6 @@
 package covers1624.legacyfarms.crop.providers;
 
+import covers1624.legacyfarms.LegacyFarms;
 import covers1624.legacyfarms.crop.ICropEntity;
 import covers1624.legacyfarms.crop.ICropProvider;
 import covers1624.legacyfarms.crop.providers.entity.CropHerbaceous;
@@ -32,7 +33,7 @@ public class CropProviderHerbaceous implements ICropProvider {
 
 	@Override
 	public boolean doPlant(ItemStack germling, World world, BlockPosition blockPos) {
-		if (blockPos.getBlock(world) == Blocks.air || blockPos.copy().step(ForgeDirection.DOWN).getBlock(world) != Blocks.farmland) {
+		if (blockPos.getBlock(world) != Blocks.air || blockPos.copy().step(ForgeDirection.DOWN).getBlock(world) != Blocks.farmland) {
 			return false;
 		}
 		if (germling.isItemEqual(new ItemStack(Items.pumpkin_seeds))) {

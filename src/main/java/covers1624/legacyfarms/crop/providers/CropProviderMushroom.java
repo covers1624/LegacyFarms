@@ -35,7 +35,7 @@ public class CropProviderMushroom implements ICropProvider {
 
 	@Override
 	public boolean doPlant(ItemStack germling, World world, BlockPosition blockPos) {
-		if (blockPos.getBlock(world) == Blocks.air || blockPos.copy().step(ForgeDirection.DOWN).getBlock(world) != Blocks.mycelium){
+		if (blockPos.getBlock(world) != Blocks.air || blockPos.copy().step(ForgeDirection.DOWN).getBlock(world) != Blocks.mycelium){
 			return false;
 		}
 		if (germling.isItemEqual(new ItemStack(Blocks.brown_mushroom))){

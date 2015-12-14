@@ -1,13 +1,11 @@
 package covers1624.legacyfarms.init;
 
+import covers1624.legacyfarms.LegacyFarms;
 import covers1624.legacyfarms.block.BlockHarvester;
 import covers1624.legacyfarms.block.BlockPlanter;
 import covers1624.legacyfarms.item.ItemBlockHarvester;
 import covers1624.legacyfarms.item.ItemBlockPlanter;
-import covers1624.legacyfarms.tile.harvester.TileHarvesterBog;
-import covers1624.legacyfarms.tile.harvester.TileHarvesterHerbaceous;
-import covers1624.legacyfarms.tile.harvester.TileHarvesterNetherwart;
-import covers1624.legacyfarms.tile.harvester.TileHarvesterSapling;
+import covers1624.legacyfarms.tile.harvester.*;
 import covers1624.legacyfarms.tile.planter.*;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.core.config.ForestryBlock;
@@ -45,15 +43,19 @@ public class ModBlocks {
 
 	private static void initPlanterTiles() {
 		blockPlanter.addSubItemAndTileAndRegister(0, "arbouretum", TilePlanterSapling.class);
+		blockPlanter.addSubItemAndTileAndRegister(1, "farm", TilePlanterSeeds.class);
 		blockPlanter.addSubItemAndTileAndRegister(3, "pumpkinFarm", TilePlanterHerbaceous.class);
 		blockPlanter.addSubItemAndTileAndRegister(4, "peatBog", TilePlanterBog.class);
+		blockPlanter.addSubItemAndTileAndRegister(5, "mushroomFarm", TilePlanterMushroom.class);
 		blockPlanter.addSubItemAndTileAndRegister(6, "infernalFarm", TilePlanterNetherwarts.class);
 	}
 
 	private static void initHarvesterTiles() {
 		blockHarvester.addSubItemAndTileAndRegister(0, "logger", TileHarvesterSapling.class);
+		blockHarvester.addSubItemAndTileAndRegister(1, "combine", TileHarvesterSeeds.class);
 		blockHarvester.addSubItemAndTileAndRegister(3, "pumpkinHarvester", TileHarvesterHerbaceous.class);
 		blockHarvester.addSubItemAndTileAndRegister(4, "turbary", TileHarvesterBog.class);
+		blockHarvester.addSubItemAndTileAndRegister(6, "mushroomPicker", TileHarvesterMushroom.class);
 		blockHarvester.addSubItemAndTileAndRegister(8, "infernalCombine", TileHarvesterNetherwart.class);
 	}
 
@@ -63,11 +65,13 @@ public class ModBlocks {
 		boolean farmingExists = false;
 		for (PluginManager.Module module: loadedModules){
 			if(module.ordinal() == PluginManager.Module.FARMING.ordinal()){
+				LegacyFarms.logger.info("Found Farming module of Forestry.");
 				farmingExists = true;
 				break;
 			}
 		}
 		if(!farmingExists){
+			LegacyFarms.logger.info("Unable to find Farming module of Forestry.. Injecting Fake Mushroom Block..");
 			ForestryBlock.mushroom.registerBlock(new BlockMushroom(), ItemTypedBlock.class, "mushroom");
 		}
 	}
