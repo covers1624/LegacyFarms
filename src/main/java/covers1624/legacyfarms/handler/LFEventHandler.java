@@ -1,11 +1,11 @@
 package covers1624.legacyfarms.handler;
 
+import covers1624.legacyfarms.init.ForestryProxy;
 import covers1624.legacyfarms.utils.TreeGrowObjectHolder;
 import covers1624.lib.util.BlockPosition;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 import cpw.mods.fml.common.gameevent.TickEvent.WorldTickEvent;
-import forestry.core.config.ForestryBlock;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -25,7 +25,7 @@ public class LFEventHandler {
 		BlockPosition blockPosition = new BlockPosition(event.x, event.y, event.z);
 		blockPosition.step(ForgeDirection.DOWN);
 		Block underSapling = blockPosition.getBlock(event.world);
-		if (underSapling == ForestryBlock.soil.block()) {
+		if (underSapling == ForestryProxy.soil) {
 			trees.add(new TreeGrowObjectHolder(blockPosition.step(ForgeDirection.UP), event.world.provider.dimensionId, 100));
 		}
 	}

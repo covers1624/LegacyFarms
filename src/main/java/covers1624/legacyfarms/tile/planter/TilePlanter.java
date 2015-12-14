@@ -2,7 +2,6 @@ package covers1624.legacyfarms.tile.planter;
 
 import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyReceiver;
-import covers1624.legacyfarms.LegacyFarms;
 import covers1624.legacyfarms.blueprint.StructureBlueprint;
 import covers1624.legacyfarms.blueprint.StructureConstruction;
 import covers1624.legacyfarms.crop.ICropProvider;
@@ -12,11 +11,12 @@ import covers1624.legacyfarms.utils.BlockUtils;
 import covers1624.lib.util.BlockPosition;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import forestry.core.EnumErrorCode;
-import forestry.core.delegates.AccessHandler;
-import forestry.core.interfaces.IAccessHandler;
-import forestry.core.interfaces.IRestrictedAccessTile;
-import forestry.core.utils.EnumAccess;
+import forestry.core.access.AccessHandler;
+import forestry.core.access.EnumAccess;
+import forestry.core.access.IAccessHandler;
+import forestry.core.access.IRestrictedAccess;
+import forestry.core.errors.EnumErrorCode;
+import forestry.core.tiles.ILocatable;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
@@ -25,12 +25,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class TilePlanter extends TileInventory implements IRestrictedAccessTile, IEnergyReceiver {
+public abstract class TilePlanter extends TileInventory implements IRestrictedAccess, IEnergyReceiver, ILocatable {
 
 	// / CONSTANTS
 	public static final short SLOT_SOIL_1 = 0;
@@ -94,11 +95,6 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 	}
 
 	@Override
-	public ChunkCoordinates getCoordinates() {
-		return new ChunkCoordinates(xCoord, yCoord, zCoord);
-	}
-
-	@Override
 	public void onSwitchAccess(EnumAccess oldAccess, EnumAccess newAccess) {
 		if (oldAccess == EnumAccess.SHARED || newAccess == EnumAccess.SHARED) {
 			// Pipes
@@ -108,11 +104,21 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 	}
 
 	@Override
+	public ChunkCoordinates getCoordinates() {
+		return new ChunkCoordinates(xCoord, yCoord, zCoord);
+	}
+
+	@Override
+	public World getWorld() {
+		return worldObj;
+	}
+
+	@Override
 	public void updateEntity() {
 		if (worldObj.isRemote) {
 			return;
 		}
-		if(validGroundMorph == null){
+		if (validGroundMorph == null) {
 			validGroundMorph = validGround;
 		}
 		if (ConfigurationHandler.planterUseRF) {
@@ -372,7 +378,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 		}
 		boolean errorNoResource = requiresSoil && getSoilStack() < 0 || requiresGermling && getGermlingStack() < 0;
 		boolean errorNoDisposal = getFreeDisposalSlot() < 0;
-		errorLogic.setCondition(errorNoResource, EnumErrorCode.NORESOURCE);
+		errorLogic.setCondition(errorNoResource, EnumErrorCode.NO_RESOURCE);
 		errorLogic.setCondition(errorNoDisposal, EnumErrorCode.NODISPOSAL);
 	}
 

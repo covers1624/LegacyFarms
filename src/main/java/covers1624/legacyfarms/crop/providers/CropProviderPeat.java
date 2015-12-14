@@ -3,8 +3,8 @@ package covers1624.legacyfarms.crop.providers;
 import covers1624.legacyfarms.crop.ICropEntity;
 import covers1624.legacyfarms.crop.ICropProvider;
 import covers1624.legacyfarms.crop.providers.entity.CropPeat;
+import covers1624.legacyfarms.init.ForestryProxy;
 import covers1624.lib.util.BlockPosition;
-import forestry.core.config.ForestryBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -21,7 +21,7 @@ public class CropProviderPeat implements ICropProvider {
 
 	@Override
 	public boolean isCrop(World world, BlockPosition blockPos) {
-		return blockPos.getBlock(world) == ForestryBlock.soil.block() && blockPos.getBlockMeta(world) == 13;
+		return blockPos.getBlock(world) == ForestryProxy.soil && blockPos.getBlockMeta(world) == 13;
 	}
 
 	@Override

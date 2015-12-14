@@ -85,7 +85,7 @@ public class Blueprints {
 		Block a = Blocks.air;
 
 		// Arboretum
-		i = ModBlocks.forestrySoil;
+		i = ForestryProxy.soil;
 		Block[][] soil = new Block[][] { // Format :D
 				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1
 				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i }, // 2
@@ -190,7 +190,7 @@ public class Blueprints {
 		defaultFarm.setPlane(4, farm0);
 		defaultFarm.setPlane(5, farm0);
 
-		i = ModBlocks.forestrySoil;
+		i = ForestryProxy.soil;
 		j = Blocks.water;
 		Block[][] bogSoil = new Block[][] { // Format :D
 				new Block[] { i, i, i, i, i, i, i, i, i, i, i, i, i, i, i }, // 1

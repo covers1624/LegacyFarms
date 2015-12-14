@@ -1,6 +1,7 @@
 package covers1624.legacyfarms.block;
 
 import covers1624.legacyfarms.LegacyFarms;
+import covers1624.legacyfarms.init.ForestryProxy;
 import covers1624.legacyfarms.init.ModBlocks;
 import covers1624.legacyfarms.worldgen.WorldGenTree;
 import net.minecraft.block.Block;
@@ -53,7 +54,7 @@ public class BlockSaplingPhantom extends BlockBush {
 
 	@Override
 	protected boolean canPlaceBlockOn(Block block) {
-		return block == Blocks.dirt || block == ModBlocks.forestrySoil;
+		return block == Blocks.dirt || block == ForestryProxy.soil;
 	}
 
 	@Override

@@ -1,0 +1,28 @@
+#Legacy Farms English US.
+
+#Planters.
+tile.arboretum.name=Arboretum
+tile.farm.name=Farm
+tile.rubberFarm.name=Rubber Farm
+tile.pumpkinFarm.name=Pumpkin Farm
+tile.peatBog.name=Peat Bog
+tile.mushroomFarm.name=Mushroom Farm
+tile.infernalFarm.name=Infernal Farm
+
+#Harvesters.
+tile.logger.name=Logger
+tile.combine.name=Combine
+tile.rubberTreeHarvester=Rubber Tree Harvester
+tile.pumpkinHarvester.name=Pumpkin Harvester
+tile.turbary.name=Turbary
+tile.cactiHarvester=Cacti Harvester
+tile.mushroomPicker.name=Mushroom Picker
+tile.sugarCaneHarvester.name=Sugar Cane Harvester
+tile.infernalCombine.name=Infernal Harvester
+
+#Mills.
+tile.forester.name=Forester
+tile.treeTap=TreeTap
+
+#Core.
+itemGroup.legacyFarms=Legacy Farms

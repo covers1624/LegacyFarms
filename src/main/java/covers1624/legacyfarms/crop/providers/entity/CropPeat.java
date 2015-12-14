@@ -1,8 +1,9 @@
 package covers1624.legacyfarms.crop.providers.entity;
 
 import covers1624.legacyfarms.crop.ICropEntity;
+import covers1624.legacyfarms.init.ForestryProxy;
 import covers1624.lib.util.BlockPosition;
-import forestry.core.config.ForestryItem;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -37,7 +38,7 @@ public class CropPeat implements ICropEntity {
 	@Override
 	public ArrayList<ItemStack> doHarvest() {
 		ArrayList<ItemStack> harvest = new ArrayList<ItemStack>();
-		harvest.add(new ItemStack(ForestryItem.peat.item()));
+		harvest.add(new ItemStack(ForestryProxy.peat));
 		blockPos.setBlock(world, Blocks.dirt);
 		return harvest;
 	}

@@ -3,9 +3,9 @@ package covers1624.legacyfarms.tile.planter;
 import covers1624.legacyfarms.LegacyFarms;
 import covers1624.legacyfarms.crop.providers.CropProviderPeat;
 import covers1624.legacyfarms.init.Blueprints;
+import covers1624.legacyfarms.init.ForestryProxy;
 import covers1624.legacyfarms.utils.GuiId;
 import covers1624.lib.util.BlockPosition;
-import forestry.core.config.ForestryBlock;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -19,8 +19,8 @@ public class TilePlanterBog extends TilePlanter{
 
 	public TilePlanterBog(){
 		super(new CropProviderPeat());
-		validSoil = new ItemStack(ForestryBlock.soil.block(), 1, 1);
-		validGround = new ItemStack(ForestryBlock.soil.block(), 1, 1);
+		validSoil = new ItemStack(ForestryProxy.soil, 1, 1);
+		validGround = new ItemStack(ForestryProxy.soil, 1, 1);
 		validWaste = new ItemStack(Blocks.dirt);
 		validDisposal = new ItemStack(Blocks.dirt);
 

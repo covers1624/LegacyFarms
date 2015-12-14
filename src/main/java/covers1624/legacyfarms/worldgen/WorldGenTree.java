@@ -1,6 +1,6 @@
 package covers1624.legacyfarms.worldgen;
 
-import forestry.core.config.ForestryBlock;
+import covers1624.legacyfarms.init.ForestryProxy;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -71,7 +71,7 @@ public class WorldGenTree extends WorldGenTrees {
 				return false;
 			}
 			Block j1 = world.getBlock(i, j - 1, k);
-			if (j1 == ForestryBlock.soil.block()) {
+			if (j1 == ForestryProxy.soil) {
 				world.getClass();
 				if (j < 256 - l - 1) {
 					break label1;

@@ -1,5 +1,6 @@
 package covers1624.legacyfarms.container;
 
+import covers1624.legacyfarms.init.ForestryProxy;
 import covers1624.legacyfarms.init.ModBlocks;
 import covers1624.legacyfarms.slot.InputSlot;
 import covers1624.legacyfarms.slot.OutputSlot;
@@ -16,19 +17,14 @@ import java.util.ArrayList;
 public class ContainerArboretum extends Container {
 
 	private TilePlanter arboretum;
-	private static ArrayList<ItemStack> soil = new ArrayList<ItemStack>();
 	private static ArrayList<ItemStack> saplings = OreDictionary.getOres("treeSapling");
-
-	static {
-		soil.add(new ItemStack(ModBlocks.forestrySoil));
-	}
 
 	public ContainerArboretum(InventoryPlayer playerInventory, TilePlanter arboretum) {
 		this.arboretum = arboretum;
-		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 0, 19, 35, new ItemStack(ModBlocks.forestrySoil)));
-		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 1, 37, 35, new ItemStack(ModBlocks.forestrySoil)));
-		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 2, 19, 53, new ItemStack(ModBlocks.forestrySoil)));
-		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 3, 37, 53, new ItemStack(ModBlocks.forestrySoil)));
+		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 0, 19, 35, new ItemStack(ForestryProxy.soil)));
+		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 1, 37, 35, new ItemStack(ForestryProxy.soil)));
+		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 2, 19, 53, new ItemStack(ForestryProxy.soil)));
+		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 3, 37, 53, new ItemStack(ForestryProxy.soil)));
 
 		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 4, 71, 35, new ItemStack(ModBlocks.blockSapling)));
 		InventoryUtils.addSlotToContainer(this, new InputSlot(arboretum, 5, 89, 35, new ItemStack(ModBlocks.blockSapling)));

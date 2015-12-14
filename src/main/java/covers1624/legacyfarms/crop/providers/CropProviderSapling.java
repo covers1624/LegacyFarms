@@ -3,6 +3,7 @@ package covers1624.legacyfarms.crop.providers;
 import covers1624.legacyfarms.crop.ICropEntity;
 import covers1624.legacyfarms.crop.ICropProvider;
 import covers1624.legacyfarms.crop.providers.entity.CropSapling;
+import covers1624.legacyfarms.init.ForestryProxy;
 import covers1624.legacyfarms.init.ModBlocks;
 import covers1624.lib.util.BlockPosition;
 import covers1624.lib.util.ItemUtils;
@@ -50,7 +51,7 @@ public class CropProviderSapling implements ICropProvider {
 		Block below = blockPos.getBlock(world);
 		int meta = blockPos.getBlockMeta(world);
 		blockPos.step(ForgeDirection.UP);
-		if (block != Blocks.air || below != ModBlocks.forestrySoil || meta != 0 || !(germling.getItem() instanceof ItemBlock)) {
+		if (block != Blocks.air || below != ForestryProxy.mushroom || meta != 0 || !(germling.getItem() instanceof ItemBlock)) {
 			return false;
 		}
 

@@ -5,6 +5,7 @@ import covers1624.legacyfarms.crop.CropProviders;
 import covers1624.legacyfarms.crop.ICropProvider;
 import covers1624.legacyfarms.handler.CropHandler;
 import covers1624.legacyfarms.init.Blueprints;
+import covers1624.legacyfarms.init.ForestryProxy;
 import covers1624.legacyfarms.init.ModBlocks;
 import covers1624.legacyfarms.utils.GuiId;
 import covers1624.lib.util.BlockPosition;
@@ -18,8 +19,8 @@ public class TilePlanterSapling extends TilePlanter {
 	public TilePlanterSapling() {
 		super(CropProviders.arborealCrops);
 
-		validSoil = new ItemStack(ModBlocks.forestrySoil);
-		validGround = new ItemStack(ModBlocks.forestrySoil);
+		validSoil = new ItemStack(ForestryProxy.mushroom);
+		validGround = new ItemStack(ForestryProxy.mushroom);
 		validWaste = new ItemStack(Blocks.sand);
 		validDisposal = new ItemStack(Blocks.sand);
 
@@ -38,7 +39,7 @@ public class TilePlanterSapling extends TilePlanter {
 
 	@Override
 	public boolean isSpecialBlock(Block block, int meta) {
-		if (block == ModBlocks.forestrySoil) {
+		if (block == ForestryProxy.mushroom) {
 			return true;
 		}
 		if (CropHandler.containsLogOrLeaf(new ItemStack(block, 1, meta))) {

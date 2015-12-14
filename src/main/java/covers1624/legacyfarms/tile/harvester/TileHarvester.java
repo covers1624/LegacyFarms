@@ -9,23 +9,24 @@ import covers1624.legacyfarms.tile.planter.TilePlanter;
 import covers1624.legacyfarms.utils.BlockUtils;
 import covers1624.lib.util.BlockPosition;
 import covers1624.lib.util.ItemUtils;
-import forestry.core.delegates.AccessHandler;
-import forestry.core.interfaces.IAccessHandler;
-import forestry.core.interfaces.IRestrictedAccessTile;
-import forestry.core.utils.EnumAccess;
-import forestry.core.utils.StackUtils;
+import forestry.core.access.AccessHandler;
+import forestry.core.access.EnumAccess;
+import forestry.core.access.IAccessHandler;
+import forestry.core.access.IRestrictedAccess;
+import forestry.core.tiles.ILocatable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class TileHarvester extends TileInventory implements IRestrictedAccessTile {
+public abstract class TileHarvester extends TileInventory implements IRestrictedAccess, ILocatable {
 
 	protected ArrayList<ICropProvider> cropProviders = new ArrayList<ICropProvider>();
 
@@ -97,8 +98,8 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 	}
 
 	public boolean isValidWindfall(ItemStack stack) {
-		for (ItemStack windfall : validWindfall){
-			if (windfall.getItem().equals(stack.getItem()) && windfall.getItemDamage() == stack.getItemDamage()){
+		for (ItemStack windfall : validWindfall) {
+			if (windfall.getItem().equals(stack.getItem()) && windfall.getItemDamage() == stack.getItemDamage()) {
 				return true;
 			}
 		}
@@ -365,7 +366,7 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 				// Get complete inventory (for double chests)
 				IInventory inventory = BlockUtils.getChest(inventory1);
 
-				StackUtils.stowInInventory(getStackInSlot(i), inventory, true);
+				covers1624.legacyfarms.utils.ItemUtils.stowInInventory(getStackInSlot(i), inventory, true);
 				if (getStackInSlot(i).stackSize <= 0) {
 					setInventorySlotContents(i, null);
 				}
@@ -382,6 +383,11 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 	@Override
 	public ChunkCoordinates getCoordinates() {
 		return new ChunkCoordinates(xCoord, yCoord, zCoord);
+	}
+
+	@Override
+	public World getWorld() {
+		return worldObj;
 	}
 
 	@Override

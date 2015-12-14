@@ -3,8 +3,9 @@ package covers1624.legacyfarms.crop.providers;
 import covers1624.legacyfarms.crop.ICropEntity;
 import covers1624.legacyfarms.crop.ICropProvider;
 import covers1624.legacyfarms.crop.providers.entity.CropMushroom;
+import covers1624.legacyfarms.init.ForestryProxy;
+import covers1624.legacyfarms.init.ModBlocks;
 import covers1624.lib.util.BlockPosition;
-import forestry.core.config.ForestryBlock;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -25,7 +26,7 @@ public class CropProviderMushroom implements ICropProvider {
 	@Override
 	public boolean isCrop(World world, BlockPosition blockPos) {
 		Block block = blockPos.getBlock(world);
-		return block == ForestryBlock.mushroom.block() || block == Blocks.brown_mushroom_block|| block == Blocks.red_mushroom_block;
+		return block == ForestryProxy.mushroom || block == Blocks.brown_mushroom_block|| block == Blocks.red_mushroom_block;
 	}
 
 	@Override
@@ -39,9 +40,9 @@ public class CropProviderMushroom implements ICropProvider {
 			return false;
 		}
 		if (germling.isItemEqual(new ItemStack(Blocks.brown_mushroom))){
-			blockPos.setBlock(world, ForestryBlock.mushroom.block(), 0);
+			blockPos.setBlock(world, ForestryProxy.mushroom, 0);
 		} else {
-			blockPos.setBlock(world, ForestryBlock.mushroom.block(), 1);
+			blockPos.setBlock(world, ForestryProxy.mushroom, 1);
 		}
 		return true;
 	}

@@ -1,17 +1,17 @@
 package covers1624.legacyfarms.tile;
 
-import forestry.core.inventory.TileInventoryAdapter;
+import forestry.core.inventory.InventoryAdapterTile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 
 public abstract class TileInventory extends TileBase implements ISidedInventory {
 
-	protected TileInventoryAdapter<? extends TileInventory> inventory;
+	protected InventoryAdapterTile<? extends TileInventory> inventory;
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public TileInventory(int size) {
-		inventory = new TileInventoryAdapter(this, size, "Items");
+		inventory = new InventoryAdapterTile(this, size, "Items");
 	}
 
 	public TileInventory() {
