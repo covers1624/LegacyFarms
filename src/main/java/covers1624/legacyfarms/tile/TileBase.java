@@ -21,6 +21,8 @@ public class TileBase extends TileEntity implements IOwnable, IErrorLogicSource,
 
 	protected boolean isInited = false;
 
+	private boolean needsNetoworkUpdate = false;
+
 	private ForgeDirection facing = ForgeDirection.WEST;
 
 	public ForgeDirection getFacing() {
@@ -34,6 +36,27 @@ public class TileBase extends TileEntity implements IOwnable, IErrorLogicSource,
 	public BlockPosition getCoords() {
 		return new BlockPosition(xCoord, yCoord, zCoord);
 	}
+
+	//public void updateEntity() {
+	//	if (this.worldObj.isRemote) {
+	//		updateServerSide();
+	//	} else {
+	//		updateClientSide();
+	//	}
+//
+	//	if (this.needsNetoworkUpdate){
+	//		needsNetoworkUpdate = false;
+	//		sendNetworkUpdate();
+	//	}
+	//}
+
+	//protected void updateClientSide() {
+//
+	//}
+
+	//protected void updateServerSide() {
+//
+	//}
 
 	@Override
 	public Packet getDescriptionPacket() {
@@ -51,55 +74,58 @@ public class TileBase extends TileEntity implements IOwnable, IErrorLogicSource,
 		this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 	}
 
+	//@Override
+	//public void readFromNBT(NBTTagCompound tagCompound) {
+	//	super.readFromNBT(tagCompound);
+	//	readNetData(tagCompound);
+	//}
+
+	//@Override
+	//public void writeToNBT(NBTTagCompound tagCompound) {
+	//	super.writeToNBT(tagCompound);
+	//	writeNetData(tagCompound);
+	//}
+
 	@Override
-	public void readFromNBT(NBTTagCompound tagCompound) {
-		super.readFromNBT(tagCompound);
-		// readNetData(tagCompound);
+	public void readNetData(NBTTagCompound tagCompound) {
+		facing = ForgeDirection.VALID_DIRECTIONS[tagCompound.getInteger("Facing")];
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound tagCompound) {
-		super.writeToNBT(tagCompound);
-		// writeNetData(tagCompound);
+	public void writeNetData(NBTTagCompound tagCompound) {
+		tagCompound.setInteger("Facing", facing.ordinal());
 	}
+
+	@Override
+	public BlockPosition getTilePos() {
+		return new BlockPosition(this);
+	}
+
+	//protected void sendNetworkUpdate(){
+//
+	//}
 
 	@Override
 	public boolean isOwned() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public GameProfile getOwner() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void setOwner(GameProfile owner) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public boolean isOwner(EntityPlayer player) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public IErrorLogic getErrorLogic() {
 		return errorLogic;
-	}
-
-	@Override
-	public void readNetData(NBTTagCompound tagCompound) {
-
-	}
-
-	@Override
-	public void writeNetData(NBTTagCompound tagCompound) {
-		// TODO Auto-generated method stub
-
 	}
 }

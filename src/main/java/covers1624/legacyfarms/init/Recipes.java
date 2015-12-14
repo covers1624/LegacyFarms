@@ -31,6 +31,21 @@ public class Recipes {
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.blockHarvester, 1, 6), "BGR", "GAG", "RGB", 'G', Blocks.glass, 'A', new ItemStack(ModBlocks.blockHarvester, 1, 0), 'C', ForestryProxy.sturdyCasing, 'B', Blocks.brown_mushroom, 'R', Blocks.red_mushroom);
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.blockHarvester, 1, 7), "RGR", "GAG", "RGR", 'G', Blocks.glass, 'A', new ItemStack(ModBlocks.blockHarvester, 1, 0), 'C', ForestryProxy.sturdyCasing, 'R', Items.reeds);
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.blockHarvester, 1, 8), "NGN", "GAG", "NGN", 'G', Blocks.glass, 'A', new ItemStack(ModBlocks.blockHarvester, 1, 0), 'C', ForestryProxy.sturdyCasing, 'N', Items.nether_wart);
+
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.blockMill, 1, 0), "DGD", "GPG", "DGD", 'G', Blocks.glass, 'D', Items.diamond, 'P', new ItemStack(ModBlocks.blockPlanter));
+
+		GameRegistry.addRecipe(new ItemStack(ModItems.itemCatalyst, 3), "CCC", "FBF", 'C', ForestryProxy.waxCapsuleEmpty, 'B', Items.bone, 'F', ForestryProxy.fertilizerCompound);
+		GameRegistry.addRecipe(new ItemStack(ModItems.itemCatalyst, 3), "CCC", "FBF", 'C', ForestryProxy.emptyCan, 'B', Items.bone, 'F', ForestryProxy.fertilizerCompound);
+
+		if (ForestryProxy.moduleApicultureEnabled){
+			GameRegistry.addRecipe(new ItemStack(ModItems.itemCatalyst, 3), "CCC", "PBP", 'C', ForestryProxy.waxCapsuleEmpty, 'B', Items.bone, 'P', ForestryProxy.pollenCluster);
+			GameRegistry.addRecipe(new ItemStack(ModItems.itemCatalyst, 3), "CCC", "PBP", 'C', ForestryProxy.emptyCan, 'B', Items.bone, 'P', ForestryProxy.pollenCluster);
+			GameRegistry.addRecipe(new ItemStack(ModItems.itemCatalyst), "HHH", "FCF", "HHH", 'H', ForestryProxy.honeyDrop, 'F', ForestryProxy.fertilizerCompound, 'C', ForestryProxy.waxCapsuleEmpty);
+			GameRegistry.addRecipe(new ItemStack(ModItems.itemCatalyst), "HHH", "FCF", "HHH", 'H', ForestryProxy.honeyDrop, 'F', ForestryProxy.fertilizerCompound, 'C', ForestryProxy.emptyCan);
+			GameRegistry.addRecipe(new ItemStack(ModItems.itemCatalyst), "HHH", "PCP", "HHH", 'H', ForestryProxy.honeyDrop, 'P', ForestryProxy.pollenCluster, 'C', ForestryProxy.waxCapsuleEmpty);
+			GameRegistry.addRecipe(new ItemStack(ModItems.itemCatalyst), "HHH", "PCP", "HHH", 'H', ForestryProxy.honeyDrop, 'P', ForestryProxy.pollenCluster, 'C', ForestryProxy.emptyCan);
+
+		}
 	}
 
 	private static void addRecipe(ItemStack output, Object... inputs) {

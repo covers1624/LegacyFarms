@@ -1,11 +1,14 @@
 package covers1624.legacyfarms.init;
 
 import covers1624.legacyfarms.block.BlockHarvester;
+import covers1624.legacyfarms.block.BlockMill;
 import covers1624.legacyfarms.block.BlockPlanter;
 import covers1624.legacyfarms.item.ItemBlockHarvester;
 import covers1624.legacyfarms.item.ItemBlockPlanter;
 import covers1624.legacyfarms.tile.harvester.*;
+import covers1624.legacyfarms.tile.mill.TileMill;
 import covers1624.legacyfarms.tile.planter.*;
+import covers1624.lib.item.MultiTileItem;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -14,6 +17,7 @@ public class ModBlocks {
 
 	public static BlockHarvester blockHarvester;
 	public static BlockPlanter blockPlanter;
+	public static BlockMill blockMill;
 
 	public static Block blockSapling = Blocks.sapling;
 
@@ -29,6 +33,9 @@ public class ModBlocks {
 		GameRegistry.registerBlock(blockPlanter, ItemBlockPlanter.class, blockPlanter.getUnlocalizedName());
 		initPlanterTiles();
 
+		blockMill = new BlockMill();
+		GameRegistry.registerBlock(blockMill, MultiTileItem.class, blockMill.getUnlocalizedName());
+		blockMill.addSubItemAndTileAndRegister(0, "forester", TileMill.class);//TODO
 	}
 
 	private static void initPlanterTiles() {

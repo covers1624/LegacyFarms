@@ -1,5 +1,6 @@
 package covers1624.legacyfarms.proxy;
 
+import covers1624.legacyfarms.client.render.RenderMill;
 import covers1624.legacyfarms.client.render.RenderPlanter;
 import covers1624.legacyfarms.client.render.RenderingHandler;
 import covers1624.legacyfarms.client.render.TileRenderHandler;
@@ -29,6 +30,7 @@ public class ClientProxy implements ILFProxy {
 		RenderingHandler.registerBlockRender(ModBlocks.blockPlanter, 5, new RenderPlanter(Reference.MODEL_FOLDER + PlanterUtils.getNameFromMeta(5)));
 		RenderingHandler.registerBlockRender(ModBlocks.blockPlanter, 6, new RenderPlanter(Reference.MODEL_FOLDER + PlanterUtils.getNameFromMeta(6)));
 
+		RenderingHandler.registerBlockRender(ModBlocks.blockMill, 0, new RenderMill(Reference.MODEL_FOLDER + "forester_"));
 	}
 
 	public RenderPlanter getPlanterRenderer(int meta) {

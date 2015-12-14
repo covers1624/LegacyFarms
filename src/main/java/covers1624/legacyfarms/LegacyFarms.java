@@ -51,8 +51,9 @@ public class LegacyFarms {
 			logger.trace("Registering Waila Module.");
 			FMLInterModComms.sendMessage("Waila", "register", Reference.WAILA_CALLBACK);
 		}
-		ForestryProxy.sanityCheckForestry();
+		ForestryProxy.init();
 		ModBlocks.init();
+		ModItems.init();
 	}
 
 	@EventHandler

@@ -24,5 +24,8 @@ tile.infernalCombine.name=Infernal Harvester
 tile.forester.name=Forester
 tile.treeTap=TreeTap
 
+#Items.
+item.vialCatalyst.name=Catalyst
+
 #Core.
 itemGroup.legacyFarms=Legacy Farms
