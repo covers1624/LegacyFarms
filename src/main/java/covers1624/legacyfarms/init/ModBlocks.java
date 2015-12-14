@@ -55,7 +55,9 @@ public class ModBlocks {
 		blockHarvester.addSubItemAndTileAndRegister(1, "combine", TileHarvesterSeeds.class);
 		blockHarvester.addSubItemAndTileAndRegister(3, "pumpkinHarvester", TileHarvesterHerbaceous.class);
 		blockHarvester.addSubItemAndTileAndRegister(4, "turbary", TileHarvesterBog.class);
+		blockHarvester.addSubItemAndTileAndRegister(5, "cactiHarvester", TileHarvesterCacti.class);
 		blockHarvester.addSubItemAndTileAndRegister(6, "mushroomPicker", TileHarvesterMushroom.class);
+		blockHarvester.addSubItemAndTileAndRegister(7, "sugarCaneHarvester", TileHarvesterReeds.class);
 		blockHarvester.addSubItemAndTileAndRegister(8, "infernalCombine", TileHarvesterNetherwart.class);
 	}
 
