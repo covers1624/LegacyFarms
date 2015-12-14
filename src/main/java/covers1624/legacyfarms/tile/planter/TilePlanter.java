@@ -57,6 +57,8 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 
 	public ItemStack validSoil; // Block or item that can be used to create the ground to plant on.
 	public ItemStack validGround; // Block that can be planted on.
+	public ItemStack validGroundMorph; //Blocks that change meta.
+	public ArrayList<ItemStack> validGrounds = new ArrayList<ItemStack>();
 	public ItemStack validWaste; // Block that is waste to be collected.
 	public ItemStack validDisposal; // Block that is put into inventory when waste is collected.
 
@@ -109,6 +111,9 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 	public void updateEntity() {
 		if (worldObj.isRemote) {
 			return;
+		}
+		if(validGroundMorph == null){
+			validGroundMorph = validGround;
 		}
 		if (ConfigurationHandler.planterUseRF) {
 			if (energyStorage.getEnergyStored() >= 30) {
@@ -458,7 +463,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 				Block block = pos.getBlock(worldObj);
 				BlockPosition aboveBp = pos.copy().step(ForgeDirection.UP);
 				Block above = aboveBp.getBlock(worldObj);
-				if (!(block != null && block.getBlockHardness(worldObj, pos.x, pos.y, pos.z) < 0) && !validGround.isItemEqual(pos.getWorldItemStack(worldObj)) && (above == Blocks.air || above == Blocks.snow_layer)) {
+				if (!(block != null && block.getBlockHardness(worldObj, pos.x, pos.y, pos.z) < 0) && !validGroundMorph.isItemEqual(pos.getWorldItemStack(worldObj)) && !validGround.isItemEqual(pos.getWorldItemStack(worldObj)) && (above == Blocks.air || above == Blocks.snow_layer)) {
 					if (validWaste != null) {
 						if (validWaste.isItemEqual(pos.getWorldItemStack(worldObj))) {
 							collectSand(pos);
@@ -493,8 +498,8 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 
 					// Make sure we are contained
 					List<BlockPosition> adjacent = pos.getAdjacent(false);
-					for (BlockPosition blockPos : adjacent){
-						if (!validGround.isItemEqual(blockPos.getWorldItemStack(worldObj)) && !validWaste.isItemEqual(blockPos.getWorldItemStack(worldObj))){
+					for (BlockPosition blockPos : adjacent) {
+						if (!validGround.isItemEqual(blockPos.getWorldItemStack(worldObj)) && !validGroundMorph.isItemEqual(blockPos.getWorldItemStack(worldObj)) && !validWaste.isItemEqual(blockPos.getWorldItemStack(worldObj))) {
 							skip = true;
 							break;
 						}
@@ -599,7 +604,6 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 
 		pos.setBlock(worldObj, Block.getBlockFromItem(validGround.getItem()), validGround.getItemDamage());
 		// Only decrease stash if replacing was successful
-
 
 		if (validGround.isItemEqual(pos.getWorldItemStack(worldObj))) {
 			this.decrSoilStack(1); // decrease stash by one
