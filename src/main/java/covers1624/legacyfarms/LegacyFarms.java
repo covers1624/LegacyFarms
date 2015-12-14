@@ -8,6 +8,7 @@ import covers1624.legacyfarms.handler.LFGuiHandler;
 import covers1624.legacyfarms.init.Blueprints;
 import covers1624.legacyfarms.init.Crops;
 import covers1624.legacyfarms.init.ModBlocks;
+import covers1624.legacyfarms.init.Recipes;
 import covers1624.legacyfarms.proxy.ILFProxy;
 import covers1624.legacyfarms.reference.Reference;
 import covers1624.lib.util.LogHelper;
@@ -53,11 +54,12 @@ public class LegacyFarms {
 			logger.trace("Registering Waila Module.");
 			FMLInterModComms.sendMessage("Waila", "register", Reference.WAILA_CALLBACK);
 		}
+		ModBlocks.init();
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-		ModBlocks.init();
+		Recipes.init();
 		proxy.registerRenderers();
 	}
 
