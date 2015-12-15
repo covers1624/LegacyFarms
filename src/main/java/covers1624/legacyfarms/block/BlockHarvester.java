@@ -52,12 +52,6 @@ public class BlockHarvester extends BlockBase {
 	}
 
 	@Override
-	public int damageDropped(int meta) {
-		LegacyFarms.logger.info(meta);
-		return super.damageDropped(meta);
-	}
-
-	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
 		TileEntity tileEntity = super.createNewTileEntity(world, meta);
 		if (tileEntity == null) {

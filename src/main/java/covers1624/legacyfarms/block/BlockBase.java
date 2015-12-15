@@ -10,4 +10,9 @@ public abstract class BlockBase extends MultiTileBlock {
 		super(material);
 		setCreativeTab(LegacyFarms.creativeTab);
 	}
+
+	@Override
+	public int damageDropped(int meta) {
+		return meta;
+	}
 }

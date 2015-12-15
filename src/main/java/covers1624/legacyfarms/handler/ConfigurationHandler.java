@@ -16,6 +16,9 @@ public class ConfigurationHandler {
 	public static int planterMaxRF;
 	public static boolean planterUseRF;
 
+	public static boolean harvesterUseRF;
+	public static int harvesterMaxRF;
+
 	// Functionality.
 	public static boolean planterSideSensitive;
 	public static boolean harvesterSideSensitive;
@@ -40,6 +43,9 @@ public class ConfigurationHandler {
 		// Power.
 		planterUseRF = configuration.getBoolean("Planter Use RF", "Power", true, "Set this to false and all planters will not use RF.");
 		planterMaxRF = configuration.getInt("Planter Max RF", "Power", 1024, 100, 10000, "The ammount of RF that Planters are able to store.");
+
+		harvesterUseRF = configuration.getBoolean("Harvester Use RF", "Power", true, "Set this to false and all Harvesters will not use RF.");
+		harvesterMaxRF = configuration.getInt("Planter Max RF", "Power", 1024, 100, 10000, "The amount of RF that Harvesters are able to store.");
 
 		// Functionality.
 		planterSideSensitive = configuration.getBoolean("Planter Side Sensitive", "Customization", true, "Set to false if planters should output all harvested products regardless of side a pipe is attached to");

@@ -27,10 +27,10 @@ public class Recipes {
 		//GameRegistry.addRecipe(new ItemStack(ModBlocks.blockHarvester, 1, 2), "GTG", "TCT", "GBG", 'G', Blocks.glass, 'T', new ItemStack(ForestryProxy.tubes, 1, 5), 'C', ForestryProxy.sturdyCasing, 'B', new ItemStack(ForestryItem.circuitboards.item(), 1, 0));
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.blockHarvester, 1, 3), "MGP", "GAG", "PGM", 'G', Blocks.glass, 'A', new ItemStack(ModBlocks.blockHarvester, 1, 0), 'C', ForestryProxy.sturdyCasing, 'M', Blocks.melon_block, 'P', Blocks.pumpkin);
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.blockHarvester, 1, 4), "GTG", "TCT", "GBG", 'G', Blocks.glass, 'T', new ItemStack(ForestryProxy.tubes, 1, 1), 'C', ForestryProxy.sturdyCasing, 'B', new ItemStack(ForestryProxy.circuitBards, 1, 0));
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.blockHarvester, 1, 5), "NGN", "GAG", "NGN", 'G', Blocks.glass, 'A', new ItemStack(ModBlocks.blockHarvester, 1, 0), 'C', ForestryProxy.sturdyCasing, 'N', Blocks.cactus);
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.blockHarvester, 1, 6), "BGR", "GAG", "RGB", 'G', Blocks.glass, 'A', new ItemStack(ModBlocks.blockHarvester, 1, 0), 'C', ForestryProxy.sturdyCasing, 'B', Blocks.brown_mushroom, 'R', Blocks.red_mushroom);
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.blockHarvester, 1, 7), "RGR", "GAG", "RGR", 'G', Blocks.glass, 'A', new ItemStack(ModBlocks.blockHarvester, 1, 0), 'C', ForestryProxy.sturdyCasing, 'R', Items.reeds);
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.blockHarvester, 1, 8), "NGN", "GAG", "NGN", 'G', Blocks.glass, 'A', new ItemStack(ModBlocks.blockHarvester, 1, 0), 'C', ForestryProxy.sturdyCasing, 'N', Items.nether_wart);
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.blockHarvester, 1, 5), "NGN", "GAG", "NGN", 'G', Blocks.glass, 'A', new ItemStack(ModBlocks.blockHarvester, 1, 0), 'N', Blocks.cactus);
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.blockHarvester, 1, 6), "BGR", "GAG", "RGB", 'G', Blocks.glass, 'A', new ItemStack(ModBlocks.blockHarvester, 1, 0), 'B', Blocks.brown_mushroom, 'R', Blocks.red_mushroom);
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.blockHarvester, 1, 7), "RGR", "GAG", "RGR", 'G', Blocks.glass, 'A', new ItemStack(ModBlocks.blockHarvester, 1, 0), 'R', Items.reeds);
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.blockHarvester, 1, 8), "NGN", "GAG", "NGN", 'G', Blocks.glass, 'A', new ItemStack(ModBlocks.blockHarvester, 1, 0), 'N', Items.nether_wart);
 
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.blockMill, 1, 0), "DGD", "GPG", "DGD", 'G', Blocks.glass, 'D', Items.diamond, 'P', new ItemStack(ModBlocks.blockPlanter));
 

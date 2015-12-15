@@ -24,4 +24,10 @@ public class IntermodsHandler {
 		LegacyFarms.logger.trace("Loading Modules Complete.");
 	}
 
+	public static void loadAllModuleRecipes(){
+		if (Loader.isModLoaded("AgriCraft")){
+			AgricraftModule.initRecipes();
+		}
+	}
+
 }

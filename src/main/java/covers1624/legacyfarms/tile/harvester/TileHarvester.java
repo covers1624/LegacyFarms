@@ -1,5 +1,8 @@
 package covers1624.legacyfarms.tile.harvester;
 
+import buildcraft.core.lib.engines.TileEngineBase;
+import cofh.api.energy.EnergyStorage;
+import cofh.api.energy.IEnergyReceiver;
 import covers1624.legacyfarms.LegacyFarms;
 import covers1624.legacyfarms.crop.ICropEntity;
 import covers1624.legacyfarms.crop.ICropProvider;
@@ -16,6 +19,7 @@ import forestry.core.access.IRestrictedAccess;
 import forestry.core.tiles.ILocatable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
@@ -26,7 +30,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class TileHarvester extends TileInventory implements IRestrictedAccess, ILocatable {
+public abstract class TileHarvester extends TileInventory implements IRestrictedAccess, IEnergyReceiver, ILocatable {
 
 	protected ArrayList<ICropProvider> cropProviders = new ArrayList<ICropProvider>();
 
@@ -45,8 +49,15 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 
 	private ArrayList<ItemStack> validWindfall = new ArrayList<ItemStack>();
 
+	private EnergyStorage energyStorage = new EnergyStorage(ConfigurationHandler.harvesterMaxRF);
+
 	public TileHarvester() {
 		super(8);
+	}
+
+	@Override
+	public void openGui(EntityPlayer player) {
+
 	}
 
 	public TileHarvester(ICropProvider provider) {
@@ -85,7 +96,18 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 		if (worldObj.isRemote) {
 			return;
 		}
-		doWork();
+		if (ConfigurationHandler.harvesterUseRF){
+			if (energyStorage.getEnergyStored() >= 30){
+				int use = doWork();
+				if (use == 1){
+					energyStorage.extractEnergy(30, false);
+				} else if (use == 0){
+					energyStorage.extractEnergy(5, false);
+				}
+			}
+		} else {
+			doWork();
+		}
 	}
 
 	private ICropProvider getCropProvider(BlockPosition blockPosition) {
@@ -143,8 +165,8 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 		return -1;
 	}
 
-	public boolean doWork() {
-
+	public int doWork() {
+		boolean hasOpHappened = false;
 		// We already have a candidate, so we don't need to search for a block
 		// to chop.
 		if (this.posNext != null) {
@@ -152,14 +174,15 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 			this.posNext = null;
 			ICropProvider provider = getCropProvider(killMe);
 			if (provider == null) {
-				return false;
+				return -1;
 			}
 
 			ICropEntity crop = provider.getCrop(worldObj, killMe);
 			if (crop != null && crop.isHarvestable()) {
+				hasOpHappened = true;
 				hewTree(crop);
 			}
-			return true;
+			return hasOpHappened ? 1 : 0;
 		}
 
 		int processedBlocks = 0;
@@ -175,6 +198,7 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 			}
 			ICropEntity crop = provider.getCrop(worldObj, posBlock);
 			if (crop != null && crop.isHarvestable()) {
+				hasOpHappened = true;
 				hewTree(crop);
 				break;
 			}
@@ -187,7 +211,7 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 			resetAxe();
 		}
 
-		return true;
+		return hasOpHappened ? 1 : 0;
 	}
 
 	protected void advanceAxe() {
@@ -396,5 +420,25 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 			worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord, blockType);
 			markDirty();
 		}
+	}
+
+	@Override
+	public boolean canConnectEnergy(ForgeDirection from) {
+		return true;
+	}
+
+	@Override
+	public int receiveEnergy(ForgeDirection from, int maxReceive, boolean simulate) {
+		return energyStorage.receiveEnergy(maxReceive, simulate);
+	}
+
+	@Override
+	public int getEnergyStored(ForgeDirection from) {
+		return energyStorage.getEnergyStored();
+	}
+
+	@Override
+	public int getMaxEnergyStored(ForgeDirection from) {
+		return energyStorage.getMaxEnergyStored();
 	}
 }
