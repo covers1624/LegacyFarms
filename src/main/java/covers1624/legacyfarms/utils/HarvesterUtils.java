@@ -25,6 +25,8 @@ public class HarvesterUtils {
 			return "sugarCaneHarvester";
 		case 8:
 			return "infernalHarvester";
+		case 9:
+			return "agricraftHarvester";
 		default:
 			return "UNKNOWN";
 		}

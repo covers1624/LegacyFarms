@@ -3,8 +3,6 @@ package covers1624.legacyfarms.init;
 import covers1624.legacyfarms.block.BlockHarvester;
 import covers1624.legacyfarms.block.BlockMill;
 import covers1624.legacyfarms.block.BlockPlanter;
-import covers1624.legacyfarms.item.ItemBlockHarvester;
-import covers1624.legacyfarms.item.ItemBlockPlanter;
 import covers1624.legacyfarms.tile.harvester.*;
 import covers1624.legacyfarms.tile.mill.TileMill;
 import covers1624.legacyfarms.tile.planter.*;
@@ -26,11 +24,11 @@ public class ModBlocks {
 		//GameRegistry.registerBlock(blockSapling, blockSapling.getUnlocalizedName());
 		//ItemUtils.readOres();
 		blockHarvester = new BlockHarvester();
-		GameRegistry.registerBlock(blockHarvester, ItemBlockHarvester.class, blockHarvester.getUnlocalizedName());
+		GameRegistry.registerBlock(blockHarvester, MultiTileItem.class, blockHarvester.getUnlocalizedName());
 		initHarvesterTiles();
 
 		blockPlanter = new BlockPlanter();
-		GameRegistry.registerBlock(blockPlanter, ItemBlockPlanter.class, blockPlanter.getUnlocalizedName());
+		GameRegistry.registerBlock(blockPlanter, MultiTileItem.class, blockPlanter.getUnlocalizedName());
 		initPlanterTiles();
 
 		blockMill = new BlockMill();

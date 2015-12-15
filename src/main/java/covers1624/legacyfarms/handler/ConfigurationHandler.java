@@ -21,6 +21,9 @@ public class ConfigurationHandler {
 	public static boolean harvesterSideSensitive;
 	public static boolean planterDropBlocks;
 
+	//Intermods.
+	public static boolean agricraftSupport;
+
 	public static void init(File file) {
 		if (configuration == null) {
 			configuration = new Configuration(file);
@@ -42,6 +45,8 @@ public class ConfigurationHandler {
 		planterSideSensitive = configuration.getBoolean("Planter Side Sensitive", "Customization", true, "Set to false if planters should output all harvested products regardless of side a pipe is attached to");
 		harvesterSideSensitive = configuration.getBoolean("Harvester Side Sensitive", "Customization", true, "Set to false if harvesters should output all harvested products regardless of side a pipe is attached to");
 		planterDropBlocks = configuration.getBoolean("Planter Drop Blocks", "Customization", true, "Set this to false and Planters will not drop blocks when clearing an area.");
+
+		agricraftSupport = configuration.getBoolean("Agricraft Support", "Intermods", true, "Set this to false to disable agricraft support.");
 
 		configuration.save();
 	}

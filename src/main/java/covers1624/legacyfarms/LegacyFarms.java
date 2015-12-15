@@ -6,8 +6,10 @@ import covers1624.legacyfarms.handler.CropHandler;
 import covers1624.legacyfarms.handler.LFEventHandler;
 import covers1624.legacyfarms.handler.LFGuiHandler;
 import covers1624.legacyfarms.init.*;
+import covers1624.legacyfarms.intermods.IntermodsHandler;
 import covers1624.legacyfarms.proxy.ILFProxy;
 import covers1624.legacyfarms.reference.Reference;
+import covers1624.lib.network.PacketPipeline;
 import covers1624.lib.util.LogHelper;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
@@ -34,6 +36,8 @@ public class LegacyFarms {
 	@Instance(Reference.MOD_NAME)
 	public static LegacyFarms instance;
 
+	//public static final PacketPipeline pipeline = new PacketPipeline();
+
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		instance = this;
@@ -46,24 +50,22 @@ public class LegacyFarms {
 		MinecraftForge.TERRAIN_GEN_BUS.register(eventHandler);
 		FMLCommonHandler.instance().bus().register(eventHandler);
 
-		//If statement probably not needed but needed for the log statement.
-		if (Loader.isModLoaded("Waila")) {
-			logger.trace("Registering Waila Module.");
-			FMLInterModComms.sendMessage("Waila", "register", Reference.WAILA_CALLBACK);
-		}
 		ForestryProxy.init();
 		ModBlocks.init();
 		ModItems.init();
+		IntermodsHandler.loadAllModules();
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
+		//pipeline.initalise(Reference.MOD_ID);
 		Recipes.init();
 		proxy.registerRenderers();
 	}
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
+		//pipeline.postInitialise();
 		Blueprints.init();
 		Crops.init();
 		CropHandler.init();
