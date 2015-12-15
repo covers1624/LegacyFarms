@@ -2,5 +2,5 @@ Legacy Farms
 ===============
 
 This mod brings back the old forestry farms.
-NOTE:
-This repo may not comply with the old forestry license at this moment, i will be making sure that everyone who contributed to the original fork gets recognition.
+LegacyFarms conains parts of forestry.
+See the LICENSE.txt for all the gory details or go to http://www.gnu.org/licenses/lgpl-3.0.txt for more information. LegacyFarms also contains code contributed by CovertJaguar, Player, MysteriousAges, Binnie, RichardG, cpw and others to Forestry.
