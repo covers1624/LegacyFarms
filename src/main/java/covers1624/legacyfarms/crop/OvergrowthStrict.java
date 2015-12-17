@@ -2,10 +2,7 @@ package covers1624.legacyfarms.crop;
 
 import net.minecraft.item.ItemStack;
 
-/**
- * Created by covers1624 on 12/15/2015.
- */
-public class OvergrowthStrict extends Overgrowth{
+public class OvergrowthStrict extends Overgrowth {
 	public OvergrowthStrict(ItemStack crop, ItemStack ripe) {
 		super(crop, ripe);
 	}

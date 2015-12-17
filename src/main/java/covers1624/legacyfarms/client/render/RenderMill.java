@@ -9,9 +9,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.ForgeDirection;
 import org.lwjgl.opengl.GL11;
 
-/**
- * Created by covers1624 on 12/15/2015.
- */
 public class RenderMill implements IBlockRenderer {
 	private ModelBase model = new ModelBase() {
 	};

@@ -10,9 +10,6 @@ import net.minecraft.world.World;
 
 import java.util.ArrayList;
 
-/**
- * Created by covers1624 on 11/30/2015.
- */
 public class CropHerbaceous implements ICropEntity {
 
 	private World world;
@@ -40,11 +37,11 @@ public class CropHerbaceous implements ICropEntity {
 		ArrayList<ItemStack> harvest = null;
 		if (block == Blocks.pumpkin) {
 			harvest = Blocks.pumpkin.getDrops(world, blockPos.x, blockPos.y, blockPos.z, 0, 0);
-		} else if (block == Blocks.melon_block){
+		} else if (block == Blocks.melon_block) {
 			harvest = Blocks.melon_block.getDrops(world, blockPos.x, blockPos.y, blockPos.z, 0, 0);
 		}
 		blockPos.setBlock(world, Blocks.air);
-		Proxies.common.addBlockDestroyEffects(world,blockPos.x, blockPos.y, blockPos.z, block, 0);
+		Proxies.common.addBlockDestroyEffects(world, blockPos.x, blockPos.y, blockPos.z, block, 0);
 		return harvest;
 	}
 }

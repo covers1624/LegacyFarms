@@ -44,7 +44,7 @@ public abstract class TileInventory extends TileBase implements ISidedInventory 
 
 	@Override
 	public ItemStack getStackInSlot(int slot) {
-		if(inventory != null){
+		if (inventory != null) {
 			return inventory.getStackInSlot(slot);
 		}
 		return null;

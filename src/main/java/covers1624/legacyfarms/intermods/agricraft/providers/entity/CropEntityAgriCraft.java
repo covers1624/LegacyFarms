@@ -10,9 +10,6 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by covers1624 on 12/16/2015.
- */
 public class CropEntityAgriCraft implements ICropEntity {
 
 	private World world;

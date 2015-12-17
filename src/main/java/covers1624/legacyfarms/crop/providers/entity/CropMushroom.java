@@ -1,9 +1,7 @@
 package covers1624.legacyfarms.crop.providers.entity;
 
-import covers1624.legacyfarms.LegacyFarms;
 import covers1624.legacyfarms.crop.ICropEntity;
 import covers1624.lib.util.BlockPosition;
-import covers1624.lib.util.LogHelper;
 import forestry.core.proxy.Proxies;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -13,9 +11,6 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.ArrayList;
 
-/**
- * Created by covers1624 on 11/30/2015.
- */
 public class CropMushroom implements ICropEntity {
 
 	private World world;
@@ -74,7 +69,7 @@ public class CropMushroom implements ICropEntity {
 			harvest = Blocks.red_mushroom_block.getDrops(world, blockPos.x, blockPos.y, blockPos.z, meta, 0);
 		}
 		blockPos.setBlock(world, Blocks.air);
-		Proxies.common.addBlockDestroyEffects(world,blockPos.x, blockPos.y, blockPos.z, block, 0);
+		Proxies.common.addBlockDestroyEffects(world, blockPos.x, blockPos.y, blockPos.z, block, 0);
 		return harvest;
 	}
 }

@@ -1,6 +1,5 @@
 package covers1624.legacyfarms.block;
 
-import covers1624.legacyfarms.LegacyFarms;
 import covers1624.legacyfarms.reference.Reference;
 import covers1624.legacyfarms.tile.harvester.TileHarvesterSapling;
 import covers1624.legacyfarms.utils.HarvesterUtils;

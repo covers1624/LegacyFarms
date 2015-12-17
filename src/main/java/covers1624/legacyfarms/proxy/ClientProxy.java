@@ -11,12 +11,9 @@ import covers1624.legacyfarms.utils.PlanterUtils;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
-import java.util.HashMap;
-
-public class ClientProxy implements ILFProxy {
+public class ClientProxy extends CommonProxy {
 
 	public static int lfRenderId = RenderingRegistry.getNextAvailableRenderId();
-	public static HashMap<Integer, RenderPlanter> planterRenderers = new HashMap<Integer, RenderPlanter>();
 	private static RenderingHandler renderingHandler = new RenderingHandler();
 
 	@Override
@@ -32,16 +29,4 @@ public class ClientProxy implements ILFProxy {
 
 		RenderingHandler.registerBlockRender(ModBlocks.blockMill, 0, new RenderMill(Reference.MODEL_FOLDER + "forester_"));
 	}
-
-	public RenderPlanter getPlanterRenderer(int meta) {
-		RenderPlanter renderPlanter;
-		if (!planterRenderers.containsKey(meta)) {
-			renderPlanter = new RenderPlanter(Reference.MODEL_FOLDER + PlanterUtils.getNameFromMeta(meta));
-			planterRenderers.put(meta, renderPlanter);
-		} else {
-			renderPlanter = planterRenderers.get(meta);
-		}
-		return renderPlanter;
-	}
-
 }

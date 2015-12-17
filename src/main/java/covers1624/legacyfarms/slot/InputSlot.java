@@ -8,7 +8,6 @@ import net.minecraft.item.ItemStack;
 import java.util.ArrayList;
 
 /**
- * Created by covers1624 on 10/15/2015}.
  * If AllowedItems is null it will always allow the item in the slot.
  */
 public class InputSlot extends Slot {

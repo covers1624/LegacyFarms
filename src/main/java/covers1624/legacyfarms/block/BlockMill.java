@@ -3,10 +3,7 @@ package covers1624.legacyfarms.block;
 import covers1624.legacyfarms.proxy.ClientProxy;
 import net.minecraft.block.material.Material;
 
-/**
- * Created by covers1624 on 12/15/2015.
- */
-public class BlockMill extends BlockBase{
+public class BlockMill extends BlockBase {
 
 	public BlockMill() {
 		super(Material.rock);

@@ -1,6 +1,5 @@
 package covers1624.legacyfarms.container;
 
-import covers1624.legacyfarms.init.ModBlocks;
 import covers1624.legacyfarms.slot.InputSlot;
 import covers1624.legacyfarms.slot.OutputSlot;
 import covers1624.legacyfarms.tile.planter.TilePlanter;
@@ -13,19 +12,17 @@ import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 
-/**
- * Created by covers1624 on 12/14/2015.
- */
-public class ContainerMushroomFarm extends Container{
+public class ContainerMushroomFarm extends Container {
 
 	public TilePlanter planter;
 	public static ArrayList<ItemStack> mushrooms = new ArrayList<ItemStack>();
+
 	static {
 		mushrooms.add(new ItemStack(Blocks.brown_mushroom));
 		mushrooms.add(new ItemStack(Blocks.red_mushroom));
 	}
 
-	public ContainerMushroomFarm(InventoryPlayer inventoryPlayer, TilePlanter planter){
+	public ContainerMushroomFarm(InventoryPlayer inventoryPlayer, TilePlanter planter) {
 
 		this.planter = planter;
 

@@ -6,14 +6,10 @@ import covers1624.legacyfarms.slot.OutputSlot;
 import covers1624.legacyfarms.tile.planter.TilePlanter;
 import covers1624.lib.inventory.InventoryUtils;
 import forestry.core.gui.ContainerForestry;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 
-/**
- * Created by covers1624 on 12/1/2015.
- */
 public class ContainerPeatBog extends ContainerForestry {
 
 	private TilePlanter planter;

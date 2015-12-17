@@ -10,9 +10,6 @@ import net.minecraft.world.World;
 
 import java.util.ArrayList;
 
-/**
- * Created by covers1624 on 11/30/2015.
- */
 public class CropProviderPeat implements ICropProvider {
 	@Override
 	public boolean isGermling(ItemStack germling) {

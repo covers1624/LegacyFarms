@@ -4,6 +4,7 @@ import covers1624.legacyfarms.block.BlockHarvester;
 import covers1624.legacyfarms.block.BlockMill;
 import covers1624.legacyfarms.block.BlockPlanter;
 import covers1624.legacyfarms.tile.harvester.*;
+import covers1624.legacyfarms.tile.harvester.intermods.TileCropStickHarvester;
 import covers1624.legacyfarms.tile.mill.TileMill;
 import covers1624.legacyfarms.tile.planter.*;
 import covers1624.lib.item.MultiTileItem;
@@ -54,5 +55,6 @@ public class ModBlocks {
 		blockHarvester.addSubItemAndTileAndRegister(6, "mushroomPicker", TileHarvesterMushroom.class);
 		blockHarvester.addSubItemAndTileAndRegister(7, "sugarCaneHarvester", TileHarvesterReeds.class);
 		blockHarvester.addSubItemAndTileAndRegister(8, "infernalCombine", TileHarvesterNetherwart.class);
+		blockHarvester.addSubItemAndTileAndRegister(9, "cropStickHarvester", TileCropStickHarvester.class);
 	}
 }

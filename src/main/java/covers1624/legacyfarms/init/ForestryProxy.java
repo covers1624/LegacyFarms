@@ -10,13 +10,7 @@ import forestry.core.items.*;
 import forestry.core.utils.StringUtil;
 import forestry.farming.blocks.BlockMushroom;
 import forestry.plugins.*;
-import net.minecraft.block.Block;
 
-import java.util.EnumSet;
-
-/**
- * Created by covers1624 on 12/15/2015.
- */
 public class ForestryProxy {
 
 	public static ItemForestry peat = PluginCore.items.peat;
@@ -39,7 +33,6 @@ public class ForestryProxy {
 	public static boolean moduleApicultureEnabled = PluginManager.Module.APICULTURE.isEnabled();
 	public static boolean moduleArboricultureEnabled = PluginManager.Module.ARBORICULTURE.isEnabled();
 
-
 	// Sanity check.
 	public static void init() {
 		if (moduleFarmingEnabled) {
@@ -52,4 +45,4 @@ public class ForestryProxy {
 			mushroom = mush;
 		}
 	}
- }
+}

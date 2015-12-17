@@ -10,9 +10,6 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.ArrayList;
 
-/**
- * Created by covers1624 on 11/30/2015.
- */
 public class CropReeds implements ICropEntity {
 
 	private World world;
@@ -36,7 +33,7 @@ public class CropReeds implements ICropEntity {
 	@Override
 	public ArrayList<ItemStack> doHarvest() {
 		ArrayList<ItemStack> harvest = Blocks.reeds.getDrops(world, blockPos.x, blockPos.y, blockPos.z, 0, 0);
-		Proxies.common.addBlockDestroyEffects(world,blockPos.x, blockPos.y, blockPos.z,Blocks.reeds, 0);
+		Proxies.common.addBlockDestroyEffects(world, blockPos.x, blockPos.y, blockPos.z, Blocks.reeds, 0);
 		blockPos.setBlock(world, Blocks.air);
 		return harvest;
 	}

@@ -4,11 +4,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 
-/**
- * Created by covers1624 on 12/14/2015.
- */
 public class Recipes {
 
 	public static void init() {
@@ -37,7 +33,7 @@ public class Recipes {
 		GameRegistry.addRecipe(new ItemStack(ModItems.itemCatalyst, 3), "CCC", "FBF", 'C', ForestryProxy.waxCapsuleEmpty, 'B', Items.bone, 'F', ForestryProxy.fertilizerCompound);
 		GameRegistry.addRecipe(new ItemStack(ModItems.itemCatalyst, 3), "CCC", "FBF", 'C', ForestryProxy.emptyCan, 'B', Items.bone, 'F', ForestryProxy.fertilizerCompound);
 
-		if (ForestryProxy.moduleApicultureEnabled){
+		if (ForestryProxy.moduleApicultureEnabled) {
 			GameRegistry.addRecipe(new ItemStack(ModItems.itemCatalyst, 3), "CCC", "PBP", 'C', ForestryProxy.waxCapsuleEmpty, 'B', Items.bone, 'P', ForestryProxy.pollenCluster);
 			GameRegistry.addRecipe(new ItemStack(ModItems.itemCatalyst, 3), "CCC", "PBP", 'C', ForestryProxy.emptyCan, 'B', Items.bone, 'P', ForestryProxy.pollenCluster);
 			GameRegistry.addRecipe(new ItemStack(ModItems.itemCatalyst), "HHH", "FCF", "HHH", 'H', ForestryProxy.honeyDrop, 'F', ForestryProxy.fertilizerCompound, 'C', ForestryProxy.waxCapsuleEmpty);
@@ -47,9 +43,4 @@ public class Recipes {
 
 		}
 	}
-
-	private static void addRecipe(ItemStack output, Object... inputs) {
-		GameRegistry.addRecipe(new ShapedOreRecipe(output, inputs));
-	}
-
 }

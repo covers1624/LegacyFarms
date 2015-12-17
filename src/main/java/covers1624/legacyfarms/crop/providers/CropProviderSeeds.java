@@ -12,9 +12,6 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.ArrayList;
 
-/**
- * Created by covers1624 on 11/30/2015.
- */
 public class CropProviderSeeds implements ICropProvider {
 	@Override
 	public boolean isGermling(ItemStack germling) {

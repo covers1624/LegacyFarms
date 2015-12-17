@@ -1,9 +1,6 @@
 package covers1624.legacyfarms.proxy;
 
-public class CommonProxy implements ILFProxy {
+public abstract class CommonProxy {
 
-	@Override
-	public void registerRenderers() {
-		// NOOP
-	}
+	public abstract void registerRenderers();
 }

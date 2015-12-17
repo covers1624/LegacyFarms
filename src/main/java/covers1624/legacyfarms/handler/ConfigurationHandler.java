@@ -26,6 +26,7 @@ public class ConfigurationHandler {
 
 	//Intermods.
 	public static boolean agricraftSupport;
+	public static boolean ic2Support;
 
 	public static void init(File file) {
 		if (configuration == null) {
@@ -45,7 +46,7 @@ public class ConfigurationHandler {
 		planterMaxRF = configuration.getInt("Planter Max RF", "Power", 1024, 100, 10000, "The ammount of RF that Planters are able to store.");
 
 		harvesterUseRF = configuration.getBoolean("Harvester Use RF", "Power", true, "Set this to false and all Harvesters will not use RF.");
-		harvesterMaxRF = configuration.getInt("Planter Max RF", "Power", 1024, 100, 10000, "The amount of RF that Harvesters are able to store.");
+		harvesterMaxRF = configuration.getInt("Harvester Max RF", "Power", 1024, 100, 10000, "The amount of RF that Harvesters are able to store.");
 
 		// Functionality.
 		planterSideSensitive = configuration.getBoolean("Planter Side Sensitive", "Customization", true, "Set to false if planters should output all harvested products regardless of side a pipe is attached to");
@@ -53,6 +54,7 @@ public class ConfigurationHandler {
 		planterDropBlocks = configuration.getBoolean("Planter Drop Blocks", "Customization", true, "Set this to false and Planters will not drop blocks when clearing an area.");
 
 		agricraftSupport = configuration.getBoolean("Agricraft Support", "Intermods", true, "Set this to false to disable agricraft support.");
+		ic2Support = configuration.getBoolean("IC2 Support", "Intermods", true, "Set this to false to disable IC2 Crop Support.");
 
 		configuration.save();
 	}

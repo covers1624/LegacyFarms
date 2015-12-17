@@ -12,9 +12,6 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.ArrayList;
 
-/**
- * Created by covers1624 on 11/30/2015.
- */
 public class CropProviderCarrots implements ICropProvider {
 	@Override
 	public boolean isGermling(ItemStack germling) {
@@ -33,7 +30,7 @@ public class CropProviderCarrots implements ICropProvider {
 
 	@Override
 	public boolean doPlant(ItemStack germling, World world, BlockPosition blockPos) {
-		if (blockPos.getBlock(world) != Blocks.air || blockPos.copy().step(ForgeDirection.DOWN).getBlock(world) != Blocks.farmland){
+		if (blockPos.getBlock(world) != Blocks.air || blockPos.copy().step(ForgeDirection.DOWN).getBlock(world) != Blocks.farmland) {
 			return false;
 		}
 		blockPos.setBlock(world, Blocks.carrots);

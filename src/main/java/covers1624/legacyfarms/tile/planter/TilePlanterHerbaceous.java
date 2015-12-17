@@ -10,9 +10,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
-/**
- * Created by covers1624 on 12/13/2015.
- */
 public class TilePlanterHerbaceous extends TilePlanter {
 
 	public TilePlanterHerbaceous() {

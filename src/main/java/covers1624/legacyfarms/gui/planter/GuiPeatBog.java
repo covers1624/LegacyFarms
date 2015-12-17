@@ -8,9 +8,6 @@ import forestry.core.gui.GuiForestry;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
-/**
- * Created by covers1624 on 12/5/2015.
- */
 public class GuiPeatBog extends GuiForestry<ContainerPeatBog, TilePlanter> {
 
 	public GuiPeatBog(InventoryPlayer player, TilePlanter planter) {

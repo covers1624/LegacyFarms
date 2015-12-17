@@ -132,7 +132,7 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 		} else {
 			doWork();
 		}
-		updateServerSide();
+		//updateServerSide();
 		isInited = true;
 	}
 
@@ -163,8 +163,8 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 	}
 
 	@Override
-	public void readNetData(NBTTagCompound tagCompound) {
-		super.readNetData(tagCompound);
+	public void readNBT(NBTTagCompound tagCompound) {
+		super.readNBT(tagCompound);
 
 		isCleared = tagCompound.getBoolean("IsCleared");
 		isUnbroken = tagCompound.getBoolean("IsBuilt");
@@ -191,8 +191,8 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 	}
 
 	@Override
-	public void writeNetData(NBTTagCompound tagCompound) {
-		super.writeNetData(tagCompound);
+	public void writeNBT(NBTTagCompound tagCompound) {
+		super.writeNBT(tagCompound);
 
 		tagCompound.setBoolean("IsCleared", isCleared);
 		tagCompound.setBoolean("IsBuilt", isUnbroken);

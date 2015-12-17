@@ -7,13 +7,9 @@ import forestry.core.inventory.InventoryAdapterTile;
 import forestry.core.tiles.TileMill;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.world.World;
 
 import java.util.ArrayList;
 
-/**
- * Created by covers1624 on 12/15/2015.
- */
 public abstract class TileMillGrower extends TileMill {
 
 	public final ItemStack catalyst;
@@ -140,8 +136,8 @@ public abstract class TileMillGrower extends TileMill {
 			advanceProgress();
 			BlockPosition blockPos = posCurrent.add(new BlockPosition(xCoord, yCoord, zCoord));
 			blockPos.add(posOffset);
-			if (hasOvergrowthByCropId(blockPos.getWorldItemStack(worldObj))){
-				if(applyCatalyst(blockPos)){
+			if (hasOvergrowthByCropId(blockPos.getWorldItemStack(worldObj))) {
+				if (applyCatalyst(blockPos)) {
 					decrStackSize(0, 1);
 					break;
 				}
@@ -175,10 +171,10 @@ public abstract class TileMillGrower extends TileMill {
 
 	}
 
-	private boolean applyCatalyst(BlockPosition blockPos){
+	private boolean applyCatalyst(BlockPosition blockPos) {
 		ItemStack crop = blockPos.getWorldItemStack(worldObj);
 		Overgrowth growth = getOvergrowthByCrop(crop);
-		if(growth == null){
+		if (growth == null) {
 			return false;
 		}
 		growCrop(crop, blockPos.copy());

@@ -1,8 +1,5 @@
 package covers1624.legacyfarms.utils;
 
-/**
- * Created by covers1624 on 10/21/2015}.
- */
 public class HarvesterUtils {
 
 	public static String getNameFromMeta(int meta) {
@@ -26,7 +23,7 @@ public class HarvesterUtils {
 		case 8:
 			return "infernalHarvester";
 		case 9:
-			return "agricraftHarvester";
+			return "cropStickHarvester";
 		default:
 			return "UNKNOWN";
 		}

@@ -4,9 +4,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-/**
- * Created by covers1624 on 10/15/2015}.
- */
 public class ItemUtils {
 
 	/**
@@ -59,7 +56,7 @@ public class ItemUtils {
 			if (!inventoryStack.isItemEqual(itemstack)) {
 				continue;
 			}
-			if(!ItemStack.areItemStackTagsEqual(inventoryStack, itemstack)) {
+			if (!ItemStack.areItemStackTagsEqual(inventoryStack, itemstack)) {
 				continue;
 			}
 

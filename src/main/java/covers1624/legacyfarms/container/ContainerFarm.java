@@ -10,14 +10,11 @@ import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 
-/**
- * Created by covers1624 on 12/14/2015.
- */
-public class ContainerFarm extends Container{
+public class ContainerFarm extends Container {
 
 	private TilePlanter planter;
 
-	public ContainerFarm(InventoryPlayer inventoryPlayer, TilePlanter planter){
+	public ContainerFarm(InventoryPlayer inventoryPlayer, TilePlanter planter) {
 		this.planter = planter;
 
 		InventoryUtils.addSlotToContainer(this, new InputSlot(planter, 0, 34, 35, new ItemStack(Blocks.dirt)));
@@ -32,7 +29,6 @@ public class ContainerFarm extends Container{
 
 		InventoryUtils.bindPlayerInventory(this, inventoryPlayer, 8, 84);
 	}
-
 
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {

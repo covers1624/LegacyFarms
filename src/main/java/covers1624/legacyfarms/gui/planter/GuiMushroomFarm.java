@@ -1,6 +1,5 @@
 package covers1624.legacyfarms.gui.planter;
 
-import covers1624.legacyfarms.container.ContainerArboretum;
 import covers1624.legacyfarms.container.ContainerMushroomFarm;
 import covers1624.legacyfarms.reference.Reference;
 import covers1624.legacyfarms.tile.planter.TilePlanter;

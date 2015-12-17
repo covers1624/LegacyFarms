@@ -1,8 +1,5 @@
 package covers1624.legacyfarms.utils;
 
-/**
- * Created by covers1624 on 10/10/2015}.
- */
 public class PlanterUtils {
 
 	public static String getNameFromMeta(int meta) {

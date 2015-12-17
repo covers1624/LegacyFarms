@@ -11,13 +11,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
-/**
- * Created by covers1624 on 12/1/2015.
- */
-public class TilePlanterBog extends TilePlanter{
+public class TilePlanterBog extends TilePlanter {
 
-
-	public TilePlanterBog(){
+	public TilePlanterBog() {
 		super(new CropProviderPeat());
 		validSoil = new ItemStack(ForestryProxy.soil, 1, 1);
 		validGround = new ItemStack(ForestryProxy.soil, 1, 1);

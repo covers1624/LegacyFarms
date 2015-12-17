@@ -13,12 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import net.minecraftforge.oredict.OreDictionary;
 
-/**
- * Created by covers1624 on 12/15/2015.
- */
 public class TileMillForester extends TileMillGrower {
 
 	public TileMillForester() {
@@ -40,18 +35,18 @@ public class TileMillForester extends TileMillGrower {
 
 	@Override
 	public void growCrop(ItemStack crop, BlockPosition blockPos) {
-		if (crop.isItemEqual(new ItemStack(Blocks.sapling))){
-			((BlockSapling)Blocks.sapling).func_149853_b(worldObj, worldObj.rand, blockPos.x, blockPos.y, blockPos.z);
+		if (crop.isItemEqual(new ItemStack(Blocks.sapling))) {
+			((BlockSapling) Blocks.sapling).func_149853_b(worldObj, worldObj.rand, blockPos.x, blockPos.y, blockPos.z);
 		}
-		if (ForestryProxy.moduleArboricultureEnabled){
-			if (crop.isItemEqual(new ItemStack(ForestryProxy.blockSapling))){
+		if (ForestryProxy.moduleArboricultureEnabled) {
+			if (crop.isItemEqual(new ItemStack(ForestryProxy.blockSapling))) {
 				ForestryProxy.blockSapling.func_149853_b(worldObj, worldObj.rand, blockPos.x, blockPos.y, blockPos.z);
 			}
 		}
-		if (crop.getItem() == Item.getItemFromBlock(Blocks.wheat)){
-			((BlockCrops)Blocks.wheat).func_149853_b(worldObj, worldObj.rand, blockPos.x, blockPos.y, blockPos.z);
+		if (crop.getItem() == Item.getItemFromBlock(Blocks.wheat)) {
+			((BlockCrops) Blocks.wheat).func_149853_b(worldObj, worldObj.rand, blockPos.x, blockPos.y, blockPos.z);
 		}
-		if (crop.isItemEqual(new ItemStack(Blocks.nether_wart))){
+		if (crop.isItemEqual(new ItemStack(Blocks.nether_wart))) {
 			blockPos.setBlock(worldObj, blockPos.getBlock(worldObj), 3);
 		}
 	}

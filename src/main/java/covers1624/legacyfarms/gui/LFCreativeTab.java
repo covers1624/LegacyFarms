@@ -9,7 +9,6 @@ public class LFCreativeTab extends CreativeTabs {
 
 	public LFCreativeTab() {
 		super("legacyFarms");
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

@@ -6,7 +6,6 @@ import covers1624.legacyfarms.crop.ICropProvider;
 import covers1624.legacyfarms.handler.CropHandler;
 import covers1624.legacyfarms.init.Blueprints;
 import covers1624.legacyfarms.init.ForestryProxy;
-import covers1624.legacyfarms.init.ModBlocks;
 import covers1624.legacyfarms.utils.GuiId;
 import covers1624.lib.util.BlockPosition;
 import net.minecraft.block.Block;

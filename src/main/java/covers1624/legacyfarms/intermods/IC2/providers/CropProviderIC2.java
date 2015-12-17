@@ -1,16 +1,16 @@
-package covers1624.legacyfarms.crop.providers;
+package covers1624.legacyfarms.intermods.IC2.providers;
 
 import covers1624.legacyfarms.crop.ICropEntity;
 import covers1624.legacyfarms.crop.ICropProvider;
-import covers1624.legacyfarms.crop.providers.entity.CropCacti;
+import covers1624.legacyfarms.intermods.IC2.providers.entity.CropEntityIC2;
 import covers1624.lib.util.BlockPosition;
-import net.minecraft.init.Blocks;
+import ic2.api.crops.ICropTile;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
 
-public class CropProviderCacti implements ICropProvider {
+public class CropProviderIC2 implements ICropProvider {
 	@Override
 	public boolean isGermling(ItemStack germling) {
 		return false;
@@ -18,7 +18,7 @@ public class CropProviderCacti implements ICropProvider {
 
 	@Override
 	public boolean isCrop(World world, BlockPosition blockPos) {
-		return blockPos.getBlock(world) == Blocks.cactus;
+		return blockPos.getTileEntity(world) instanceof ICropTile;
 	}
 
 	@Override
@@ -33,6 +33,6 @@ public class CropProviderCacti implements ICropProvider {
 
 	@Override
 	public ICropEntity getCrop(World world, BlockPosition blockPos) {
-		return new CropCacti(world, blockPos);
+		return new CropEntityIC2(world, blockPos);
 	}
 }

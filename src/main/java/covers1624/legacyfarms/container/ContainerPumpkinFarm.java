@@ -13,14 +13,12 @@ import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 
-/**
- * Created by covers1624 on 12/13/2015.
- */
 public class ContainerPumpkinFarm extends Container {
 
 	private TilePlanter planter;
 	private static ArrayList<ItemStack> seeds = new ArrayList<ItemStack>();
-	static{
+
+	static {
 		seeds.add(new ItemStack(Items.melon_seeds));
 		seeds.add(new ItemStack(Items.pumpkin_seeds));
 	}

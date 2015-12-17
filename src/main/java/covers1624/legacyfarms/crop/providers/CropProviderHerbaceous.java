@@ -1,6 +1,5 @@
 package covers1624.legacyfarms.crop.providers;
 
-import covers1624.legacyfarms.LegacyFarms;
 import covers1624.legacyfarms.crop.ICropEntity;
 import covers1624.legacyfarms.crop.ICropProvider;
 import covers1624.legacyfarms.crop.providers.entity.CropHerbaceous;
@@ -13,9 +12,6 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.ArrayList;
 
-/**
- * Created by covers1624 on 11/30/2015.
- */
 public class CropProviderHerbaceous implements ICropProvider {
 	@Override
 	public boolean isGermling(ItemStack germling) {

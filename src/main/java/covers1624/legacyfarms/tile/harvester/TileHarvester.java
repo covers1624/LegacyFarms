@@ -1,6 +1,5 @@
 package covers1624.legacyfarms.tile.harvester;
 
-import buildcraft.core.lib.engines.TileEngineBase;
 import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyReceiver;
 import covers1624.legacyfarms.LegacyFarms;
@@ -92,16 +91,16 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 
 	@Override
 	public void updateEntity() {
-		//TODO power Values.
+		super.updateEntity();
 		if (worldObj.isRemote) {
 			return;
 		}
-		if (ConfigurationHandler.harvesterUseRF){
-			if (energyStorage.getEnergyStored() >= 30){
+		if (ConfigurationHandler.harvesterUseRF) {
+			if (energyStorage.getEnergyStored() >= 30) {
 				int use = doWork();
-				if (use == 1){
+				if (use == 1) {
 					energyStorage.extractEnergy(30, false);
-				} else if (use == 0){
+				} else if (use == 0) {
 					energyStorage.extractEnergy(5, false);
 				}
 			}

@@ -9,9 +9,6 @@ import net.minecraft.world.World;
 
 import java.util.ArrayList;
 
-/**
- * Created by covers1624 on 11/30/2015.
- */
 public class CropCarrot implements ICropEntity {
 
 	private World world;
@@ -38,7 +35,7 @@ public class CropCarrot implements ICropEntity {
 	public ArrayList<ItemStack> doHarvest() {
 		ArrayList<ItemStack> harvest = Blocks.wheat.getDrops(world, blockPos.x, blockPos.y, blockPos.z, meta, 0);
 		blockPos.setBlock(world, Blocks.air);
-		Proxies.common.addBlockDestroyEffects(world,blockPos.x, blockPos.y, blockPos.z, Blocks.carrots, meta);
+		Proxies.common.addBlockDestroyEffects(world, blockPos.x, blockPos.y, blockPos.z, Blocks.carrots, meta);
 		return harvest;
 	}
 }

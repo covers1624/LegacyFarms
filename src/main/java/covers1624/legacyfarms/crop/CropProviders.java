@@ -57,4 +57,11 @@ public class CropProviders {
 	 */
 	public static ArrayList<ICropProvider> fungalCrops = new ArrayList<ICropProvider>();
 
+	/**
+	 * Any {link ICropProvider} providing cropstick stuff (AgriCraft, IC2).
+	 * <p/>
+	 * Used by the CropStick Harvester.
+	 */
+	public static ArrayList<ICropProvider> cropSticksCrops = new ArrayList<ICropProvider>();
+
 }
