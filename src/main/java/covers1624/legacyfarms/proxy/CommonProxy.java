@@ -1,6 +1,8 @@
 package covers1624.legacyfarms.proxy;
 
-public abstract class CommonProxy {
+public class CommonProxy {
 
-	public abstract void registerRenderers();
+	public void registerRenderers() {
+
+	}
 }
