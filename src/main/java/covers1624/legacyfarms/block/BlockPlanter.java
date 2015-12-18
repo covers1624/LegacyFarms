@@ -2,6 +2,8 @@ package covers1624.legacyfarms.block;
 
 import covers1624.legacyfarms.proxy.ClientProxy;
 import covers1624.legacyfarms.tile.planter.TilePlanter;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,20 +28,11 @@ public class BlockPlanter extends BlockBase {
 		return false;
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
 	public int getRenderType() {
 		return ClientProxy.lfRenderId;
 	}
-
-	//@Override
-	//public TileEntity createNewTileEntity(World world, int meta) {
-	//	if (meta == 0) {
-	//		return new TilePlanterSapling();
-	//	} else if (meta == 6) {
-	//		return new TilePlanterNetherwarts();
-	//	}
-	//	return null;
-	//}
 
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int facing, float facingX, float facingY, float facingZ) {

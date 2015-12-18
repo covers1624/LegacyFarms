@@ -3,6 +3,8 @@ package covers1624.legacyfarms.block;
 import covers1624.legacyfarms.reference.Reference;
 import covers1624.legacyfarms.tile.harvester.TileHarvesterSapling;
 import covers1624.legacyfarms.utils.HarvesterUtils;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,6 +29,7 @@ public class BlockHarvester extends BlockBase {
 		blankIcons = new IIcon[10];
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerBlockIcons(IIconRegister iIconRegister) {
 		for (int i = 0; i < 10; i++) {
@@ -36,6 +39,7 @@ public class BlockHarvester extends BlockBase {
 		}
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
 	public IIcon getIcon(int side, int meta) {
 		if (side > 1) {

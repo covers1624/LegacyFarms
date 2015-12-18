@@ -238,15 +238,19 @@ public abstract class TileHarvester extends TileInventory implements IRestricted
 	 * Chops down a wood block and determines the next victim if any.
 	 */
 	protected void hewTree(ICropEntity entity) {
-		ArrayList<ItemStack> harvest = entity.doHarvest();
-		storeProduct(harvest);
+		try {
+			ArrayList<ItemStack> harvest = entity.doHarvest();
+			storeProduct(harvest);
 
-		int[] next = entity.getNextPosition();
-		if (next == null || next.length <= 0) {
-			return;
+			int[] next = entity.getNextPosition();
+			if (next == null || next.length <= 0) {
+				return;
+			}
+
+			posNext = new BlockPosition(next[0], next[1], next[2]);
+		} catch (Exception e){
+			LegacyFarms.logger.info(getTilePos().add(posCurrent).toString());
 		}
-
-		posNext = new BlockPosition(next[0], next[1], next[2]);
 	}
 
 	protected void storeProduct(ArrayList<ItemStack> harvest) {
