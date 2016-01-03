@@ -964,8 +964,6 @@ public abstract class TilePlanter extends TileInventory implements IRestrictedAc
 
 	@SideOnly(Side.CLIENT)
 	public void addWailaInfo(List<String> info) {
-		info.add("Cleared: " + isCleared);
-		info.add("");
 		info.add("Soil: " + validSoil.getDisplayName());
 	}
 }
