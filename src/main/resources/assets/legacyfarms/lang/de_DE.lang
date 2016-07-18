@@ -1,0 +1,31 @@
+#Legacy Farms Deutsch DE.
+
+#Planters.
+tile.arboretum.name=Baumschule
+tile.farm.name=Farm
+tile.rubberFarm.name=Kautschukfarm
+tile.pumpkinFarm.name=Kürbisfarm
+tile.peatBog.name=Torffarm
+tile.mushroomFarm.name=Pilzfarm
+tile.infernalFarm.name=Höllenfarm
+
+#Harvesters.
+tile.logger.name=Holzfäller
+tile.combine.name=Mähdrescher
+tile.rubberTreeHarvester=Kautschukernter
+tile.pumpkinHarvester.name=Kürbisernter
+tile.turbary.name=Torfstecherei
+tile.cactiHarvester=Kaktusernter
+tile.mushroomPicker.name=Pilzpflücker
+tile.sugarCaneHarvester.name=Zuckerrohrernter
+tile.infernalCombine.name=Höllenmähdrescher
+
+#Mills.
+tile.forester.name=Forstmaschine
+tile.treeTap=Kautschukmaschine
+
+#Items.
+item.vialCatalyst.name=Katalysator
+
+#Core.
+itemGroup.legacyFarms=Legacy Farms
